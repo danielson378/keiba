@@ -1,0 +1,86 @@
+@charset "Shift_JIS";
+
+@media screen and (max-width: 767px) {
+	.tableForm01  > * > tr > * {
+		display: block;
+		width: 100% !important;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.inputWrap01 > * {
+		display: block;
+	}
+	.inputWrap01 > * + * {
+		margin-top: 10px;
+	}
+	.inputName01 input {
+		width: 7em;
+		margin: 0 !important;
+	}
+	.radioList03 > li {
+		display: inline-block;
+		margin-top: 0;
+		margin-right: 0.5em;
+	}
+	.spIndent01 > li {
+		position: relative;
+		padding-left: 3em;
+	}
+	.spIndent01 > li > label > span {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	/*-------------------------------------------
+	width
+	-------------------------------------------*/
+	input.inputW01 {
+		width: 80%;
+	}
+	input.inputW03 {
+		width: 100%;
+	}
+	input.inputW04 {
+		width: 100%;
+	}
+	input.inputW06 {
+	width: 100%;
+	}
+	.selctMiddle {
+		width: 100%;
+	}
+	.btnWrap01 > ul > li {
+		margin-top: 10px;
+	}
+	.btnWrap01 .btnInputWMiddle {
+		width: 100%;
+	}
+	.btnWrap01 .btnBack {
+		position: static;
+	}
+
+	h1.h1Title01 .titleInner {
+		font-size: 1.786em;
+	}
+	h2.h2Title01 .titleInner {
+		font-size: 1.429em;
+	}
+	.btnTInput01 {
+		width: 100%;
+	}
+	.spView {
+		display: block;
+	}
+	.pcView {
+		display: none;
+	}
+	.tableForm01 tbody > tr > th input[type="checkbox"][name="inputCheck"] {
+		display: none;
+	}
+
+	.tableForm01 tbody > tr > th {
+		padding-left: 10px;
+	}
+
+}

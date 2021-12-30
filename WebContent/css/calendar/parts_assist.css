@@ -1,0 +1,167 @@
+@charset "Shift_JIS";
+
+#wrap #mainArea:after {
+	content: normal !important;
+}
+
+.tableForm01 > tbody > tr > td > dl > dd > * {
+    margin-top: 10px;
+}
+/* ---------------------------------------------------
+ /assist/
+--------------------------------------------------- */
+.mAuto{
+	margin: 0 auto !important;
+}
+.iconOptional,
+.iconEssential {
+	display: inline;
+}
+.essential .iconOptional {
+	display: none;
+}
+.optional .iconEssential {
+	display: none;
+}
+
+/* reqDl */
+.essential.reqDl .iconEssential{
+	display: inline;
+}
+.essential.reqDl .iconOptional{
+	display: none;
+}
+.essential.noReqDl .iconEssential{
+	display: none;
+}
+.essential.noReqDl .iconOptional{
+	display: inline;
+}
+
+/*placeholder*/
+input::-webkit-input-placeholder {
+    color: #707070;
+}
+input:-ms-input-placeholder {
+    color: #707070;
+}
+input::-moz-placeholder {
+    color: #707070;
+}
+
+
+/* field */
+.field {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+/* tableForm01 */
+.tableForm01 tbody > tr > th {
+	position: static;
+	padding-left: 40px;
+}
+.tableForm01 tbody > tr > th div {
+	position: relative;
+}
+
+.tableForm01 tbody > tr > th div input[type="checkbox"][name="inputCheck"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.tableForm01 tbody > tr > th div input[type="checkbox"][name="inputCheck"] + .entryCheck {
+	display: block;
+	background: url('/webloan/webloan/images/bg_form_check.png') no-repeat left top;
+	width: 28px;
+	height: 25px;
+	position: absolute;
+	left: -33px;
+	top: 0;
+}
+.tableForm01 tbody > tr > th div input[type="checkbox"][name="inputCheck"].checked + .entryCheck {
+	background: url('/webloan/webloan/images/bg_form_checked.png') no-repeat left top;
+}
+.tableForm01 tbody > tr > th div div {
+	position: relative;
+}
+.tableForm01 td label,
+.tableForm01 td label + span {
+	vertical-align: baseline;
+}
+.tableForm01 td button {
+	padding: 4px 10px;
+}
+.tableForm01 td .inputWrap01 {
+	position: relative;
+}
+.tableForm01 td input[type="radio"]{
+    margin-right: 5px;
+}
+.tableForm01 td input[type="radio"] + label {
+    margin-right: 10px;
+}
+/* btnBack */
+a.btnTInput02 {
+	color: #333;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* triggerList */
+.triggerList > li {
+	margin-top: 5px;
+}
+.triggerList > li:first-child {
+	margin-top: 0;
+}
+
+/* balloonTxt */
+.balloonTxt{
+	position: relative;
+}
+.balloon{
+	margin-left: 0;
+	position: absolute;
+	top: -35px;
+	left: 5px;
+	width: 177px;
+	max-width: 177px;
+}
+.reqItem.ok .balloon{
+	display: none;
+}
+
+/* reqItem */
+.reqItem,
+.errorItem {
+	background-color: #fcc;
+}
+.reqItem.ok{
+	background-color: #fff !important;
+}
+.triggerOn.ok{
+	background-color: #fff !important;
+}
+input:disabled.reqItem{
+	background-color:#efefef;
+	border:1px solid #ccc;
+	}
+
+/* /assist/ sp
+--------------------------------------------------- */
+@media screen and (max-width: 767px) {
+/* wrap */
+#wrap #mainArea {
+	margin-bottom: 60px;
+}
+#wrap #mainArea main{
+	display: block;
+}
+
+/* valCheck */
+.valCheck .btnInputWMiddle {
+	width: 100%;
+}
+}

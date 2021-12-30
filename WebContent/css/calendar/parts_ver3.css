@@ -1,0 +1,233 @@
+@charset "UTF-8";
+/*-------------------------------------------
+
+/common/css/parts_ver3.css
+
+-------------------------------------------*/
+
+/*color*/
+.tBlue01 { color: blue !important; }
+
+/* normalBlockA04 */
+.normalBlockA04 > .blockInner .blockTitle span:before{
+	color: #333;
+}
+
+/* xsmlBtn */
+*[class^="btnT"][class*="icon"].xsmlBtn.btnWFull{
+	padding: 7px 10px 7px 0 !important;
+}
+*[class^="btnT"][class*="glyph"][class*="icon"].xsmlBtn > span,
+*[class^="btnT"][class*="icon"].xsmlBtn > span{
+	padding: 0 !important;
+	font-size: 0.857em !important;
+}
+
+/* smlBtn */
+span.smlBtn,
+*[class^="btnT"].smlBtn > span,
+*[class^="btnT"][class*="glyph"].smlBtn > span,
+*[class^="btnT"][class*="glyph"][class*="icon"].smlBtn > span{
+	padding: 0 !important;
+	font-size: 0.857em !important;
+}
+.fsSMiddle{
+	font-size: 0.929em !important
+}
+
+/* align */
+.vAlignM{
+	vertical-align: middle;
+}
+
+/* --------------------------------------- */
+
+/* pagiNation */
+.pagiNation{
+	margin: 0 0 20px;
+	letter-spacing: -.4em;
+	text-align: center;
+}
+.pagiNation li{
+	display: inline-block;
+	letter-spacing: normal;
+	margin: 0 1%;
+}
+.pagiNation li:first-child{
+	margin-left: 0;
+}
+.pagiNation li:last-child{
+	margin-right: 0;
+}
+.pagiNation li#prev{
+	margin-right: 2%;
+}
+.pagiNation li#next{
+	margin-left: 2%;
+}
+
+/* choiceBox */
+.choiceBox{
+	position: relative;
+}
+.choiceBox input[type=checkbox]{
+	display: none;
+}
+.choiceBox input[type=checkbox] + .choice{
+	display: block;
+	background: url(/webloan/webloan/images/bg_form_check.png) no-repeat left top;
+	width: 26px;
+	height: 25px;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+.choiceBox input[type=checkbox]:checked + .choice{
+	background: url(/webloan/webloan/images/bg_form_checked.png) no-repeat left top;
+}
+
+/* tableCalendar */
+.tableCalendar{
+}
+.tableCalendar tr > th,
+.tableCalendar tr > td{
+	text-align: center;
+	font-weight: bold;
+}
+.tableCalendar tr > th{
+	color: #fff;
+}
+
+/*.tableCalendar tr > td:first-child,*/
+.tableCalendar tr > td:last-child{
+	background: #e5f3ed;
+
+}
+
+.tableCalendar tr > td a{
+	color: #323232;
+}
+.tableCalendar tr > td:first-child a{
+	color: #f00;
+}
+.tableCalendar tr > td:last-child a{
+	color: blue;
+}
+.tableCalendar tr > td .days{
+	margin: 0 0 10px;
+}
+.tableCalendar tr > td .days a{
+	font-size: 1.714em;
+	text-decoration: underline;
+}
+.tableCalendar tr > td .days li{
+	font-size: 1.714em;
+/*	text-decoration: underline; */
+}
+.tableCalendar tr .input{
+	font-size: 1.714em;
+	background: #e5f3ed;
+/*	text-decoration: underline; */
+}
+.tableCalendar tr .borderRight{
+	font-size: 1.714em;
+	border-right: 2px solid
+}
+.tableCalendar tr .borderLeft{
+	font-size: 1.714em;
+	border-left: 2px solid
+}
+.tableCalendar tr .item{
+	font-size: 1.714em;
+	vertical-align:middle;
+}
+/* kanri-modal */
+.modalKanri{
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+.modalKanri .modalKanri-title{
+	margin: 20px 0 40px;
+	text-align: center;
+	font-size: 1.571em;
+	font-weight: bold;
+	line-height: 1.44;
+}
+.modalKanri .modalKanri-cont{
+	max-width: 450px;
+	margin: 0 auto;
+}
+.modalKanri dl{
+	display: table;
+	width: 100%;
+}
+.modalKanri dl > *{
+	display: table-cell;
+	vertical-align: middle;
+}
+.modalKanri dl dt{
+	width: 8em;
+}
+.modalKanri .modalKanri-status{
+	margin: 40px 0;
+	text-align: center;
+}
+.modalKanri .modalKanri-status p{
+	display: inline-block;
+	font-size: 1.571em;
+	font-weight: bold;
+}
+.modalKanri .modalKanri-status p.top{
+	margin-right: 15px;
+	padding-right: 85px;
+	position: relative;
+}
+.modalKanri .modalKanri-status p.top:after{
+	content: '';
+	display: block;
+	background: url('/webloan/images/bg_consumer_modal_kanri.png') no-repeat 0 0;
+	background-size: cover;
+	width: 54px;
+	height: 38px;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+}
+
+.modalKanri .modalKanri-btn{
+	margin: 20px 0 0;
+	text-align: center;
+}
+.modalKanri .modalKanri-btn li{
+	float: left;
+	width: 50%;
+}
+.modalKanri .btnT01,
+.modalKanri .btnT02{
+	width: auto;
+}
+
+
+/* placeholder */
+
+/* Chrome, Safari */
+input::-webkit-input-placeholder{
+    color: #aaaaaa !important;
+}
+/* Firefox */
+input::-moz-placeholder{
+    color: #aaaaaa !important;
+}
+/* Firefox 18ˆÈ‘O */
+input:-moz-placeholder{
+    color: #aaaaaa !important;
+}
+/* IE */
+input:-ms-input-placeholder{
+    color: #aaaaaa !important;
+}

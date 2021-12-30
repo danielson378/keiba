@@ -1,0 +1,42 @@
+@charset "UTF-8";
+/*-------------------------------------------
+
+/common/css/parts_ver3_rwd.css
+
+-------------------------------------------*/
+
+/* pagiNation */
+@media screen and (max-width: 465px) {
+.pagiNation li#prev span,
+.pagiNation li#next span{
+	padding: 0 !important;
+}
+.pagiNation li#prev span:before,
+.pagiNation li#next span:before{
+	content: none;
+}
+}
+
+/* tableScrollWrap */
+@media screen and (max-width: 768px) {
+.tableScrollWrap{
+	overflow-x: scroll;
+	margin: 0 0 20px;
+}
+.tableScrollWrap table{
+	width: 940px;
+	margin: 0;
+}
+}
+
+/* kanri-modal */
+@media screen and (max-width: 506px) {
+.modalKanri .modalKanri-btn li {
+	float: none;
+	width: 100%;
+}
+.modalKanri .btnT01,
+.modalKanri .btnT02 {
+	width: 100%;
+}
+}
