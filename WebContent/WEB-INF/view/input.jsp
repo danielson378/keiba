@@ -9,23 +9,27 @@
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/input/reset.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/input/base.css">
-
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/input/parts.css">
 <!-- component ver.3 -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/input/parts_ver3.css">
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/body.css"/>
 
 
 <style type="text/css">
 	#div0{width:100%; height:80%; }
 	#div2{width:100%; height:100%; text-align:center}
 </style>
-
+<script type="text/javascript">
+</script>
 </head>
 
 <div id="calendar_box">
 	<div id="calendar_detailed">
 		<!-- request�L���� -->
-		<table class="tableCalendar">
+<!-- 		<table class="tableCalendar"> -->
+		<s:form action="process" class="tableCalendar">
 			<!-- 項番 -->
 			<br>
 			<br>
@@ -61,27 +65,43 @@
 				</tr>
 			</thead>
 			<tr>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
-			<td><input type="text" id="name" name="name" required minlength="4" maxlength="8" size="3"></td>
+
+			<td><input type="text" id="user18" name="user18" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user17" name="user17" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user16" name="user16" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user15" name="user15" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user14" name="user14" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user13" name="user13" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user12" name="user12" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user11" name="user11" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user10" name="user10" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user9" name="user9" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user8" name="user8" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user7" name="user7" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user6" name="user6" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user5" name="user5" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user4" name="user4" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user3" name="user3" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user2" name="user2" required maxlength="3" size="3"></td>
+			<td><input type="text" id="user1" name="user1" required maxlength="3" size="3"></td>
 			<td class="item"><ul><li>番号</li></ul></td>
 			</tr>
 
-		</table>
+				<div>
+				<!-- <input type="submit" value="Log in" /> -->
+				<input type="submit" value="実行" class="btn btn-primary" id="js-btn-login" onclick="value_seting()"/>
+			</div>
+			</s:form><!-- form -->
+<!-- 		</table> -->
 	</div>
 </div>
+			<div id = "div0">
+				<div>
+					<a href="./view/result.jsp" target="_blank">騎手登録</a>
+				</div>
+			</div>
+		 <c:if test="${request.errMsg!=null}">
+			 <div>
+				<span class="help-block u-errormessage" id="js-server-helpinfo" style="color: red;"> ${request.errMsg}</span>
+			</div>
+		 </c:if>

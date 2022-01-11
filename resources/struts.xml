@@ -23,6 +23,11 @@
 		</global-results>
 
 		<!-- Hello worldのサンプルアクション -->
+		<action name="process" class="com.beautyred.action.ProcessAction"
+			method="execute">
+			<result name="success">/WEB-INF/view/result.jsp</result>
+			<result name="faild">/WEB-INF/view//input.jsp</result>
+		</action>
 		<action name="loginEntry" class="com.beautyred.action.LoginAction"
 			method="execute">
 			<result name="success">/WEB-INF/view/input.jsp</result>

@@ -14,7 +14,7 @@ import org.apache.struts2.ServletActionContext;
 import com.beautyred.config.DbConfig;
 
 /**
- * [HelloWorldのアクションクラス]<br>
+ * [主処理のアクションクラス]<br>
  * <br>
  * @author tarosa0001
  */
@@ -110,6 +110,9 @@ public class LoginAction {
     		}
     	} catch (SQLException e) {
     		e.printStackTrace();
+    	} finally {
+    		ps.close();
+    		conn.close();
     	}
 
     	return flag;
