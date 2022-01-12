@@ -922,7 +922,8 @@ public class ProcessAction {
      * @param dayResult 日の12変換後の数字リスト
      */
 	private void starPro(List<String> yearMaruResult, List<String> monthMaruResult, List<String> dayMaruResult, List<String> yearResult, List<String> monthResult, List<String> dayResult) {
-		// TODO 自動生成されたメソッド・スタブ
+
+		// 年の行ポイントの数字★を付ける
 
 		for (String year : yearMaruResult) {
 			// Yd1 ①:4、10
@@ -1688,7 +1689,7 @@ public class ProcessAction {
 				}
 			}
 			// Ya12 ⑨:6、12
-			else if ("Yb12".equals(year)) {
+			else if ("Ya12".equals(year)) {
 				if ("6".equals(year15) || "12".equals(year15)) {
 					if (NUM14710.contains(year13)) {
 						starMap.put("Y13", "★");
@@ -1702,6 +1703,2622 @@ public class ProcessAction {
 					}
 					if (NUM25811.contains(year11)) {
 						starMap.put("Y11", "★");
+					}
+				}
+			}
+			// Yd13 ①:4、10
+			else if ("Yd13".equals(year)) {
+				if ("4".equals(year16) || "10".equals(year16)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				} else if ("4".equals(year10) || "10".equals(year10)) {
+					if (NUM25811.contains(year11)) {
+						starMap.put("Y11", "★");
+					}
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+				}
+			}
+			// Yc13 ④:7、10
+			else if ("Yc13".equals(year)) {
+				if ("7".equals(year16) || "10".equals(year16)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				} else if ("7".equals(year10) || "10".equals(year10)) {
+					if (NUM25811.contains(year11)) {
+						starMap.put("Y11", "★");
+					}
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+				}
+			}
+			// Yb13 ⑦:4、10
+			else if ("Yb13".equals(year)) {
+				if ("4".equals(year16) || "10".equals(year16)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				} else if ("4".equals(year10) || "10".equals(year10)) {
+					if (NUM25811.contains(year11)) {
+						starMap.put("Y11", "★");
+					}
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+				}
+			}
+			// Ya13 ⑩:1、7
+			else if ("Ya13".equals(year)) {
+				if ("1".equals(year16) || "7".equals(year16)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				} else if ("1".equals(year10) || "7".equals(year10)) {
+					if (NUM25811.contains(year11)) {
+						starMap.put("Y11", "★");
+					}
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+				}
+			}
+			// Yd14 ②:5、11
+			else if ("Yd14".equals(year)) {
+				if ("5".equals(year17) || "11".equals(year17)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				} else if ("5".equals(year11) || "11".equals(year11)) {
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+				}
+			}
+			// Yc14 ⑤:2、8
+			else if ("Yc14".equals(year)) {
+				if ("2".equals(year17) || "8".equals(year17)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				} else if ("2".equals(year11) || "8".equals(year11)) {
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+				}
+			}
+			// Yb14 ⑧:5、11
+			else if ("Yb14".equals(year)) {
+				if ("5".equals(year17) || "11".equals(year17)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				} else if ("5".equals(year11) || "11".equals(year11)) {
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+				}
+			}
+			// Ya14 ⑪:2、8
+			else if ("Ya14".equals(year)) {
+				if ("2".equals(year17) || "8".equals(year17)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				} else if ("2".equals(year11) || "8".equals(year11)) {
+					if (NUM36912.contains(year12)) {
+						starMap.put("Y12", "★");
+					}
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+				}
+			}
+			// Yd15 ③:6、12
+			else if ("Yd15".equals(year)) {
+				if ("6".equals(year18) || "12".equals(year18)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				} else if ("6".equals(year12) || "12".equals(year12)) {
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+				}
+			}
+			// Yc15 ⑥:3、9
+			else if ("Yc15".equals(year)) {
+				if ("3".equals(year18) || "9".equals(year18)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				} else if ("3".equals(year12) || "9".equals(year12)) {
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+				}
+			}
+			// Yb15 ⑨:6、12
+			else if ("Yb15".equals(year)) {
+				if ("6".equals(year18) || "12".equals(year18)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				} else if ("6".equals(year12) || "12".equals(year12)) {
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+				}
+			}
+			// Ya15 ⑫:3、9
+			else if ("Ya15".equals(year)) {
+				if ("3".equals(year18) || "9".equals(year18)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				} else if ("3".equals(year12) || "9".equals(year12)) {
+					if (NUM14710.contains(year13)) {
+						starMap.put("Y13", "★");
+					}
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+				}
+			}
+			// Yd16 ④:7、10
+			else if ("Yd16".equals(year)) {
+				if ("7".equals(year13) || "10".equals(year13)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				}
+			}
+			// Yc16 ⑦:4、10
+			else if ("Yc16".equals(year)) {
+				if ("4".equals(year13) || "10".equals(year13)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				}
+			}
+			// Yb16 ⑩:1、7
+			else if ("Yb16".equals(year)) {
+				if ("1".equals(year13) || "7".equals(year13)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				}
+			}
+			// Ya16 ①:4、10
+			else if ("Ya16".equals(year)) {
+				if ("4".equals(year13) || "10".equals(year13)) {
+					if (NUM25811.contains(year14)) {
+						starMap.put("Y14", "★");
+					}
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+				}
+			}
+			// Yd17 ⑤:2、8
+			else if ("Yd17".equals(year)) {
+				if ("2".equals(year14) || "8".equals(year14)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				}
+			}
+			// Yc17 ⑧:5、11
+			else if ("Yc17".equals(year)) {
+				if ("5".equals(year14) || "11".equals(year14)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				}
+			}
+			// Yb17 ⑪:2、8
+			else if ("Yb17".equals(year)) {
+				if ("2".equals(year14) || "8".equals(year14)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				}
+			}
+			// Ya17 ②:5、11
+			else if ("Ya17".equals(year)) {
+				if ("5".equals(year14) || "11".equals(year14)) {
+					if (NUM36912.contains(year15)) {
+						starMap.put("Y15", "★");
+					}
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+				}
+			}
+			// Yd18 ⑥:3、9
+			else if ("Yd18".equals(year)) {
+				if ("3".equals(year15) || "9".equals(year15)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				}
+			}
+			// Yc18 ⑨:6、12
+			else if ("Yc18".equals(year)) {
+				if ("6".equals(year15) || "12".equals(year15)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				}
+			}
+			// Yb18 ⑫:3、9
+			else if ("Yb18".equals(year)) {
+				if ("3".equals(year15) || "9".equals(year15)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				}
+			}
+			// Ya18 ③:6、12
+			else if ("Yd18".equals(year)) {
+				if ("6".equals(year15) || "12".equals(year15)) {
+					if (NUM14710.contains(year16)) {
+						starMap.put("Y16", "★");
+					}
+					if (NUM25811.contains(year17)) {
+						starMap.put("Y17", "★");
+					}
+				}
+			}
+		}
+
+		// 月の行ポイントの数字★を付ける
+
+		for (String month : monthMaruResult) {
+			// Md1 ①:4、10
+			if ("Md1".equals(month)) {
+				if ("4".equals(month4) || "10".equals(month4)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Mc1 ④:7、10
+			else if ("Mc1".equals(month)) {
+				if ("7".equals(month4) || "10".equals(month4)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Mb1 ⑦:4、10
+			else if ("Mb1".equals(month)) {
+				if ("4".equals(month4) || "10".equals(month4)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Ma1 ⑩:1、7
+			else if ("Ma1".equals(month)) {
+				if ("1".equals(month4) || "7".equals(month4)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Md2 ②:5、11
+			else if ("Md2".equals(month)) {
+				if ("5".equals(month5) || "11".equals(month5)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Mc2 ⑤:2、8
+			else if ("Mc2".equals(month)) {
+				if ("2".equals(month5) || "8".equals(month5)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Mb2 ⑧:5、11
+			else if ("Mb2".equals(month)) {
+				if ("5".equals(month5) || "11".equals(month5)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Ma2 ⑪:1、7
+			else if ("Ma2".equals(month)) {
+				if ("1".equals(month5) || "7".equals(month5)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Md3 ③:6、12
+			else if ("Md3".equals(month)) {
+				if ("6".equals(month6) || "12".equals(month6)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Mc3 ⑥:3、9
+			else if ("Mc3".equals(month)) {
+				if ("3".equals(month6) || "9".equals(month6)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Mb3 ⑨:6、12
+			else if ("Mb3".equals(month)) {
+				if ("6".equals(month6) || "12".equals(month6)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Ma3 ⑫:3、9
+			else if ("Ma3".equals(month)) {
+				if ("3".equals(month6) || "9".equals(month6)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Md4 ④:7、10
+			else if ("Md4".equals(month)) {
+				if ("7".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				} else if ("7".equals(month1) || "10".equals(month1)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Mc4 ⑦:4、10
+			else if ("Mc4".equals(month)) {
+				if ("4".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				} else if ("4".equals(month1) || "10".equals(month1)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Mb4 ⑩:1、7
+			else if ("Mb4".equals(month)) {
+				if ("1".equals(month7) || "7".equals(month7)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				} else if ("1".equals(month1) || "7".equals(month1)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Ma4 ①:4、10
+			else if ("Ma4".equals(month)) {
+				if ("4".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				} else if ("4".equals(month1) || "10".equals(month1)) {
+					if (NUM25811.contains(month2)) {
+						starMap.put("M2", "★");
+					}
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+				}
+			}
+			// Md5 ⑤:2、8
+			else if ("Md5".equals(month)) {
+				if ("2".equals(month8) || "8".equals(month8)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				} else if ("2".equals(month2) || "8".equals(month2)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Mc5 ⑧:5、11
+			else if ("Mc5".equals(month)) {
+				if ("5".equals(month8) || "11".equals(month8)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				} else if ("5".equals(month2) || "11".equals(month2)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Mb5 ⑪:2、8
+			else if ("Mb5".equals(month)) {
+				if ("2".equals(month8) || "8".equals(month8)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				} else if ("2".equals(month2) || "8".equals(month2)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Ma5 ②:5、11
+			else if ("Ma5".equals(month)) {
+				if ("5".equals(month8) || "11".equals(month8)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				} else if ("5".equals(month2) || "11".equals(month2)) {
+					if (NUM36912.contains(month3)) {
+						starMap.put("M3", "★");
+					}
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+				}
+			}
+			// Md6 ⑥:3、9
+			else if ("Md6".equals(month)) {
+				if ("3".equals(month9) || "9".equals(month9)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				} else if ("3".equals(month3) || "9".equals(month3)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Mc6 ⑨:6、12
+			else if ("Mc6".equals(month)) {
+				if ("6".equals(month9) || "12".equals(month9)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				} else if ("6".equals(month3) || "12".equals(month3)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Mb6 ⑫:3、9
+			else if ("Mb6".equals(month)) {
+				if ("3".equals(month9) || "9".equals(month9)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				} else if ("3".equals(month3) || "9".equals(month3)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Ma6 ③:6、12
+			else if ("Ma6".equals(month)) {
+				if ("6".equals(month9) || "12".equals(month9)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				} else if ("6".equals(month3) || "112".equals(month3)) {
+					if (NUM14710.contains(month4)) {
+						starMap.put("M4", "★");
+					}
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+				}
+			}
+			// Md7 ⑦:4、10
+			else if ("Md7".equals(month)) {
+				if ("4".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				} else if ("4".equals(month4) || "10".equals(month4)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				}
+			}
+			// Mc7 ⑩:1、7
+			else if ("Mc7".equals(month)) {
+				if ("1".equals(month10) || "7".equals(month10)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				} else if ("1".equals(month4) || "7".equals(month4)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				}
+			}
+			// Mb7 ①:4、10
+			else if ("Mb7".equals(month)) {
+				if ("4".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				} else if ("3".equals(month4) || "9".equals(month4)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+				}
+			}
+			// Ma7 ④:7、10
+			else if ("Ma7".equals(month)) {
+				if ("7".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				} else if ("6".equals(month4) || "112".equals(month4)) {
+					if (NUM25811.contains(month5)) {
+						starMap.put("M5", "★");
+					}
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+
+				}
+			}
+			// Md8 ⑧:5、11
+			else if ("Md8".equals(month)) {
+				if ("5".equals(month11) || "11".equals(month11)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				} else if ("5".equals(month5) || "11".equals(month5)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				}
+			}
+			// Mc8 ⑪:2、8
+			else if ("Mc8".equals(month)) {
+				if ("2".equals(month11) || "8".equals(month11)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				} else if ("2".equals(month5) || "8".equals(month5)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				}
+			}
+			// Mb8 ②:5、11
+			else if ("Mb8".equals(month)) {
+				if ("5".equals(month11) || "11".equals(month11)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				} else if ("5".equals(month5) || "11".equals(month5)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				}
+			}
+			// Ma8 ⑤:2、8
+			else if ("Ma8".equals(month)) {
+				if ("2".equals(month11) || "8".equals(month11)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				} else if ("2".equals(month5) || "8".equals(month5)) {
+					if (NUM36912.contains(month6)) {
+						starMap.put("M6", "★");
+					}
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+				}
+			}
+			// Md9 ⑨:6、12
+			else if ("Md9".equals(month)) {
+				if ("6".equals(month12) || "12".equals(month12)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				} else if ("6".equals(month6) || "12".equals(month6)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				}
+			}
+			// Mc9 ⑫:3、9
+			else if ("Mc9".equals(month)) {
+				if ("3".equals(month12) || "9".equals(month12)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				} else if ("3".equals(month6) || "9".equals(month6)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				}
+			}
+			// Mb9 ③:6、12
+			else if ("Mb9".equals(month)) {
+				if ("6".equals(month12) || "12".equals(month12)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				} else if ("6".equals(month6) || "12".equals(month6)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				}
+			}
+			// Ma9 ⑥:3、9
+			else if ("Ma9".equals(month)) {
+				if ("3".equals(month12) || "9".equals(month12)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				} else if ("3".equals(month6) || "9".equals(month6)) {
+					if (NUM14710.contains(month7)) {
+						starMap.put("M7", "★");
+					}
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+				}
+			}
+			// Md10 ⑩:1、7
+			else if ("Md10".equals(month)) {
+				if ("1".equals(month13) || "7".equals(month13)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				} else if ("1".equals(month7) || "7".equals(month7)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				}
+			}
+			// Mc10 ①:4、10
+			else if ("Mc10".equals(month)) {
+				if ("4".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				} else if ("4".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				}
+			}
+			// Mb10 ④:7、10
+			else if ("Mb10".equals(month)) {
+				if ("7".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				} else if ("7".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				}
+			}
+			// Ma10 ⑦:4、10
+			else if ("Ma10".equals(month)) {
+				if ("4".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				} else if ("4".equals(month7) || "10".equals(month7)) {
+					if (NUM25811.contains(month8)) {
+						starMap.put("M8", "★");
+					}
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+				}
+			}
+			// Md11 ⑪:2、8
+			else if ("Md11".equals(month)) {
+				if ("2".equals(month14) || "8".equals(month14)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				} else if ("2".equals(month8) || "8".equals(month8)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				}
+			}
+			// Mc11 ②:5、11
+			else if ("Mc11".equals(month)) {
+				if ("5".equals(month14) || "11".equals(month14)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				} else if ("5".equals(month8) || "11".equals(month8)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				}
+			}
+			// Mb11 ⑤:2、8
+			else if ("Mb11".equals(month)) {
+				if ("2".equals(month14) || "8".equals(month14)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				} else if ("2".equals(month8) || "8".equals(month8)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				}
+			}
+			// Ma11 ⑧:5、11
+			else if ("Ma11".equals(month)) {
+				if ("5".equals(month14) || "11".equals(month14)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				} else if ("5".equals(month8) || "11".equals(month8)) {
+					if (NUM36912.contains(month9)) {
+						starMap.put("M9", "★");
+					}
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+				}
+			}
+			// Md12 ⑫:3、9
+			else if ("Md12".equals(month)) {
+				if ("3".equals(month15) || "9".equals(month15)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				} else if ("3".equals(month9) || "9".equals(month9)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				}
+			}
+			// Mc12 ③:6、12
+			else if ("Mc12".equals(month)) {
+				if ("6".equals(month15) || "12".equals(month15)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				} else if ("6".equals(month9) || "12".equals(month9)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				}
+			}
+			// Mb12 ⑥:9、3
+			else if ("Mb12".equals(month)) {
+				if ("9".equals(month15) || "3".equals(month15)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				} else if ("9".equals(month9) || "3".equals(month9)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				}
+			}
+			// Ma12 ⑨:6、12
+			else if ("Ma12".equals(month)) {
+				if ("6".equals(month15) || "12".equals(month15)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				} else if ("6".equals(month9) || "12".equals(month9)) {
+					if (NUM14710.contains(month10)) {
+						starMap.put("M10", "★");
+					}
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+				}
+			}
+			// Md13 ①:4、10
+			else if ("Md13".equals(month)) {
+				if ("4".equals(month16) || "10".equals(month16)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				} else if ("4".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				}
+			}
+			// Mc13 ④:7、10
+			else if ("Mc13".equals(month)) {
+				if ("7".equals(month16) || "10".equals(month16)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				} else if ("7".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				}
+			}
+			// Mb13 ⑦:4、10
+			else if ("Mb13".equals(month)) {
+				if ("4".equals(month16) || "10".equals(month16)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				} else if ("4".equals(month10) || "10".equals(month10)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				}
+			}
+			// Ma13 ⑩:1、7
+			else if ("Ma13".equals(month)) {
+				if ("1".equals(month16) || "7".equals(month16)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				} else if ("1".equals(month10) || "7".equals(month10)) {
+					if (NUM25811.contains(month11)) {
+						starMap.put("M11", "★");
+					}
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+				}
+			}
+			// Md14 ②:5、11
+			else if ("Md14".equals(month)) {
+				if ("5".equals(month17) || "11".equals(month17)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				} else if ("5".equals(month11) || "11".equals(month11)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				}
+			}
+			// Mc14 ⑤:2、8
+			else if ("Mc14".equals(month)) {
+				if ("2".equals(month17) || "8".equals(month17)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				} else if ("2".equals(month11) || "8".equals(month11)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				}
+			}
+			// Mb14 ⑧:5、11
+			else if ("Mb14".equals(month)) {
+				if ("5".equals(month17) || "11".equals(month17)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				} else if ("5".equals(month11) || "11".equals(month11)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				}
+			}
+			// Ma14 ⑪:2、8
+			else if ("Ma14".equals(month)) {
+				if ("2".equals(month17) || "8".equals(month17)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				} else if ("2".equals(month11) || "8".equals(month11)) {
+					if (NUM36912.contains(month12)) {
+						starMap.put("M12", "★");
+					}
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+				}
+			}
+			// Md15 ③:6、12
+			else if ("Md15".equals(month)) {
+				if ("6".equals(month18) || "12".equals(month18)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				} else if ("6".equals(month12) || "12".equals(month12)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				}
+			}
+			// Mc15 ⑥:3、9
+			else if ("Mc15".equals(month)) {
+				if ("3".equals(month18) || "9".equals(month18)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				} else if ("3".equals(month12) || "9".equals(month12)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				}
+			}
+			// Mb15 ⑨:6、12
+			else if ("Mb15".equals(month)) {
+				if ("6".equals(month18) || "12".equals(month18)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				} else if ("6".equals(month12) || "12".equals(month12)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				}
+			}
+			// Ma15 ⑫:3、9
+			else if ("Ma15".equals(month)) {
+				if ("3".equals(month18) || "9".equals(month18)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				} else if ("3".equals(month12) || "9".equals(month12)) {
+					if (NUM14710.contains(month13)) {
+						starMap.put("M13", "★");
+					}
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+				}
+			}
+			// Md16 ④:7、10
+			else if ("Md16".equals(month)) {
+				if ("7".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				}
+			}
+			// Mc16 ⑦:4、10
+			else if ("Mc16".equals(month)) {
+				if ("4".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				}
+			}
+			// Mb16 ⑩:1、7
+			else if ("Mb16".equals(month)) {
+				if ("1".equals(month13) || "7".equals(month13)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				}
+			}
+			// Ma16 ①:4、10
+			else if ("Ma16".equals(month)) {
+				if ("4".equals(month13) || "10".equals(month13)) {
+					if (NUM25811.contains(month14)) {
+						starMap.put("M14", "★");
+					}
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+				}
+			}
+			// Md17 ⑤:2、8
+			else if ("Md17".equals(month)) {
+				if ("2".equals(month14) || "8".equals(month14)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				}
+			}
+			// Mc17 ⑧:5、11
+			else if ("Mc17".equals(month)) {
+				if ("5".equals(month14) || "11".equals(month14)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				}
+			}
+			// Mb17 ⑪:2、8
+			else if ("Mb17".equals(month)) {
+				if ("2".equals(month14) || "8".equals(month14)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				}
+			}
+			// Ma17 ②:5、11
+			else if ("Ma17".equals(month)) {
+				if ("5".equals(month14) || "11".equals(month14)) {
+					if (NUM36912.contains(month15)) {
+						starMap.put("M15", "★");
+					}
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+				}
+			}
+			// Md18 ⑥:3、9
+			else if ("Md18".equals(month)) {
+				if ("3".equals(month15) || "9".equals(month15)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				}
+			}
+			// Mc18 ⑨:6、12
+			else if ("Mc18".equals(month)) {
+				if ("6".equals(month15) || "12".equals(month15)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				}
+			}
+			// Mb18 ⑫:3、9
+			else if ("Mb18".equals(month)) {
+				if ("3".equals(month15) || "9".equals(month15)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				}
+			}
+			// Ma18 ③:6、12
+			else if ("Md18".equals(month)) {
+				if ("6".equals(month15) || "12".equals(month15)) {
+					if (NUM14710.contains(month16)) {
+						starMap.put("M16", "★");
+					}
+					if (NUM25811.contains(month17)) {
+						starMap.put("M17", "★");
+					}
+				}
+			}
+		}
+
+		// 日の行ポイントの数字★を付ける
+
+		for (String day : dayMaruResult) {
+			// Dd1 ①:4、10
+			if ("Dd1".equals(day)) {
+				if ("4".equals(day4) || "10".equals(day4)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Dc1 ④:7、10
+			else if ("Dc1".equals(day)) {
+				if ("7".equals(day4) || "10".equals(day4)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Db1 ⑦:4、10
+			else if ("Db1".equals(day)) {
+				if ("4".equals(day4) || "10".equals(day4)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Da1 ⑩:1、7
+			else if ("Da1".equals(day)) {
+				if ("1".equals(day4) || "7".equals(day4)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Dd2 ②:5、11
+			else if ("Dd2".equals(day)) {
+				if ("5".equals(day5) || "11".equals(day5)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Dc2 ⑤:2、8
+			else if ("Dc2".equals(day)) {
+				if ("2".equals(day5) || "8".equals(day5)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Db2 ⑧:5、11
+			else if ("Db2".equals(day)) {
+				if ("5".equals(day5) || "11".equals(day5)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Da2 ⑪:1、7
+			else if ("Da2".equals(day)) {
+				if ("1".equals(day5) || "7".equals(day5)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Dd3 ③:6、12
+			else if ("Dd3".equals(day)) {
+				if ("6".equals(day6) || "12".equals(day6)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Dc3 ⑥:3、9
+			else if ("Dc3".equals(day)) {
+				if ("3".equals(day6) || "9".equals(day6)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Db3 ⑨:6、12
+			else if ("Db3".equals(day)) {
+				if ("6".equals(day6) || "12".equals(day6)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Da3 ⑫:3、9
+			else if ("Da3".equals(day)) {
+				if ("3".equals(day6) || "9".equals(day6)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Dd4 ④:7、10
+			else if ("Dd4".equals(day)) {
+				if ("7".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				} else if ("7".equals(day1) || "10".equals(day1)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Dc4 ⑦:4、10
+			else if ("Dc4".equals(day)) {
+				if ("4".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				} else if ("4".equals(day1) || "10".equals(day1)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Db4 ⑩:1、7
+			else if ("Db4".equals(day)) {
+				if ("1".equals(day7) || "7".equals(day7)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				} else if ("1".equals(day1) || "7".equals(day1)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Da4 ①:4、10
+			else if ("Da4".equals(day)) {
+				if ("4".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				} else if ("4".equals(day1) || "10".equals(day1)) {
+					if (NUM25811.contains(day2)) {
+						starMap.put("D2", "★");
+					}
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+				}
+			}
+			// Dd5 ⑤:2、8
+			else if ("Dd5".equals(day)) {
+				if ("2".equals(day8) || "8".equals(day8)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				} else if ("2".equals(day2) || "8".equals(day2)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Dc5 ⑧:5、11
+			else if ("Dc5".equals(day)) {
+				if ("5".equals(day8) || "11".equals(day8)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				} else if ("5".equals(day2) || "11".equals(day2)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Db5 ⑪:2、8
+			else if ("Db5".equals(day)) {
+				if ("2".equals(day8) || "8".equals(day8)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				} else if ("2".equals(day2) || "8".equals(day2)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Da5 ②:5、11
+			else if ("Da5".equals(day)) {
+				if ("5".equals(day8) || "11".equals(day8)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				} else if ("5".equals(day2) || "11".equals(day2)) {
+					if (NUM36912.contains(day3)) {
+						starMap.put("D3", "★");
+					}
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+				}
+			}
+			// Dd6 ⑥:3、9
+			else if ("Dd6".equals(day)) {
+				if ("3".equals(day9) || "9".equals(day9)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				} else if ("3".equals(day3) || "9".equals(day3)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Dc6 ⑨:6、12
+			else if ("Dc6".equals(day)) {
+				if ("6".equals(day9) || "12".equals(day9)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				} else if ("6".equals(day3) || "12".equals(day3)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Db6 ⑫:3、9
+			else if ("Db6".equals(day)) {
+				if ("3".equals(day9) || "9".equals(day9)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				} else if ("3".equals(day3) || "9".equals(day3)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Da6 ③:6、12
+			else if ("Da6".equals(day)) {
+				if ("6".equals(day9) || "12".equals(day9)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				} else if ("6".equals(day3) || "112".equals(day3)) {
+					if (NUM14710.contains(day4)) {
+						starMap.put("D4", "★");
+					}
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+				}
+			}
+			// Dd7 ⑦:4、10
+			else if ("Dd7".equals(day)) {
+				if ("4".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				} else if ("4".equals(day4) || "10".equals(day4)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				}
+			}
+			// Dc7 ⑩:1、7
+			else if ("Dc7".equals(day)) {
+				if ("1".equals(day10) || "7".equals(day10)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				} else if ("1".equals(day4) || "7".equals(day4)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				}
+			}
+			// Db7 ①:4、10
+			else if ("Db7".equals(day)) {
+				if ("4".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				} else if ("3".equals(day4) || "9".equals(day4)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+				}
+			}
+			// Da7 ④:7、10
+			else if ("Da7".equals(day)) {
+				if ("7".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				} else if ("6".equals(day4) || "112".equals(day4)) {
+					if (NUM25811.contains(day5)) {
+						starMap.put("D5", "★");
+					}
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+
+				}
+			}
+			// Dd8 ⑧:5、11
+			else if ("Dd8".equals(day)) {
+				if ("5".equals(day11) || "11".equals(day11)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				} else if ("5".equals(day5) || "11".equals(day5)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				}
+			}
+			// Dc8 ⑪:2、8
+			else if ("Dc8".equals(day)) {
+				if ("2".equals(day11) || "8".equals(day11)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				} else if ("2".equals(day5) || "8".equals(day5)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				}
+			}
+			// Db8 ②:5、11
+			else if ("Db8".equals(day)) {
+				if ("5".equals(day11) || "11".equals(day11)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				} else if ("5".equals(day5) || "11".equals(day5)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				}
+			}
+			// Da8 ⑤:2、8
+			else if ("Da8".equals(day)) {
+				if ("2".equals(day11) || "8".equals(day11)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				} else if ("2".equals(day5) || "8".equals(day5)) {
+					if (NUM36912.contains(day6)) {
+						starMap.put("D6", "★");
+					}
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+				}
+			}
+			// Dd9 ⑨:6、12
+			else if ("Dd9".equals(day)) {
+				if ("6".equals(day12) || "12".equals(day12)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				} else if ("6".equals(day6) || "12".equals(day6)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				}
+			}
+			// Dc9 ⑫:3、9
+			else if ("Dc9".equals(day)) {
+				if ("3".equals(day12) || "9".equals(day12)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				} else if ("3".equals(day6) || "9".equals(day6)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				}
+			}
+			// Db9 ③:6、12
+			else if ("Db9".equals(day)) {
+				if ("6".equals(day12) || "12".equals(day12)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				} else if ("6".equals(day6) || "12".equals(day6)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				}
+			}
+			// Da9 ⑥:3、9
+			else if ("Da9".equals(day)) {
+				if ("3".equals(day12) || "9".equals(day12)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				} else if ("3".equals(day6) || "9".equals(day6)) {
+					if (NUM14710.contains(day7)) {
+						starMap.put("D7", "★");
+					}
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+				}
+			}
+			// Dd10 ⑩:1、7
+			else if ("Dd10".equals(day)) {
+				if ("1".equals(day13) || "7".equals(day13)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				} else if ("1".equals(day7) || "7".equals(day7)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				}
+			}
+			// Dc10 ①:4、10
+			else if ("Dc10".equals(day)) {
+				if ("4".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				} else if ("4".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				}
+			}
+			// Db10 ④:7、10
+			else if ("Db10".equals(day)) {
+				if ("7".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				} else if ("7".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				}
+			}
+			// Da10 ⑦:4、10
+			else if ("Da10".equals(day)) {
+				if ("4".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				} else if ("4".equals(day7) || "10".equals(day7)) {
+					if (NUM25811.contains(day8)) {
+						starMap.put("D8", "★");
+					}
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+				}
+			}
+			// Dd11 ⑪:2、8
+			else if ("Dd11".equals(day)) {
+				if ("2".equals(day14) || "8".equals(day14)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				} else if ("2".equals(day8) || "8".equals(day8)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				}
+			}
+			// Dc11 ②:5、11
+			else if ("Dc11".equals(day)) {
+				if ("5".equals(day14) || "11".equals(day14)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				} else if ("5".equals(day8) || "11".equals(day8)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				}
+			}
+			// Db11 ⑤:2、8
+			else if ("Db11".equals(day)) {
+				if ("2".equals(day14) || "8".equals(day14)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				} else if ("2".equals(day8) || "8".equals(day8)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				}
+			}
+			// Da11 ⑧:5、11
+			else if ("Da11".equals(day)) {
+				if ("5".equals(day14) || "11".equals(day14)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				} else if ("5".equals(day8) || "11".equals(day8)) {
+					if (NUM36912.contains(day9)) {
+						starMap.put("D9", "★");
+					}
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+				}
+			}
+			// Dd12 ⑫:3、9
+			else if ("Dd12".equals(day)) {
+				if ("3".equals(day15) || "9".equals(day15)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				} else if ("3".equals(day9) || "9".equals(day9)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				}
+			}
+			// Dc12 ③:6、12
+			else if ("Dc12".equals(day)) {
+				if ("6".equals(day15) || "12".equals(day15)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				} else if ("6".equals(day9) || "12".equals(day9)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				}
+			}
+			// Db12 ⑥:9、3
+			else if ("Db12".equals(day)) {
+				if ("9".equals(day15) || "3".equals(day15)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				} else if ("9".equals(day9) || "3".equals(day9)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				}
+			}
+			// Da12 ⑨:6、12
+			else if ("Da12".equals(day)) {
+				if ("6".equals(day15) || "12".equals(day15)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				} else if ("6".equals(day9) || "12".equals(day9)) {
+					if (NUM14710.contains(day10)) {
+						starMap.put("D10", "★");
+					}
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+				}
+			}
+			// Dd13 ①:4、10
+			else if ("Dd13".equals(day)) {
+				if ("4".equals(day16) || "10".equals(day16)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				} else if ("4".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				}
+			}
+			// Dc13 ④:7、10
+			else if ("Dc13".equals(day)) {
+				if ("7".equals(day16) || "10".equals(day16)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				} else if ("7".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				}
+			}
+			// Db13 ⑦:4、10
+			else if ("Db13".equals(day)) {
+				if ("4".equals(day16) || "10".equals(day16)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				} else if ("4".equals(day10) || "10".equals(day10)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				}
+			}
+			// Da13 ⑩:1、7
+			else if ("Da13".equals(day)) {
+				if ("1".equals(day16) || "7".equals(day16)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				} else if ("1".equals(day10) || "7".equals(day10)) {
+					if (NUM25811.contains(day11)) {
+						starMap.put("D11", "★");
+					}
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+				}
+			}
+			// Dd14 ②:5、11
+			else if ("Dd14".equals(day)) {
+				if ("5".equals(day17) || "11".equals(day17)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				} else if ("5".equals(day11) || "11".equals(day11)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				}
+			}
+			// Dc14 ⑤:2、8
+			else if ("Dc14".equals(day)) {
+				if ("2".equals(day17) || "8".equals(day17)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				} else if ("2".equals(day11) || "8".equals(day11)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				}
+			}
+			// Db14 ⑧:5、11
+			else if ("Db14".equals(day)) {
+				if ("5".equals(day17) || "11".equals(day17)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				} else if ("5".equals(day11) || "11".equals(day11)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				}
+			}
+			// Da14 ⑪:2、8
+			else if ("Da14".equals(day)) {
+				if ("2".equals(day17) || "8".equals(day17)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				} else if ("2".equals(day11) || "8".equals(day11)) {
+					if (NUM36912.contains(day12)) {
+						starMap.put("D12", "★");
+					}
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+				}
+			}
+			// Dd15 ③:6、12
+			else if ("Dd15".equals(day)) {
+				if ("6".equals(day18) || "12".equals(day18)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				} else if ("6".equals(day12) || "12".equals(day12)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				}
+			}
+			// Dc15 ⑥:3、9
+			else if ("Dc15".equals(day)) {
+				if ("3".equals(day18) || "9".equals(day18)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				} else if ("3".equals(day12) || "9".equals(day12)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				}
+			}
+			// Db15 ⑨:6、12
+			else if ("Db15".equals(day)) {
+				if ("6".equals(day18) || "12".equals(day18)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				} else if ("6".equals(day12) || "12".equals(day12)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				}
+			}
+			// Da15 ⑫:3、9
+			else if ("Da15".equals(day)) {
+				if ("3".equals(day18) || "9".equals(day18)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				} else if ("3".equals(day12) || "9".equals(day12)) {
+					if (NUM14710.contains(day13)) {
+						starMap.put("D13", "★");
+					}
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+				}
+			}
+			// Dd16 ④:7、10
+			else if ("Dd16".equals(day)) {
+				if ("7".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				}
+			}
+			// Dc16 ⑦:4、10
+			else if ("Dc16".equals(day)) {
+				if ("4".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				}
+			}
+			// Db16 ⑩:1、7
+			else if ("Db16".equals(day)) {
+				if ("1".equals(day13) || "7".equals(day13)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				}
+			}
+			// Da16 ①:4、10
+			else if ("Da16".equals(day)) {
+				if ("4".equals(day13) || "10".equals(day13)) {
+					if (NUM25811.contains(day14)) {
+						starMap.put("D14", "★");
+					}
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+				}
+			}
+			// Dd17 ⑤:2、8
+			else if ("Dd17".equals(day)) {
+				if ("2".equals(day14) || "8".equals(day14)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				}
+			}
+			// Dc17 ⑧:5、11
+			else if ("Dc17".equals(day)) {
+				if ("5".equals(day14) || "11".equals(day14)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				}
+			}
+			// Db17 ⑪:2、8
+			else if ("Db17".equals(day)) {
+				if ("2".equals(day14) || "8".equals(day14)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				}
+			}
+			// Da17 ②:5、11
+			else if ("Da17".equals(day)) {
+				if ("5".equals(day14) || "11".equals(day14)) {
+					if (NUM36912.contains(day15)) {
+						starMap.put("D15", "★");
+					}
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+				}
+			}
+			// Dd18 ⑥:3、9
+			else if ("Dd18".equals(day)) {
+				if ("3".equals(day15) || "9".equals(day15)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				}
+			}
+			// Dc18 ⑨:6、12
+			else if ("Dc18".equals(day)) {
+				if ("6".equals(day15) || "12".equals(day15)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				}
+			}
+			// Db18 ⑫:3、9
+			else if ("Db18".equals(day)) {
+				if ("3".equals(day15) || "9".equals(day15)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
+					}
+				}
+			}
+			// Da18 ③:6、12
+			else if ("Dd18".equals(day)) {
+				if ("6".equals(day15) || "12".equals(day15)) {
+					if (NUM14710.contains(day16)) {
+						starMap.put("D16", "★");
+					}
+					if (NUM25811.contains(day17)) {
+						starMap.put("D17", "★");
 					}
 				}
 			}
