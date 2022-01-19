@@ -21,8 +21,7 @@
 	#div0{width:100%; height:80%; }
 	#div2{width:100%; height:100%; text-align:center}
 </style>
-<script type="text/javascript">
-</script>
+
 </head>
 
 <div id="calendar_box">
@@ -97,7 +96,7 @@
 </div>
 			<div id = "div0">
 				<div>
-					<a href="./view/result.jsp" target="_blank">騎手登録</a>
+					<a href="toRegister.action" >騎手登録</a>
 				</div>
 			</div>
 		 <c:if test="${request.errMsg!=null}">
