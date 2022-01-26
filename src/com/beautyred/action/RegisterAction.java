@@ -108,7 +108,7 @@ public class RegisterAction {
      * @throws Exception
      */
     private boolean pamterCheack() throws Exception {
-    	boolean flag = false;
+    	boolean flag = true;
 
     	String sql = SQL.SELECT;
 

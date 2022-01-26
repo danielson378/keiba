@@ -25,14 +25,13 @@
 ${user1}
 <div id="calendar_box">
 	<div id="calendar_detailed">
-		<!-- request�L���� -->
 		<table class="tableCalendar">
 			<!-- 項番 -->
 			<thead>
 				<tr>
-				<th>-</th>
-				<th>-</th>
-				<th>-</th>
+				<th>L3</th>
+				<th>L2</th>
+				<th>L1</th>
 				<th>18</th>
 				<th>17</th>
 				<th>16</th>
@@ -51,15 +50,15 @@ ${user1}
 				<th>3</th>
 				<th>2</th>
 				<th class="tBlue01">1</th>
-				<th>-</th>
-				<th>-</th>
-				<th>-</th></tr>
+				<th>R1</th>
+				<th>R2</th>
+				<th>R3</th></tr>
 
 			</thead>
 			<tr>
-			<td><ul class="days"><li>${request.yearMap.get("YaL3")}</li><li>${request.yearMap.get("YbL3")}</li><li>${request.yearMap.get("YcL3")}</li><li>${request.yearMap.get("YdL3")}</li></ul></td>
-			<td><ul class="days"><li>${request.yearMap.get("YaL2")}</li><li>${request.yearMap.get("YbL2")}</li><li>${request.yearMap.get("YcL2")}</li><li>${request.yearMap.get("YdL2")}</li></ul></td>
-			<td class="borderRight"><ul><li>${request.yearMap.get("YaL1")}</li><li>${request.yearMap.get("YbL1")}</li><li>${request.yearMap.get("YcL1")}</li><li>${request.yearMap.get("YdL1")}</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaL3")}</li><li>${request.yearMap.get("YbL3")}</li><li>${request.yearMap.get("YcL3")}</li><li>${request.yearMap.get("YdL3")}</li><li>&nbsp</li><li>${request.year9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaL2")}</li><li>${request.yearMap.get("YbL2")}</li><li>${request.yearMap.get("YcL2")}</li><li>${request.yearMap.get("YdL2")}</li><li>&nbsp</li><li>${request.year8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.yearMap.get("YaL1")}</li><li>${request.yearMap.get("YbL1")}</li><li>${request.yearMap.get("YcL1")}</li><li>${request.yearMap.get("YdL1")}</li><li>&nbsp</li><li>${request.year7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya18")}</li><li>${request.yearMap.get("Yb18")}</li><li>${request.yearMap.get("Yc18")}</li><li>${request.yearMap.get("Yd18")}</li><li>${null eq request.starMap.get("Y18")?"&nbsp":request.starMap.get("Y18")}</li><li>${request.year18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya17")}</li><li>${request.yearMap.get("Yb17")}</li><li>${request.yearMap.get("Yc17")}</li><li>${request.yearMap.get("Yd17")}</li><li>${null eq request.starMap.get("Y17")?"&nbsp":request.starMap.get("Y17")}</li><li>${request.year17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya16")}</li><li>${request.yearMap.get("Yb16")}</li><li>${request.yearMap.get("Yc16")}</li><li>${request.yearMap.get("Yd16")}</li><li>${null eq request.starMap.get("Y16")?"&nbsp":request.starMap.get("Y16")}</li><li>${request.year16}</li><li>&nbsp</li></ul></td>
@@ -78,15 +77,15 @@ ${user1}
 			<td><ul class="days"><li>${request.yearMap.get("Ya3")}</li><li>${request.yearMap.get("Yb3")}</li><li>${request.yearMap.get("Yc3")}</li><li>${request.yearMap.get("Yd3")}</li><li>${null eq request.starMap.get("Y3")?"&nbsp":request.starMap.get("Y3")}</li><li>${request.year3}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya2")}</li><li>${request.yearMap.get("Yb2")}</li><li>${request.yearMap.get("Yc2")}</li><li>${request.yearMap.get("Yd2")}</li><li>${null eq request.starMap.get("Y2")?"&nbsp":request.starMap.get("Y2")}</li><li>${request.year2}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya1")}</li><li>${request.yearMap.get("Yb1")}</li><li>${request.yearMap.get("Yc1")}</li><li>${request.yearMap.get("Yd1")}</li><li>${null eq request.starMap.get("Y1")?"&nbsp":request.starMap.get("Y1")}</li><li>${request.year1}</li><li>&nbsp</li></ul></td>
-			<td class="borderLeft"><ul><li>${request.yearMap.get("YaR1")}</li><li>${request.yearMap.get("YbR1")}</li><li>${request.yearMap.get("YcR1")}</li><li>${request.yearMap.get("YdR1")}</li></ul></td>
-			<td><ul class="days"><li>${request.yearMap.get("YaR2")}</li><li>${request.yearMap.get("YbR2")}</li><li>${request.yearMap.get("YcR2")}</li><li>${request.yearMap.get("YdR2")}</li></ul></td>
-			<td><ul class="days"><li>${request.yearMap.get("YaR3")}</li><li>${request.yearMap.get("YbR3")}</li><li>${request.yearMap.get("YcR3")}</li><li>${request.yearMap.get("YdR3")}</li></ul></td>
+			<td class="borderLeft"><ul><li>${request.yearMap.get("YaR1")}</li><li>${request.yearMap.get("YbR1")}</li><li>${request.yearMap.get("YcR1")}</li><li>${request.yearMap.get("YdR1")}</li><li>&nbsp</li><li>${request.year12}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaR2")}</li><li>${request.yearMap.get("YbR2")}</li><li>${request.yearMap.get("YcR2")}</li><li>${request.yearMap.get("YdR2")}</li><li>&nbsp</li><li>${request.year11}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaR3")}</li><li>${request.yearMap.get("YbR3")}</li><li>${request.yearMap.get("YcR3")}</li><li>${request.yearMap.get("YdR3")}</li><li>&nbsp</li><li>${request.year10}</li><li>&nbsp</li></ul></td>
 			<td class="item"><ul><li>年</li></ul></td>
 			</tr>
 			<tr>
-			<td><ul class="days"><li>${request.monthMap.get("MaL3")}</li><li>${request.monthMap.get("MbL3")}</li><li>${request.monthMap.get("McL3")}</li><li>${request.monthMap.get("MdL3")}</li></ul></td>
-			<td><ul class="days"><li>${request.monthMap.get("MaL2")}</li><li>${request.monthMap.get("MbL2")}</li><li>${request.monthMap.get("McL2")}</li><li>${request.monthMap.get("MdL2")}</li></ul></td>
-			<td class="borderRight"><ul><li>${request.monthMap.get("MaL1")}</li><li>${request.monthMap.get("MbL1")}</li><li>${request.monthMap.get("McL1")}</li><li>${request.monthMap.get("MdL1")}</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaL3")}</li><li>${request.monthMap.get("MbL3")}</li><li>${request.monthMap.get("McL3")}</li><li>${request.monthMap.get("MdL3")}</li><li>&nbsp</li><li>${request.month9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaL2")}</li><li>${request.monthMap.get("MbL2")}</li><li>${request.monthMap.get("McL2")}</li><li>${request.monthMap.get("MdL2")}</li><li>&nbsp</li><li>${request.month8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.monthMap.get("MaL1")}</li><li>${request.monthMap.get("MbL1")}</li><li>${request.monthMap.get("McL1")}</li><li>${request.monthMap.get("MdL1")}</li><li>&nbsp</li><li>${request.month7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma18")}</li><li>${request.monthMap.get("Mb18")}</li><li>${request.monthMap.get("Mc18")}</li><li>${request.monthMap.get("Md18")}</li><li>${null eq request.starMap.get("M18")?"&nbsp":request.starMap.get("M18")}</li><li>${request.month18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma17")}</li><li>${request.monthMap.get("Mb17")}</li><li>${request.monthMap.get("Mc17")}</li><li>${request.monthMap.get("Md17")}</li><li>${null eq request.starMap.get("M17")?"&nbsp":request.starMap.get("M17")}</li><li>${request.month17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma16")}</li><li>${request.monthMap.get("Mb16")}</li><li>${request.monthMap.get("Mc16")}</li><li>${request.monthMap.get("Md16")}</li><li>${null eq request.starMap.get("M16")?"&nbsp":request.starMap.get("M16")}</li><li>${request.month16}</li><li>&nbsp</li></ul></td>
@@ -105,15 +104,15 @@ ${user1}
 			<td><ul class="days"><li>${request.monthMap.get("Ma3")}</li><li>${request.monthMap.get("Mb3")}</li><li>${request.monthMap.get("Mc3")}</li><li>${request.monthMap.get("Md3")}</li><li>${null eq request.starMap.get("M3")?"&nbsp":request.starMap.get("M3")}</li><li>${request.month3}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma2")}</li><li>${request.monthMap.get("Mb2")}</li><li>${request.monthMap.get("Mc2")}</li><li>${request.monthMap.get("Md2")}</li><li>${null eq request.starMap.get("M2")?"&nbsp":request.starMap.get("M2")}</li><li>${request.month2}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma1")}</li><li>${request.monthMap.get("Mb1")}</li><li>${request.monthMap.get("Mc1")}</li><li>${request.monthMap.get("Md1")}</li><li>${null eq request.starMap.get("M1")?"&nbsp":request.starMap.get("M1")}</li><li>${request.month1}</li><li>&nbsp</li></ul></td>
-			<td class="borderLeft"><ul><li>${request.monthMap.get("MaR1")}</li><li>${request.monthMap.get("MbR1")}</li><li>${request.monthMap.get("McR1")}</li><li>${request.monthMap.get("MdR1")}</li></ul></td>
-			<td><ul class="days"><li>${request.monthMap.get("MaR2")}</li><li>${request.monthMap.get("MbR2")}</li><li>${request.monthMap.get("McR2")}</li><li>${request.monthMap.get("MdR2")}</li></ul></td>
-			<td><ul class="days"><li>${request.monthMap.get("MaR3")}</li><li>${request.monthMap.get("MbR3")}</li><li>${request.monthMap.get("McR3")}</li><li>${request.monthMap.get("MdR3")}</li></ul></td>
+			<td class="borderLeft"><ul><li>${request.monthMap.get("MaR1")}</li><li>${request.monthMap.get("MbR1")}</li><li>${request.monthMap.get("McR1")}</li><li>${request.monthMap.get("MdR1")}</li><li>&nbsp</li><li>${request.month12}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaR2")}</li><li>${request.monthMap.get("MbR2")}</li><li>${request.monthMap.get("McR2")}</li><li>${request.monthMap.get("MdR2")}</li><li>&nbsp</li><li>${request.month11}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaR3")}</li><li>${request.monthMap.get("MbR3")}</li><li>${request.monthMap.get("McR3")}</li><li>${request.monthMap.get("MdR3")}</li><li>&nbsp</li><li>${request.month10}</li><li>&nbsp</li></ul></td>
 			<td class="item"><ul><li>月</li></ul></td>
 			</tr>
 			<tr>
-			<td><ul class="days"><li>${request.dayMap.get("DaL3")}</li><li>${request.dayMap.get("DbL3")}</li><li>${request.dayMap.get("DcL3")}</li><li>${request.dayMap.get("DdL3")}</li></ul></td>
-			<td><ul class="days"><li>${request.dayMap.get("DaL2")}</li><li>${request.dayMap.get("DbL2")}</li><li>${request.dayMap.get("DcL2")}</li><li>${request.dayMap.get("DdL2")}</li></ul></td>
-			<td class="borderRight"><ul><li>${request.dayMap.get("DaL1")}</li><li>${request.dayMap.get("DbL1")}</li><li>${request.dayMap.get("DcL1")}</li><li>${request.dayMap.get("DdL1")}</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaL3")}</li><li>${request.dayMap.get("DbL3")}</li><li>${request.dayMap.get("DcL3")}</li><li>${request.dayMap.get("DdL3")}</li><li>&nbsp</li><li>${request.day9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaL2")}</li><li>${request.dayMap.get("DbL2")}</li><li>${request.dayMap.get("DcL2")}</li><li>${request.dayMap.get("DdL2")}</li><li>&nbsp</li><li>${request.day8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.dayMap.get("DaL1")}</li><li>${request.dayMap.get("DbL1")}</li><li>${request.dayMap.get("DcL1")}</li><li>${request.dayMap.get("DdL1")}</li><li>&nbsp</li><li>${request.day7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da18")}</li><li>${request.dayMap.get("Db18")}</li><li>${request.dayMap.get("Dc18")}</li><li>${request.dayMap.get("Dd18")}</li><li>${null eq request.starMap.get("D18")?"&nbsp":request.starMap.get("D18")}</li><li>${request.day18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da17")}</li><li>${request.dayMap.get("Db17")}</li><li>${request.dayMap.get("Dc17")}</li><li>${request.dayMap.get("Dd17")}</li><li>${null eq request.starMap.get("D17")?"&nbsp":request.starMap.get("D17")}</li><li>${request.day17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da16")}</li><li>${request.dayMap.get("Db16")}</li><li>${request.dayMap.get("Dc16")}</li><li>${request.dayMap.get("Dd16")}</li><li>${null eq request.starMap.get("D16")?"&nbsp":request.starMap.get("D16")}</li><li>${request.day16}</li><li>&nbsp</li></ul></td>
@@ -132,9 +131,9 @@ ${user1}
 			<td><ul class="days"><li>${request.dayMap.get("Da3")}</li><li>${request.dayMap.get("Db3")}</li><li>${request.dayMap.get("Dc3")}</li><li>${request.dayMap.get("Dd3")}</li><li>${null eq request.starMap.get("D3")?"&nbsp":request.starMap.get("D3")}</li><li>${request.day3}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da2")}</li><li>${request.dayMap.get("Db2")}</li><li>${request.dayMap.get("Dc2")}</li><li>${request.dayMap.get("Dd2")}</li><li>${null eq request.starMap.get("D2")?"&nbsp":request.starMap.get("D2")}</li><li>${request.day2}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da1")}</li><li>${request.dayMap.get("Db1")}</li><li>${request.dayMap.get("Dc1")}</li><li>${request.dayMap.get("Dd1")}</li><li>${null eq request.starMap.get("D1")?"&nbsp":request.starMap.get("D1")}</li><li>${request.day1}</li><li>&nbsp</li></ul></td>
-			<td class="borderLeft"><ul><li>${request.dayMap.get("DaR1")}</li><li>${request.dayMap.get("DbR1")}</li><li>${request.dayMap.get("DcR1")}</li><li>${request.dayMap.get("DdR1")}</li></ul></td>
-			<td><ul class="days"><li>${request.dayMap.get("DaR2")}</li><li>${request.dayMap.get("DbR2")}</li><li>${request.dayMap.get("DcR2")}</li><li>${request.dayMap.get("DdR2")}</li></ul></td>
-			<td><ul class="days"><li>${request.dayMap.get("DaR3")}</li><li>${request.dayMap.get("DbR3")}</li><li>${request.dayMap.get("DcR3")}</li><li>${request.dayMap.get("DdR3")}</li></ul></td>
+			<td class="borderLeft"><ul><li>${request.dayMap.get("DaR1")}</li><li>${request.dayMap.get("DbR1")}</li><li>${request.dayMap.get("DcR1")}</li><li>${request.dayMap.get("DdR1")}</li><li>&nbsp</li><li>${request.day12}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaR2")}</li><li>${request.dayMap.get("DbR2")}</li><li>${request.dayMap.get("DcR2")}</li><li>${request.dayMap.get("DdR2")}</li><li>&nbsp</li><li>${request.day11}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaR3")}</li><li>${request.dayMap.get("DbR3")}</li><li>${request.dayMap.get("DcR3")}</li><li>${request.dayMap.get("DdR3")}</li><li>&nbsp</li><li>${request.day10}</li><li>&nbsp</li></ul></td>
 			<td class="item"><ul><li>日</li></ul></td>
 			</tr>
 			<!--<tr>

@@ -223,7 +223,7 @@ input::-webkit-input-placeholder{
 input::-moz-placeholder{
     color: #aaaaaa !important;
 }
-/* Firefox 18�ȑO */
+/* Firefox 18�ȑO */
 input:-moz-placeholder{
     color: #aaaaaa !important;
 }

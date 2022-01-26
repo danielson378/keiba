@@ -37,10 +37,19 @@
 			method="execute">
 			<result name="success">/WEB-INF/view/register.jsp</result>
 		</action>
+		<action name="jockeyInfo" class="com.beautyred.action.JockeyInfoAction"
+			method="execute">
+			<result name="success">/WEB-INF/view/jockeys.jsp</result>
+		</action>
 		<action name="register" class="com.beautyred.action.RegisterAction"
 			method="execute">
 			<result name="success">/WEB-INF/view/register.jsp</result>
 			<result name="faild">/WEB-INF/view/register.jsp</result>
+		</action>
+		<action name="nameSelect" class="com.beautyred.action.NameSelectAction"
+			method="execute">
+			<result name="success">/WEB-INF/view/input.jsp</result>
+			<result name="faild">/WEB-INF/view/input.jsp</result>
 		</action>
 		<action name="to_top" class="com.beautyred.action.TopAction"
 			method="execute">
