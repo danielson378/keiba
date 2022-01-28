@@ -60,19 +60,21 @@ function nameSelect() {
 				<th>10</th>
 				<th>9</th>
 				<th>8</th>
-				<th class="tRed01">7</th>
+<!-- 				<th class="tRed01">7</th> -->
+				<th>7</th>
 				<th>6</th>
 				<th>5</th>
 				<th>4</th>
 				<th>3</th>
 				<th>2</th>
-				<th class="tBlue01">1</th>
+<!-- 				<th class="tBlue01">1</th> -->
+				<th>1</th>
 				<th></th>
 				</tr>
 			</thead>
 
 			<tr>
-			<td><input type="text" id="user18" name="user18" required maxlength="3" size="3" value="${request.user18}" pattern=[0-9]*></td>
+			<td><input type="text" id="user18" name="user18" required maxlength="3" size="3" value="${request.user18}"></td>
 			<td><input type="text" id="user17" name="user17" required maxlength="3" size="3" value="${request.user17}"></td>
 			<td><input type="text" id="user16" name="user16" required maxlength="3" size="3" value="${request.user16}"></td>
 			<td><input type="text" id="user15" name="user15" required maxlength="3" size="3" value="${request.user15}"></td>

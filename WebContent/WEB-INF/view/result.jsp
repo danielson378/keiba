@@ -43,13 +43,15 @@ ${user1}
 				<th>10</th>
 				<th>9</th>
 				<th>8</th>
-				<th class="tRed01">7</th>
+<!-- 				<th class="tRed01">7</th> -->
+				<th>7</th>
 				<th>6</th>
 				<th>5</th>
 				<th>4</th>
 				<th>3</th>
 				<th>2</th>
-				<th class="tBlue01">1</th>
+<!-- 				<th class="tBlue01">1</th> -->
+				<th>1</th>
 				<th>R1</th>
 				<th>R2</th>
 				<th>R3</th></tr>
