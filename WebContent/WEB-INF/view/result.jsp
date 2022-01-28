@@ -22,7 +22,7 @@
 
 
 
-${user1}
+
 <div id="calendar_box">
 	<div id="calendar_detailed">
 		<table class="tableCalendar">
