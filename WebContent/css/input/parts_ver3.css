@@ -94,7 +94,7 @@ span.smlBtn,
 }
 .tableCalendar tr > th,
 .tableCalendar tr > td{
-	text-align: center;
+/* 	text-align: center; */
 	font-weight: bold;
 }
 .tableCalendar tr > th{

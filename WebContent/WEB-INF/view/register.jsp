@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>騎手登録画面</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" />
+<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/button/style.css"> --%>
 <link rel="stylesheet" type="text/css" href="css/body.css" />
 <script type="text/javascript">
 
@@ -21,7 +22,7 @@
 		<s:textfield name="name" label="名前" required="true" />
 		<s:textfield name="birthday" label="誕生日" placeholder="例:1990/07/10"
 			required="true" />
-		<s:submit value="実行" />
+		<s:submit class="button white" value="実行" />
 	</s:form>
 	<c:if test="${request.msg!=null}">
 		<div>

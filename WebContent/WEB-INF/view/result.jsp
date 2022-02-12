@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/calendar/base.css">
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/calendar/parts.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/button/style.css">
 
 
 
@@ -29,38 +30,38 @@
 			<!-- 項番 -->
 			<thead>
 				<tr>
-				<th>L3</th>
-				<th>L2</th>
-				<th>L1</th>
-				<th>18</th>
-				<th>17</th>
-				<th>16</th>
-				<th>15</th>
-				<th>14</th>
-				<th>13</th>
-				<th>12</th>
-				<th>11</th>
-				<th>10</th>
-				<th>9</th>
-				<th>8</th>
+				<th class="tRed01">L3</th>
+				<th class="tRed01">L2</th>
+				<th class="tRed01">L1</th>
+				<th class="tRed01">18</th>
+				<th class="tRed01">17</th>
+				<th class="tRed01">16</th>
+				<th class="tRed01">15</th>
+				<th class="tRed01">14</th>
+				<th class="tRed01">13</th>
+				<th class="tRed01">12</th>
+				<th class="tRed01">11</th>
+				<th class="tRed01">10</th>
+				<th class="tRed01">9</th>
+				<th class="tRed01">8</th>
 <!-- 				<th class="tRed01">7</th> -->
-				<th>7</th>
-				<th>6</th>
-				<th>5</th>
-				<th>4</th>
-				<th>3</th>
-				<th>2</th>
+				<th class="tRed01">7</th>
+				<th class="tRed01">6</th>
+				<th class="tRed01">5</th>
+				<th class="tRed01">4</th>
+				<th class="tRed01">3</th>
+				<th class="tRed01">2</th>
 <!-- 				<th class="tBlue01">1</th> -->
-				<th>1</th>
-				<th>R1</th>
-				<th>R2</th>
-				<th>R3</th></tr>
+				<th class="tRed01">1</th>
+				<th class="tRed01">R1</th>
+				<th class="tRed01">R2</th>
+				<th class="tRed01">R3</th></tr>
 
 			</thead>
 			<tr>
-			<td><ul class="days"><li>${request.yearMap.get("YaL3")}</li><li>${request.yearMap.get("YbL3")}</li><li>${request.yearMap.get("YcL3")}</li><li>${request.yearMap.get("YdL3")}</li><li>&nbsp</li><li>${request.year9}</li><li>&nbsp</li></ul></td>
-			<td><ul class="days"><li>${request.yearMap.get("YaL2")}</li><li>${request.yearMap.get("YbL2")}</li><li>${request.yearMap.get("YcL2")}</li><li>${request.yearMap.get("YdL2")}</li><li>&nbsp</li><li>${request.year8}</li><li>&nbsp</li></ul></td>
-			<td class="borderRight"><ul><li>${request.yearMap.get("YaL1")}</li><li>${request.yearMap.get("YbL1")}</li><li>${request.yearMap.get("YcL1")}</li><li>${request.yearMap.get("YdL1")}</li><li>&nbsp</li><li>${request.year7}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaL3")}</li><li>${request.yearMap.get("YbL3")}</li><li>${request.yearMap.get("YcL3")}</li><li>${request.yearMap.get("YdL3")}</li><li>&nbsp</li><li>${null eq request.year18?"&nbsp":request.year9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.yearMap.get("YaL2")}</li><li>${request.yearMap.get("YbL2")}</li><li>${request.yearMap.get("YcL2")}</li><li>${request.yearMap.get("YdL2")}</li><li>&nbsp</li><li>${null eq request.year18?"&nbsp":request.year8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.yearMap.get("YaL1")}</li><li>${request.yearMap.get("YbL1")}</li><li>${request.yearMap.get("YcL1")}</li><li>${request.yearMap.get("YdL1")}</li><li>&nbsp</li><li>${null eq request.year18?"&nbsp":request.year7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya18")}</li><li>${request.yearMap.get("Yb18")}</li><li>${request.yearMap.get("Yc18")}</li><li>${request.yearMap.get("Yd18")}</li><li>${null eq request.starMap.get("Y18")?"&nbsp":request.starMap.get("Y18")}</li><li>${request.year18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya17")}</li><li>${request.yearMap.get("Yb17")}</li><li>${request.yearMap.get("Yc17")}</li><li>${request.yearMap.get("Yd17")}</li><li>${null eq request.starMap.get("Y17")?"&nbsp":request.starMap.get("Y17")}</li><li>${request.year17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.yearMap.get("Ya16")}</li><li>${request.yearMap.get("Yb16")}</li><li>${request.yearMap.get("Yc16")}</li><li>${request.yearMap.get("Yd16")}</li><li>${null eq request.starMap.get("Y16")?"&nbsp":request.starMap.get("Y16")}</li><li>${request.year16}</li><li>&nbsp</li></ul></td>
@@ -85,9 +86,9 @@
 			<td class="item"><ul><li>年</li></ul></td>
 			</tr>
 			<tr>
-			<td><ul class="days"><li>${request.monthMap.get("MaL3")}</li><li>${request.monthMap.get("MbL3")}</li><li>${request.monthMap.get("McL3")}</li><li>${request.monthMap.get("MdL3")}</li><li>&nbsp</li><li>${request.month9}</li><li>&nbsp</li></ul></td>
-			<td><ul class="days"><li>${request.monthMap.get("MaL2")}</li><li>${request.monthMap.get("MbL2")}</li><li>${request.monthMap.get("McL2")}</li><li>${request.monthMap.get("MdL2")}</li><li>&nbsp</li><li>${request.month8}</li><li>&nbsp</li></ul></td>
-			<td class="borderRight"><ul><li>${request.monthMap.get("MaL1")}</li><li>${request.monthMap.get("MbL1")}</li><li>${request.monthMap.get("McL1")}</li><li>${request.monthMap.get("MdL1")}</li><li>&nbsp</li><li>${request.month7}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaL3")}</li><li>${request.monthMap.get("MbL3")}</li><li>${request.monthMap.get("McL3")}</li><li>${request.monthMap.get("MdL3")}</li><li>&nbsp</li><li>${null eq request.month18?"&nbsp":request.month9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.monthMap.get("MaL2")}</li><li>${request.monthMap.get("MbL2")}</li><li>${request.monthMap.get("McL2")}</li><li>${request.monthMap.get("MdL2")}</li><li>&nbsp</li><li>${null eq request.month18?"&nbsp":request.month8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.monthMap.get("MaL1")}</li><li>${request.monthMap.get("MbL1")}</li><li>${request.monthMap.get("McL1")}</li><li>${request.monthMap.get("MdL1")}</li><li>&nbsp</li><li>${null eq request.month18?"&nbsp":request.month7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma18")}</li><li>${request.monthMap.get("Mb18")}</li><li>${request.monthMap.get("Mc18")}</li><li>${request.monthMap.get("Md18")}</li><li>${null eq request.starMap.get("M18")?"&nbsp":request.starMap.get("M18")}</li><li>${request.month18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma17")}</li><li>${request.monthMap.get("Mb17")}</li><li>${request.monthMap.get("Mc17")}</li><li>${request.monthMap.get("Md17")}</li><li>${null eq request.starMap.get("M17")?"&nbsp":request.starMap.get("M17")}</li><li>${request.month17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.monthMap.get("Ma16")}</li><li>${request.monthMap.get("Mb16")}</li><li>${request.monthMap.get("Mc16")}</li><li>${request.monthMap.get("Md16")}</li><li>${null eq request.starMap.get("M16")?"&nbsp":request.starMap.get("M16")}</li><li>${request.month16}</li><li>&nbsp</li></ul></td>
@@ -112,9 +113,9 @@
 			<td class="item"><ul><li>月</li></ul></td>
 			</tr>
 			<tr>
-			<td><ul class="days"><li>${request.dayMap.get("DaL3")}</li><li>${request.dayMap.get("DbL3")}</li><li>${request.dayMap.get("DcL3")}</li><li>${request.dayMap.get("DdL3")}</li><li>&nbsp</li><li>${request.day9}</li><li>&nbsp</li></ul></td>
-			<td><ul class="days"><li>${request.dayMap.get("DaL2")}</li><li>${request.dayMap.get("DbL2")}</li><li>${request.dayMap.get("DcL2")}</li><li>${request.dayMap.get("DdL2")}</li><li>&nbsp</li><li>${request.day8}</li><li>&nbsp</li></ul></td>
-			<td class="borderRight"><ul><li>${request.dayMap.get("DaL1")}</li><li>${request.dayMap.get("DbL1")}</li><li>${request.dayMap.get("DcL1")}</li><li>${request.dayMap.get("DdL1")}</li><li>&nbsp</li><li>${request.day7}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaL3")}</li><li>${request.dayMap.get("DbL3")}</li><li>${request.dayMap.get("DcL3")}</li><li>${request.dayMap.get("DdL3")}</li><li>&nbsp</li><li>${null eq request.day18?"&nbsp":request.day9}</li><li>&nbsp</li></ul></td>
+			<td><ul class="days"><li>${request.dayMap.get("DaL2")}</li><li>${request.dayMap.get("DbL2")}</li><li>${request.dayMap.get("DcL2")}</li><li>${request.dayMap.get("DdL2")}</li><li>&nbsp</li><li>${null eq request.day18?"&nbsp":request.day8}</li><li>&nbsp</li></ul></td>
+			<td class="borderRight"><ul><li>${request.dayMap.get("DaL1")}</li><li>${request.dayMap.get("DbL1")}</li><li>${request.dayMap.get("DcL1")}</li><li>${request.dayMap.get("DdL1")}</li><li>&nbsp</li><li>${null eq request.day18?"&nbsp":request.day7}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da18")}</li><li>${request.dayMap.get("Db18")}</li><li>${request.dayMap.get("Dc18")}</li><li>${request.dayMap.get("Dd18")}</li><li>${null eq request.starMap.get("D18")?"&nbsp":request.starMap.get("D18")}</li><li>${request.day18}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da17")}</li><li>${request.dayMap.get("Db17")}</li><li>${request.dayMap.get("Dc17")}</li><li>${request.dayMap.get("Dd17")}</li><li>${null eq request.starMap.get("D17")?"&nbsp":request.starMap.get("D17")}</li><li>${request.day17}</li><li>&nbsp</li></ul></td>
 			<td><ul class="days"><li>${request.dayMap.get("Da16")}</li><li>${request.dayMap.get("Db16")}</li><li>${request.dayMap.get("Dc16")}</li><li>${request.dayMap.get("Dd16")}</li><li>${null eq request.starMap.get("D16")?"&nbsp":request.starMap.get("D16")}</li><li>${request.day16}</li><li>&nbsp</li></ul></td>
@@ -161,3 +162,85 @@
 		</table>
 	</div>
 </div>
+<div id = "div0">
+<s:form action="backToInput">
+	<input type="hidden" id="user18" name="user18"  value="${request.user18}">
+	<input type="hidden" id="user17" name="user17"  value="${request.user17}">
+	<input type="hidden" id="user16" name="user16"  value="${request.user16}">
+	<input type="hidden" id="user15" name="user15"  value="${request.user15}">
+	<input type="hidden" id="user14" name="user14"  value="${request.user14}">
+	<input type="hidden" id="user13" name="user13"  value="${request.user13}">
+	<input type="hidden" id="user12" name="user12"  value="${request.user12}">
+	<input type="hidden" id="user11" name="user11"  value="${request.user11}">
+	<input type="hidden" id="user10" name="user10"  value="${request.user10}">
+	<input type="hidden" id="user9" name="user9"  value="${request.user9}">
+	<input type="hidden" id="user8" name="user8"  value="${request.user8}">
+	<input type="hidden" id="user7" name="user7"  value="${request.user7}">
+	<input type="hidden" id="user6" name="user6"  value="${request.user6}">
+	<input type="hidden" id="user5" name="user5"  value="${request.user5}">
+	<input type="hidden" id="user4" name="user4"  value="${request.user4}">
+	<input type="hidden" id="user3" name="user3"  value="${request.user3}">
+	<input type="hidden" id="user2" name="user2"  value="${request.user2}">
+	<input type="hidden" id="user1" name="user1"  value="${request.user1}">
+
+	<input type="hidden" id="user18Name1" name="user18Name1"  value="${request.user18Name1}">
+	<input type="hidden" id="user17Name1" name="user17Name1"  value="${request.user17Name1}">
+	<input type="hidden" id="user16Name1" name="user16Name1"  value="${request.user16Name1}">
+	<input type="hidden" id="user15Name1" name="user15Name1"  value="${request.user15Name1}">
+	<input type="hidden" id="user14Name1" name="user14Name1"  value="${request.user14Name1}">
+	<input type="hidden" id="user13Name1" name="user13Name1"  value="${request.user13Name1}">
+	<input type="hidden" id="user12Name1" name="user12Name1"  value="${request.user12Name1}">
+	<input type="hidden" id="user11Name1" name="user11Name1"  value="${request.user11Name1}">
+	<input type="hidden" id="user10Name1" name="user10Name1"  value="${request.user10Name1}">
+	<input type="hidden" id="user9Name1" name="user9Name1"  value="${request.user9Name1}">
+	<input type="hidden" id="user8Name1" name="user8Name1"  value="${request.user8Name1}">
+	<input type="hidden" id="user7Name1" name="user7Name1"  value="${request.user7Name1}">
+	<input type="hidden" id="user6Name1" name="user6Name1"  value="${request.user6Name1}">
+	<input type="hidden" id="user5Name1" name="user5Name1"  value="${request.user5Name1}">
+	<input type="hidden" id="user4Name1" name="user4Name1"  value="${request.user4Name1}">
+	<input type="hidden" id="user3Name1" name="user3Name1"  value="${request.user3Name1}">
+	<input type="hidden" id="user2Name1" name="user2Name1"  value="${request.user2Name1}">
+	<input type="hidden" id="user1Name1" name="user1Name1"  value="${request.user1Name1}">
+	<input type="hidden" id="user18Name2" name="user18Name2"  value="${request.user18Name2}">
+	<input type="hidden" id="user17Name2" name="user17Name2"  value="${request.user17Name2}">
+	<input type="hidden" id="user16Name2" name="user16Name2"  value="${request.user16Name2}">
+	<input type="hidden" id="user15Name2" name="user15Name2"  value="${request.user15Name2}">
+	<input type="hidden" id="user14Name2" name="user14Name2"  value="${request.user14Name2}">
+	<input type="hidden" id="user13Name2" name="user13Name2"  value="${request.user13Name2}">
+	<input type="hidden" id="user12Name2" name="user12Name2"  value="${request.user12Name2}">
+	<input type="hidden" id="user11Name2" name="user11Name2"  value="${request.user11Name2}">
+	<input type="hidden" id="user10Name2" name="user10Name2"  value="${request.user10Name2}">
+	<input type="hidden" id="user9Name2" name="user9Name2"  value="${request.user9Name2}">
+	<input type="hidden" id="user8Name2" name="user8Name2"  value="${request.user8Name2}">
+	<input type="hidden" id="user7Name2" name="user7Name2"  value="${request.user7Name2}">
+	<input type="hidden" id="user6Name2" name="user6Name2"  value="${request.user6Name2}">
+	<input type="hidden" id="user5Name2" name="user5Name2"  value="${request.user5Name2}">
+	<input type="hidden" id="user4Name2" name="user4Name2"  value="${request.user4Name2}">
+	<input type="hidden" id="user3Name2" name="user3Name2"  value="${request.user3Name2}">
+	<input type="hidden" id="user2Name2" name="user2Name2"  value="${request.user2Name2}">
+	<input type="hidden" id="user1Name2" name="user1Name2"  value="${request.user1Name2}">
+
+		<input type="hidden" id="house18" name="house18"  value="${request.house18}">
+	<input type="hidden" id="house17" name="house17"  value="${request.house17}">
+	<input type="hidden" id="house16" name="house16"  value="${request.house16}">
+	<input type="hidden" id="house15" name="house15"  value="${request.house15}">
+	<input type="hidden" id="house14" name="house14"  value="${request.house14}">
+	<input type="hidden" id="house13" name="house13"  value="${request.house13}">
+	<input type="hidden" id="house12" name="house12"  value="${request.house12}">
+	<input type="hidden" id="house11" name="house11"  value="${request.house11}">
+	<input type="hidden" id="house10" name="house10"  value="${request.house10}">
+	<input type="hidden" id="house9" name="house9"  value="${request.house9}">
+	<input type="hidden" id="house8" name="house8"  value="${request.house8}">
+	<input type="hidden" id="house7" name="house7"  value="${request.house7}">
+	<input type="hidden" id="house6" name="house6"  value="${request.house6}">
+	<input type="hidden" id="house5" name="house5"  value="${request.house5}">
+	<input type="hidden" id="house4" name="house4"  value="${request.house4}">
+	<input type="hidden" id="house3" name="house3"  value="${request.house3}">
+	<input type="hidden" id="house2" name="house2"  value="${request.house2}">
+	<input type="hidden" id="house1" name="house1"  value="${request.house1}">
+
+<!-- 	<input type="submit" value="戻る" class="btn btn-primary" id="js-btn-login"/> -->
+	<input class="button white" type="submit" value="戻る""/>
+</s:form>
+
+			</div>

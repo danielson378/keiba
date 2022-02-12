@@ -24,7 +24,6 @@ public class NameSelectAction {
 	private interface SQL{
 		// 検索SQL
 		String SELECT = "select * from jockeys where id=?";
-
 	}
 
 	 /** 処理結果 */
@@ -355,25 +354,26 @@ public class NameSelectAction {
 		} else if(user12.isEmpty()){
 			errMsg = "項目[12]を"+MSG.ERR_MSG_1;
 			return flag = true;
-		} else if(user13.isEmpty()){
-			errMsg = "項目[13]を"+MSG.ERR_MSG_1;
-			return flag = true;
-		} else if(user14.isEmpty()){
-			errMsg = "項目[14]を"+MSG.ERR_MSG_1;
-			return flag = true;
-		} else if(user15.isEmpty()){
-			errMsg = "項目[15]を"+MSG.ERR_MSG_1;
-			return flag = true;
-		} else if(user16.isEmpty()){
-			errMsg = "項目[16]を"+MSG.ERR_MSG_1;
-			return flag = true;
-		} else if(user17.isEmpty()){
-			errMsg = "項目[17]を"+MSG.ERR_MSG_1;
-			return flag = true;
-		} else if(user18.isEmpty()){
-			errMsg = "項目[18]を"+MSG.ERR_MSG_1;
-			return flag = true;
 		}
+//		else if(user13.isEmpty()){
+//			errMsg = "項目[13]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		} else if(user14.isEmpty()){
+//			errMsg = "項目[14]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		} else if(user15.isEmpty()){
+//			errMsg = "項目[15]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		} else if(user16.isEmpty()){
+//			errMsg = "項目[16]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		} else if(user17.isEmpty()){
+//			errMsg = "項目[17]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		} else if(user18.isEmpty()){
+//			errMsg = "項目[18]を"+MSG.ERR_MSG_1;
+//			return flag = true;
+//		}
 		return flag;
 	}
 
@@ -383,7 +383,6 @@ public class NameSelectAction {
      * @return　
      */
 	private void setName(List<JockeyNameDto> aryJockeyNameDto) {
-		// TODO 自動生成されたメソッド・スタブ
 		user1Name1 = aryJockeyNameDto.get(0).getName1();
 		user1Name2 = aryJockeyNameDto.get(0).getName2();
 		user2Name1 = aryJockeyNameDto.get(1).getName1();
@@ -408,18 +407,30 @@ public class NameSelectAction {
 		user11Name2 = aryJockeyNameDto.get(10).getName2();
 		user12Name1 = aryJockeyNameDto.get(11).getName1();
 		user12Name2 = aryJockeyNameDto.get(11).getName2();
-		user13Name1 = aryJockeyNameDto.get(12).getName1();
-		user13Name2 = aryJockeyNameDto.get(12).getName2();
-		user14Name1 = aryJockeyNameDto.get(13).getName1();
-		user14Name2 = aryJockeyNameDto.get(13).getName2();
-		user15Name1 = aryJockeyNameDto.get(14).getName1();
-		user15Name2 = aryJockeyNameDto.get(14).getName2();
-		user16Name1 = aryJockeyNameDto.get(15).getName1();
-		user16Name2 = aryJockeyNameDto.get(15).getName2();
-		user17Name1 = aryJockeyNameDto.get(16).getName1();
-		user17Name2 = aryJockeyNameDto.get(16).getName2();
-		user18Name1 = aryJockeyNameDto.get(17).getName1();
-		user18Name2 = aryJockeyNameDto.get(17).getName2();
+		if (aryJockeyNameDto.size()>12 && aryJockeyNameDto.get(12) != null) {
+			user13Name1 = aryJockeyNameDto.get(12).getName1();
+			user13Name2 = aryJockeyNameDto.get(12).getName2();
+		}
+		if (aryJockeyNameDto.size()>13 && aryJockeyNameDto.get(13) != null) {
+			user14Name1 = aryJockeyNameDto.get(13).getName1();
+			user14Name2 = aryJockeyNameDto.get(13).getName2();
+		}
+		if (aryJockeyNameDto.size()>14 && aryJockeyNameDto.get(14) != null) {
+			user15Name1 = aryJockeyNameDto.get(14).getName1();
+			user15Name2 = aryJockeyNameDto.get(14).getName2();
+		}
+		if (aryJockeyNameDto.size()>15 && aryJockeyNameDto.get(15) != null) {
+			user16Name1 = aryJockeyNameDto.get(15).getName1();
+			user16Name2 = aryJockeyNameDto.get(15).getName2();
+		}
+		if (aryJockeyNameDto.size()>16 && aryJockeyNameDto.get(16) != null) {
+			user17Name1 = aryJockeyNameDto.get(16).getName1();
+			user17Name2 = aryJockeyNameDto.get(16).getName2();
+		}
+		if (aryJockeyNameDto.size()>16 && aryJockeyNameDto.get(16) != null) {
+			user18Name1 = aryJockeyNameDto.get(17).getName1();
+			user18Name2 = aryJockeyNameDto.get(17).getName2();
+		}
 
 	}
 
@@ -443,12 +454,24 @@ public class NameSelectAction {
     	aryUser.add(user10);
     	aryUser.add(user11);
     	aryUser.add(user12);
-    	aryUser.add(user13);
-    	aryUser.add(user14);
-    	aryUser.add(user15);
-    	aryUser.add(user16);
-    	aryUser.add(user17);
-    	aryUser.add(user18);
+    	if (!user13.isEmpty()) {
+    		aryUser.add(user13);
+    	}
+    	if (!user14.isEmpty()) {
+    		aryUser.add(user14);
+    	}
+    	if (!user15.isEmpty()) {
+    		aryUser.add(user15);
+    	}
+    	if (!user16.isEmpty()) {
+    		aryUser.add(user16);
+    	}
+    	if (!user17.isEmpty()) {
+    		aryUser.add(user17);
+    	}
+    	if (!user18.isEmpty()) {
+    		aryUser.add(user18);
+    	}
 		return aryUser;
 	}
 

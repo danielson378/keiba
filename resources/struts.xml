@@ -51,6 +51,16 @@
 			<result name="success">/WEB-INF/view/input.jsp</result>
 			<result name="faild">/WEB-INF/view/input.jsp</result>
 		</action>
+		<action name="backToInput" class="com.beautyred.action.BackToInputAction"
+			method="execute">
+			<result name="success">/WEB-INF/view/input.jsp</result>
+			<result name="faild">/WEB-INF/view/input.jsp</result>
+		</action>
+		<action name="reset" class="com.beautyred.action.ResetAction"
+			method="execute">
+			<result name="success">/WEB-INF/view/input.jsp</result>
+			<result name="faild">/WEB-INF/view/input.jsp</result>
+		</action>
 		<action name="to_top" class="com.beautyred.action.TopAction"
 			method="execute">
 			<result name="success">/WEB-INF/view/top.jsp</result>

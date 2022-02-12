@@ -41,6 +41,12 @@ public class ProcessAction {
 	}
     /** ロガー */
     private Logger logger = LogManager.getLogger(LoginAction.class);
+
+    /** SQL文 */
+	private interface TEXT{
+		// 検索SQL
+		String RED_STAR = "<span class=\"tRed01\">★</span>";
+	}
     //////////////　番号　//////////////
     /** ユーザー1 */
     private String user1;
@@ -190,6 +196,117 @@ public class ProcessAction {
     /** 日18 */
     private String day18;
 
+
+    /** ユーザー1 */
+    private String house1;
+    /** ユーザー2 */
+    private String house2;
+    /** ユーザー3 */
+    private String house3;
+    /** ユーザー4 */
+    private String house4;
+    /** ユーザー5 */
+    private String house5;
+    /** ユーザー6 */
+    private String house6;
+    /** ユーザー7 */
+    private String house7;
+    /** ユーザー8 */
+    private String house8;
+    /** ユーザー9 */
+    private String house9;
+    /** ユーザー10 */
+    private String house10;
+    /** ユーザー11 */
+    private String house11;
+    /** ユーザー12 */
+    private String house12;
+    /** ユーザー13 */
+    private String house13;
+    /** ユーザー14 */
+    private String house14;
+    /** ユーザー15 */
+    private String house15;
+    /** ユーザー16 */
+    private String house16;
+    /** ユーザー17 */
+    private String house17;
+    /** ユーザー18 */
+    private String house18;
+
+
+    /** ユーザー1 */
+    private String user1Name1;
+    /** ユーザー2 */
+    private String user2Name1;
+    /** ユーザー3 */
+    private String user3Name1;
+    /** ユーザー4 */
+    private String user4Name1;
+    /** ユーザー5 */
+    private String user5Name1;
+    /** ユーザー6 */
+    private String user6Name1;
+    /** ユーザー7 */
+    private String user7Name1;
+    /** ユーザー8 */
+    private String user8Name1;
+    /** ユーザー9 */
+    private String user9Name1;
+    /** ユーザー10 */
+    private String user10Name1;
+    /** ユーザー11 */
+    private String user11Name1;
+    /** ユーザー12 */
+    private String user12Name1;
+    /** ユーザー13 */
+    private String user13Name1;
+    /** ユーザー14 */
+    private String user14Name1;
+    /** ユーザー15 */
+    private String user15Name1;
+    /** ユーザー16 */
+    private String user16Name1;
+    /** ユーザー17 */
+    private String user17Name1;
+    /** ユーザー18 */
+    private String user18Name1;
+     /** ユーザー1 */
+    private String user1Name2;
+    /** ユーザー2 */
+    private String user2Name2;
+    /** ユーザー3 */
+    private String user3Name2;
+    /** ユーザー4 */
+    private String user4Name2;
+    /** ユーザー5 */
+    private String user5Name2;
+    /** ユーザー6 */
+    private String user6Name2;
+    /** ユーザー7 */
+    private String user7Name2;
+    /** ユーザー8 */
+    private String user8Name2;
+    /** ユーザー9 */
+    private String user9Name2;
+    /** ユーザー10 */
+    private String user10Name2;
+    /** ユーザー11 */
+    private String user11Name2;
+    /** ユーザー12 */
+    private String user12Name2;
+    /** ユーザー13 */
+    private String user13Name2;
+    /** ユーザー14 */
+    private String user14Name2;
+    /** ユーザー15 */
+    private String user15Name2;
+    /** ユーザー16 */
+    private String user16Name2;
+    /** ユーザー17 */
+    private String user17Name2;
+    /** ユーザー18 */
+    private String user18Name2;
     /** 1、4、7、10 */
     private static final List<String> NUM14710 = Arrays.asList("1","4","7","10");
     /** 2、5、8、11 */
@@ -210,6 +327,15 @@ public class ProcessAction {
 
     /** エラーメッセージ */
     private final String ERR_MSG = "入力した騎手番号が確認できません。番号を確認してください。";
+	 /** エラーメッセージ */
+	private interface MSG{
+		// 失敗1
+		String ERR_MSG_1 = "番号を入力してください。";
+		// 失敗1
+//		String ERR_MSG_2 = "半角数字を入力してください。";
+		// 失敗1
+		String ERR_MSG_2 = "入力した騎手番号が確認できません。番号を確認してください。";
+	}
 
     /**
      * [主処理]<br>
@@ -249,15 +375,22 @@ public class ProcessAction {
         // 画面側から騎手番号を取得
         jockeyNoDto = getJockeyNoDto();
 
+        // 画面側騎手番号1つでも入力されない場合、エラーする
+        if (null == jockeyNoDto) {
+        	errMsg = MSG.ERR_MSG_1;
+        	request.setAttribute("errMsg", errMsg);
+        	return RESULT.FAILD;
+        }
         // 騎手誕生日を取得
         for (String user : jockeyNoDto.getAryUser()) {
 
         	// 騎手誕生日の年、月、日どちらかnullの場合、FAILDを返却する
-        	if (null == getJockeysInfo(user).getYear()
-        			|| null == getJockeysInfo(user).getMonth()
-        			|| null == getJockeysInfo(user).getDay()) {
+        	JockeysBirthdayDto jockeysBirthdayDto = getJockeysInfo(user);
+        	if (null == jockeysBirthdayDto.getYear()
+        			|| null == jockeysBirthdayDto.getMonth()
+        			|| null == jockeysBirthdayDto.getDay()) {
 
-                errMsg = ERR_MSG + "[" + user + "]";
+                errMsg = MSG.ERR_MSG_2 + "[" + user + "]";
                 request.setAttribute("errMsg", errMsg);
         		return RESULT.FAILD;
         	}
@@ -313,12 +446,24 @@ public class ProcessAction {
 		year10 = chenge12Pro(aryJockeysBirthdayDto.get(9).getYear());
 		year11 = chenge12Pro(aryJockeysBirthdayDto.get(10).getYear());
 		year12 = chenge12Pro(aryJockeysBirthdayDto.get(11).getYear());
-		year13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getYear());
-		year14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getYear());
-		year15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getYear());
-		year16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getYear());
-		year17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getYear());
-		year18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getYear());
+		if (aryJockeysBirthdayDto.size()>12 && aryJockeysBirthdayDto.get(12) != null) {
+			year13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getYear());
+		}
+		if (aryJockeysBirthdayDto.size()>13 && aryJockeysBirthdayDto.get(13) != null) {
+			year14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getYear());
+		}
+		if (aryJockeysBirthdayDto.size()>14 && aryJockeysBirthdayDto.get(14) != null) {
+			year15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getYear());
+		}
+		if (aryJockeysBirthdayDto.size()>15 && aryJockeysBirthdayDto.get(15) != null) {
+			year16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getYear());
+		}
+		if (aryJockeysBirthdayDto.size()>16 && aryJockeysBirthdayDto.get(16) != null) {
+			year17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getYear());
+		}
+		if (aryJockeysBirthdayDto.size()>17 && aryJockeysBirthdayDto.get(17) != null) {
+			year18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getYear());
+		}
 
 		month1 = chenge12Pro(aryJockeysBirthdayDto.get(0).getMonth());
 		month2 = chenge12Pro(aryJockeysBirthdayDto.get(1).getMonth());
@@ -332,12 +477,24 @@ public class ProcessAction {
 		month10 = chenge12Pro(aryJockeysBirthdayDto.get(9).getMonth());
 		month11 = chenge12Pro(aryJockeysBirthdayDto.get(10).getMonth());
 		month12 = chenge12Pro(aryJockeysBirthdayDto.get(11).getMonth());
-		month13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getMonth());
-		month14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getMonth());
-		month15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getMonth());
-		month16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getMonth());
-		month17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getMonth());
-		month18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getMonth());
+		if (aryJockeysBirthdayDto.size()>12 && aryJockeysBirthdayDto.get(12) != null) {
+			month13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getMonth());
+		}
+		if (aryJockeysBirthdayDto.size()>13 && aryJockeysBirthdayDto.get(13) != null) {
+			month14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getMonth());
+		}
+		if (aryJockeysBirthdayDto.size()>14 && aryJockeysBirthdayDto.get(14) != null) {
+			month15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getMonth());
+		}
+		if (aryJockeysBirthdayDto.size()>15 && aryJockeysBirthdayDto.get(15) != null) {
+			month16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getMonth());
+		}
+		if (aryJockeysBirthdayDto.size()>16 && aryJockeysBirthdayDto.get(16) != null) {
+			month17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getMonth());
+		}
+		if (aryJockeysBirthdayDto.size()>17 && aryJockeysBirthdayDto.get(17) != null) {
+			month18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getMonth());
+		}
 
 		day1 = chenge12Pro(aryJockeysBirthdayDto.get(0).getDay());
 		day2 = chenge12Pro(aryJockeysBirthdayDto.get(1).getDay());
@@ -351,12 +508,24 @@ public class ProcessAction {
 		day10 = chenge12Pro(aryJockeysBirthdayDto.get(9).getDay());
 		day11 = chenge12Pro(aryJockeysBirthdayDto.get(10).getDay());
 		day12 = chenge12Pro(aryJockeysBirthdayDto.get(11).getDay());
-		day13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getDay());
-		day14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getDay());
-		day15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getDay());
-		day16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getDay());
-		day17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getDay());
-		day18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getDay());
+		if (aryJockeysBirthdayDto.size()>12 && aryJockeysBirthdayDto.get(12) != null) {
+			day13 = chenge12Pro(aryJockeysBirthdayDto.get(12).getDay());
+		}
+		if (aryJockeysBirthdayDto.size()>13 && aryJockeysBirthdayDto.get(13) != null) {
+			day14 = chenge12Pro(aryJockeysBirthdayDto.get(13).getDay());
+		}
+		if (aryJockeysBirthdayDto.size()>14 && aryJockeysBirthdayDto.get(14) != null) {
+			day15 = chenge12Pro(aryJockeysBirthdayDto.get(14).getDay());
+		}
+		if (aryJockeysBirthdayDto.size()>15 && aryJockeysBirthdayDto.get(15) != null) {
+			day16 = chenge12Pro(aryJockeysBirthdayDto.get(15).getDay());
+		}
+		if (aryJockeysBirthdayDto.size()>16 && aryJockeysBirthdayDto.get(16) != null) {
+			day17 = chenge12Pro(aryJockeysBirthdayDto.get(16).getDay());
+		}
+		if (aryJockeysBirthdayDto.size()>17 && aryJockeysBirthdayDto.get(17) != null) {
+			day18 = chenge12Pro(aryJockeysBirthdayDto.get(17).getDay());
+		}
 
 	}
 
@@ -372,6 +541,9 @@ public class ProcessAction {
     	if (target>12) {
     		target=target%12;
     	}
+    	if (target == 0) {
+    		target = 12;
+    	}
     	int result = target;
 		return String.valueOf(result);
 	}
@@ -385,24 +557,63 @@ public class ProcessAction {
     private JockeyNoDto getJockeyNoDto() {
     	JockeyNoDto jockeyNoDto = new JockeyNoDto();
     	List<String> aryUser = new ArrayList<String>();
-    	aryUser.add(user1);
-    	aryUser.add(user2);
-    	aryUser.add(user3);
-    	aryUser.add(user4);
-    	aryUser.add(user5);
-    	aryUser.add(user6);
-    	aryUser.add(user7);
-    	aryUser.add(user8);
-    	aryUser.add(user9);
-    	aryUser.add(user10);
-    	aryUser.add(user11);
-    	aryUser.add(user12);
-    	aryUser.add(user13);
-    	aryUser.add(user14);
-    	aryUser.add(user15);
-    	aryUser.add(user16);
-    	aryUser.add(user17);
-    	aryUser.add(user18);
+    	if (!user1.isEmpty()) {
+    		aryUser.add(user1);
+    	}
+    	if (!user2.isEmpty()) {
+    		aryUser.add(user2);
+    	}
+    	if (!user3.isEmpty()) {
+    		aryUser.add(user3);
+    	}
+    	if (!user4.isEmpty()) {
+    		aryUser.add(user4);
+    	}
+    	if (!user5.isEmpty()) {
+    		aryUser.add(user5);
+    	}
+    	if (!user6.isEmpty()) {
+    		aryUser.add(user6);
+    	}
+    	if (!user7.isEmpty()) {
+    		aryUser.add(user7);
+    	}
+    	if (!user8.isEmpty()) {
+    		aryUser.add(user8);
+    	}
+    	if (!user9.isEmpty()) {
+    		aryUser.add(user9);
+    	}
+    	if (!user10.isEmpty()) {
+    		aryUser.add(user10);
+    	}
+    	if (!user11.isEmpty()) {
+    		aryUser.add(user11);
+    	}
+    	if (!user12.isEmpty()) {
+    		aryUser.add(user12);
+    	}
+    	if (!user13.isEmpty()) {
+    		aryUser.add(user13);
+    	}
+    	if (!user14.isEmpty()) {
+    		aryUser.add(user14);
+    	}
+    	if (!user15.isEmpty()) {
+    		aryUser.add(user15);
+    	}
+    	if (!user16.isEmpty()) {
+    		aryUser.add(user16);
+    	}
+    	if (!user17.isEmpty()) {
+    		aryUser.add(user17);
+    	}
+    	if (!user18.isEmpty()) {
+    		aryUser.add(user18);
+    	}
+    	if (aryUser.size() == 0) {
+    		return null;
+    	}
     	jockeyNoDto.setAryUser(aryUser);
 		return jockeyNoDto;
 	}
@@ -937,620 +1148,621 @@ public class ProcessAction {
 				// Yd1 ①:4、10
 				if ("Yd1".equals(year)) {
 					// 左
-					if (year4.equals("4")) {
-						if (year3.equals("3")) {
-							starMap.put("Y3", "★");
+					if ("4".equals(year4)) {
+						if (year3.equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (year2.equals("2")) {
-							starMap.put("Y2", "★");
+						if ("2".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-					} else if (year4.equals("10")) {
-						if (year3.equals("11")) {
-							starMap.put("Y3", "★");
+					} else if ("10".equals(year4)) {
+						if ("11".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (year2.equals("12")) {
-							starMap.put("Y2", "★");
+						if ("12".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year10.equals("4")) {
-						if (year11.equals("3")) {
-							starMap.put("YR2", "★");
+					if ("4".equals(year10)) {
+						if ("3".equals(year11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (year12.equals("2")) {
-							starMap.put("YR1", "★");
+						if ("2".equals(year12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-					} else if (year10.equals("10")) {
-						if (year11.equals("11")) {
-							starMap.put("YR2", "★");
+					} else if ("10".equals(year10)) {
+						if ("11".equals(year11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (year12.equals("12")) {
-							starMap.put("YR1", "★");
+						if ("12".equals(year12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
 					}
 					// Yd2 ②:5、11
 				} else if ("Yd2".equals(year)) {
 					// 左
-					if (year5.equals("5")) {
-						if (year4.equals("4")) {
-							starMap.put("Y4", "★");
+					if ("5".equals(year5)) {
+						if ("4".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (year3.equals("3")) {
-							starMap.put("Y3", "★");
+						if ("3".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-					} else if (year5.equals("11")) {
-						if (year4.equals("12")) {
-							starMap.put("Y4", "★");
+					} else if ("11".equals(year5)) {
+						if ("12".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (year3.equals("1")) {
-							starMap.put("Y3", "★");
+						if ("1".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year11.equals("5")) {
-						if (year12.equals("4")) {
-							starMap.put("YR1", "★");
+					if ("5".equals(year11)) {
+						if ("4".equals(year12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-						if (year1.equals("3")) {
-							starMap.put("Y1", "★");
+						if ("3".equals(year1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
 						}
-					} else if (year11.equals("11")) {
-						if (year12.equals("12")) {
-							starMap.put("YR1", "★");
+					} else if ("11".equals(year11)) {
+						if ("12".equals(year12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-						if (year1.equals("1")) {
-							starMap.put("Y1", "★");
+						if ("1".equals(year1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
 						}
 					}
 					// Yd3 ③:6、12
 				} else if ("Yd3".equals(year)) {
 					// 左
-					if (year6.equals("6")) {
-						if (year5.equals("5")) {
-							starMap.put("Y5", "★");
+					if ("6".equals(year6)) {
+						if ("5".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-						if (year4.equals("4")) {
-							starMap.put("Y4", "★");
+						if ("4".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-					} else if (year6.equals("12")) {
-						if (year5.equals("1")) {
-							starMap.put("Y5", "★");
+					} else if ("12".equals(year6)) {
+						if ("1".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-						if (year4.equals("2")) {
-							starMap.put("Y4", "★");
+						if ("2".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year12.equals("6")) {
-						if (year1.equals("5")) {
-							starMap.put("Y1", "★");
+					if ("6".equals(year12)) {
+						if ("5".equals(year1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
 						}
-						if (year2.equals("4")) {
-							starMap.put("Y2", "★");
+						if ("4".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-					} else if (year12.equals("12")) {
-						if (year1.equals("1")) {
-							starMap.put("Y1", "★");
+					} else if ("12".equals(year12)) {
+						if ("1".equals(year1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
 						}
-						if (year2.equals("2")) {
-							starMap.put("Y2", "★");
+						if ("2".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
 					}
 					// Yd4 ④:7、1
 				} else if ("Yd4".equals(year)) {
 					// 左
-					if (year7.equals("7")) {
-						if (year6.equals("6")) {
-							starMap.put("Y6", "★");
+					if ("7".equals(year7)) {
+						if ("6".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-						if (year5.equals("5")) {
-							starMap.put("Y5", "★");
+						if ("5".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-					} else if (year7.equals("1")) {
-						if (year6.equals("2")) {
-							starMap.put("Y6", "★");
+					} else if ("1".equals(year7)) {
+						if ("2".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-						if (year5.equals("3")) {
-							starMap.put("Y5", "★");
+						if ("3".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year1.equals("7")) {
-						if (year2.equals("6")) {
-							starMap.put("Y2", "★");
+					if ("7".equals(year1)) {
+						if ("6".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-						if (year3.equals("5")) {
-							starMap.put("Y3", "★");
+						if ("5".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-					} else if (year1.equals("1")) {
-						if (year2.equals("2")) {
-							starMap.put("Y2", "★");
+					} else if ("1".equals(year1)) {
+						if ("2".equals(year2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-						if (year3.equals("3")) {
-							starMap.put("Y3", "★");
+						if ("3".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
 					}
 					// Yd5 ⑤:2、8
 				} else if ("Yd5".equals(year)) {
 					// 左
-					if (year8.equals("8")) {
-						if (year7.equals("7")) {
-							starMap.put("Y7", "★");
+					if ("8".equals(year8)) {
+						if ("7".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-						if (year6.equals("6")) {
-							starMap.put("Y6", "★");
+						if ("6".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-					} else if (year8.equals("2")) {
-						if (year7.equals("3")) {
-							starMap.put("Y7", "★");
+					} else if ("2".equals(year8)) {
+						if ("3".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-						if (year6.equals("4")) {
-							starMap.put("Y6", "★");
+						if ("4".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year2.equals("8")) {
-						if (year3.equals("7")) {
-							starMap.put("Y3", "★");
+					if ("8".equals(year2)) {
+						if ("7".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (year4.equals("6")) {
-							starMap.put("Y4", "★");
+						if ("6".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-					} else if (year2.equals("2")) {
-						if (year3.equals("3")) {
-							starMap.put("Y3", "★");
+					} else if ("2".equals(year2)) {
+						if ("3".equals(year3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (year4.equals("4")) {
-							starMap.put("Y4", "★");
+						if ("4".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
 					}
 					// Yd6 ⑥:3、9
 				} else if ("Yd6".equals(year)) {
 					// 左
-					if (year9.equals("9")) {
-						if (year8.equals("8")) {
-							starMap.put("Y8", "★");
+					if ("9".equals(year9)) {
+						if ("8".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-						if (year7.equals("7")) {
-							starMap.put("Y7", "★");
+						if ("7".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-					} else if (year9.equals("3")) {
-						if (year8.equals("4")) {
-							starMap.put("Y8", "★");
+					} else if ("3".equals(year9)) {
+						if ("4".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-						if (year7.equals("5")) {
-							starMap.put("Y7", "★");
+						if ("5".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year3.equals("9")) {
-						if (year4.equals("8")) {
-							starMap.put("Y4", "★");
+					if ("9".equals(year3)) {
+						if ("8".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (year5.equals("7")) {
-							starMap.put("Y5", "★");
+						if ("7".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-					} else if (year3.equals("3")) {
-						if (year4.equals("4")) {
-							starMap.put("Y4", "★");
+					} else if ("3".equals(year3)) {
+						if ("4".equals(year4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (year5.equals("5")) {
-							starMap.put("Y5", "★");
+						if ("5".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
 					}
 					// Yd7 ⑦:4、10
 				} else if ("Yd7".equals(year)) {
 					// 左
-					if (year10.equals("10")) {
-						if (year9.equals("9")) {
-							starMap.put("Y9", "★");
+					if ("10".equals(year10)) {
+						if ("9".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-						if (year8.equals("8")) {
-							starMap.put("Y8", "★");
+						if ("8".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-					} else if (year10.equals("4")) {
-						if (year9.equals("5")) {
-							starMap.put("Y9", "★");
+					} else if ("4".equals(year10)) {
+						if ("5".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-						if (year8.equals("6")) {
-							starMap.put("Y8", "★");
+						if ("6".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year4.equals("10")) {
-						if (year5.equals("9")) {
-							starMap.put("Y5", "★");
+					if ("10".equals(year4)) {
+						if ("9".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-						if (year6.equals("8")) {
-							starMap.put("Y6", "★");
+						if ("8".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-					} else if (year4.equals("4")) {
-						if (year5.equals("5")) {
-							starMap.put("Y5", "★");
+					} else if ("4".equals(year4)) {
+						if ("5".equals(year5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
 						}
-						if (year6.equals("6")) {
-							starMap.put("Y6", "★");
+						if ("6".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
 					}
 					// Yd8 ⑧:5、11
 				} else if ("Yd8".equals(year)) {
 					// 左
-					if (year11.equals("11")) {
-						if (year10.equals("10")) {
-							starMap.put("Y10", "★");
+					if ("11".equals(year11)) {
+						if ("10".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-						if (year9.equals("9")) {
-							starMap.put("Y9", "★");
+						if ("9".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-					} else if (year11.equals("5")) {
-						if (year10.equals("6")) {
-							starMap.put("Y10", "★");
+					} else if ("5".equals(year11)) {
+						if ("6".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-						if (year9.equals("7")) {
-							starMap.put("Y9", "★");
+						if ("7".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year5.equals("11")) {
-						if (year6.equals("10")) {
-							starMap.put("Y6", "★");
+					if ("11".equals(year5)) {
+						if ("10".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-						if (year7.equals("9")) {
-							starMap.put("Y7", "★");
+						if ("9".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-					} else if (year5.equals("5")) {
-						if (year6.equals("6")) {
-							starMap.put("Y6", "★");
+					} else if ("5".equals(year5)) {
+						if ("6".equals(year6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
 						}
-						if (year7.equals("7")) {
-							starMap.put("Y7", "★");
+						if ("7".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
 					}
 					// Yd9 ⑨:6、12
 				} else if ("Yd9".equals(year)) {
 					// 左
-					if (year12.equals("12")) {
-						if (year11.equals("11")) {
-							starMap.put("Y11", "★");
+					if ("12".equals(year12)) {
+						if ("11".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-						if (year10.equals("10")) {
-							starMap.put("Y10", "★");
+						if ("10".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-					} else if (year12.equals("6")) {
-						if (year11.equals("7")) {
-							starMap.put("Y11", "★");
+					} else if ("6".equals(year12)) {
+						if ("7".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-						if (year10.equals("8")) {
-							starMap.put("Y10", "★");
+						if ("8".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year6.equals("12")) {
-						if (year7.equals("11")) {
-							starMap.put("Y7", "★");
+					if ("12".equals(year6)) {
+						if ("11".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-						if (year8.equals("10")) {
-							starMap.put("Y8", "★");
+						if ("10".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-					} else if (year6.equals("6")) {
-						if (year7.equals("7")) {
-							starMap.put("Y7", "★");
+					} else if ("6".equals(year6)) {
+						if ("7".equals(year7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
 						}
-						if (year8.equals("8")) {
-							starMap.put("Y8", "★");
+						if ("8".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
 					}
 					// Yd10 ⑩:1、7
 				} else if ("Yd10".equals(year)) {
 					// 左
-					if (year13.equals("1")) {
-						if (year12.equals("12")) {
-							starMap.put("Y12", "★");
+					if ("1".equals(year13)) {
+						if ("12".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (year11.equals("11")) {
-							starMap.put("Y11", "★");
+						if ("11".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-					} else if (year13.equals("7")) {
-						if (year12.equals("8")) {
-							starMap.put("Y12", "★");
+					} else if ("7".equals(year13)) {
+						if ("8".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (year11.equals("9")) {
-							starMap.put("Y11", "★");
+						if ("9".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year7.equals("1")) {
-						if (year8.equals("12")) {
-							starMap.put("Y8", "★");
+					if ("1".equals(year7)) {
+						if ("12".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-						if (year9.equals("11")) {
-							starMap.put("Y9", "★");
+						if ("11".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-					} else if (year7.equals("7")) {
-						if (year8.equals("8")) {
-							starMap.put("Y8", "★");
+					} else if ("7".equals(year7)) {
+						if ("8".equals(year8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
 						}
-						if (year9.equals("9")) {
-							starMap.put("Y9", "★");
+						if ("9".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
 					}
 					// Yd11 ⑪:2、8
 				} else if ("Yd11".equals(year)) {
 					// 左
-					if (year14.equals("2")) {
-						if (year13.equals("1")) {
-							starMap.put("Y13", "★");
+					if ("2".equals(year14)) {
+						if ("1".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (year12.equals("12")) {
-							starMap.put("Y12", "★");
+						if ("12".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-					} else if (year14.equals("8")) {
-						if (year13.equals("9")) {
-							starMap.put("Y13", "★");
+					} else if ("8".equals(year14)) {
+						if ("9".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (year12.equals("10")) {
-							starMap.put("Y12", "★");
+						if ("10".equals("year12")) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year8.equals("2")) {
-						if (year9.equals("1")) {
-							starMap.put("Y9", "★");
+					if ("2".equals(year8)) {
+						if ("1".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-						if (year10.equals("12")) {
-							starMap.put("Y10", "★");
+						if ("12".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-					} else if (year8.equals("8")) {
-						if (year9.equals("9")) {
-							starMap.put("Y9", "★");
+					} else if ("8".equals(year8)) {
+						if ("9".equals(year9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
 						}
-						if (year10.equals("10")) {
-							starMap.put("Y10", "★");
+						if ("10".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd12 ⑫:3、9
 				} else if ("Yd12".equals(year)) {
 					// 左
-					if (year15.equals("3")) {
-						if (year14.equals("2")) {
-							starMap.put("Y14", "★");
+					if ("3".equals(year15)) {
+						if ("2".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (year13.equals("1")) {
-							starMap.put("Y13", "★");
+						if ("1".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-					} else if (year15.equals("9")) {
-						if (year14.equals("10")) {
-							starMap.put("Y14", "★");
+					} else if ("9".equals(year15)) {
+						if ("10".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (year13.equals("1")) {
-							starMap.put("Y13", "★");
+						if ("1".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year9.equals("3")) {
-						if (year10.equals("2")) {
-							starMap.put("Y10", "★");
+					if ("3".equals(year9)) {
+						if ("2".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-						if (year11.equals("1")) {
-							starMap.put("Y11", "★");
+						if ("1".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-					} else if (year9.equals("9")) {
-						if (year10.equals("10")) {
-							starMap.put("Y10", "★");
+					} else if ("9".equals(year9)) {
+						if ("10".equals(year10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
 						}
-						if (year11.equals("11")) {
-							starMap.put("Y11", "★");
+						if ("11".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd13 ①:4、10
 				} else if ("Yd13".equals(year)) {
 					// 左
-					if (year16.equals("4")) {
-						if (year15.equals("3")) {
-							starMap.put("Y15", "★");
+					if ("4".equals(year16)) {
+						if ("3".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (year14.equals("2")) {
-							starMap.put("Y14", "★");
+						if ("2".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-					} else if (year16.equals("10")) {
-						if (year15.equals("11")) {
-							starMap.put("Y15", "★");
+					} else if ("10".equals(year16)) {
+						if ("11".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (year14.equals("12")) {
-							starMap.put("Y14", "★");
+						if ("12".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year10.equals("4")) {
-						if (year11.equals("3")) {
-							starMap.put("Y11", "★");
+					if ("4".equals(year10)) {
+						if ("3".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-						if (year12.equals("2")) {
-							starMap.put("Y12", "★");
+						if ("2".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-					} else if (year10.equals("10")) {
-						if (year11.equals("11")) {
-							starMap.put("Y11", "★");
+					} else if ("10".equals(year10)) {
+						if ("11".equals(year11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
 						}
-						if (year12.equals("12")) {
-							starMap.put("Y12", "★");
+						if ("12".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd14 ②:5、11
 				} else if ("Yd14".equals(year)) {
 					// 左
-					if (year17.equals("5")) {
-						if (year16.equals("4")) {
-							starMap.put("Y16", "★");
+					if ("5".equals(year17)) {
+						if ("4".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (year15.equals("3")) {
-							starMap.put("Y15", "★");
+						if ("3".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-					} else if (year17.equals("11")) {
-						if (year16.equals("12")) {
-							starMap.put("Y16", "★");
+					} else if ("11".equals(year17)) {
+						if ("12".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (year15.equals("13")) {
-							starMap.put("Y15", "★");
+						if ("13".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year11.equals("5")) {
-						if (year12.equals("4")) {
-							starMap.put("Y12", "★");
+					if ("5".equals(year11)) {
+
+						if ("4".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (year13.equals("3")) {
-							starMap.put("Y13", "★");
+						if ("3".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					} else if (year11.equals("11")) {
-						if (year12.equals("12")) {
-							starMap.put("Y12", "★");
+						if ("12".equals(year12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (year13.equals("13")) {
-							starMap.put("Y13", "★");
+						if ("13".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd15 ③:6、12
 				} else if ("Yd15".equals(year)) {
 					// 左
-					if (year18.equals("6")) {
-						if (year17.equals("5")) {
-							starMap.put("Y17", "★");
+					if ("6".equals(year18)) {
+						if ("5".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (year16.equals("4")) {
-							starMap.put("Y16", "★");
+						if ("4".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (year18.equals("12")) {
-						if (year17.equals("1")) {
-							starMap.put("Y17", "★");
+					} else if ("12".equals(year18)) {
+						if ("1".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (year16.equals("2")) {
-							starMap.put("Y16", "★");
+						if ("2".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year12.equals("6")) {
-						if (year13.equals("5")) {
-							starMap.put("Y13", "★");
+					if ("6".equals(year12)) {
+						if ("5".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (year14.equals("4")) {
-							starMap.put("Y14", "★");
+						if ("4".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-					} else if (year12.equals("12")) {
-						if (year13.equals("1")) {
-							starMap.put("Y13", "★");
+					} else if ("12".equals(year12)) {
+						if ("1".equals(year13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (year14.equals("2")) {
-							starMap.put("Y14", "★");
+						if ("2".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd16 ④:7、1
 				} else if ("Yd16".equals(year)) {
 					// 左
-					if (year7.equals("7")) {
-						if (year18.equals("6")) {
-							starMap.put("Y18", "★");
+					if ("7".equals(year7)) {
+						if ("6".equals(year18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (year17.equals("5")) {
-							starMap.put("Y17", "★");
+						if ("5".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (year7.equals("1")) {
-						if (year18.equals("2")) {
-							starMap.put("Y18", "★");
+					} else if ("1".equals(year7)) {
+						if ("2".equals(year18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (year17.equals("3")) {
-							starMap.put("Y17", "★");
+						if ("3".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year13.equals("7")) {
-						if (year14.equals("6")) {
-							starMap.put("Y14", "★");
+					if ("7".equals(year13)) {
+						if ("6".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (year15.equals("5")) {
-							starMap.put("Y15", "★");
+						if ("5".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-					} else if (year13.equals("1")) {
-						if (year14.equals("2")) {
-							starMap.put("Y14", "★");
+					} else if ("1".equals(year13)) {
+						if ("2".equals(year14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (year15.equals("3")) {
-							starMap.put("Y15", "★");
+						if ("3".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd17 ⑤:2、8
 				} else if ("Yd17".equals(year)) {
 					// 左
-					if (year8.equals("8")) {
-						if (year7.equals("7")) {
-							starMap.put("YL1", "★");
+					if ("8".equals(year8)) {
+						if ("7".equals(year7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (year18.equals("6")) {
-							starMap.put("Y18", "★");
+						if ("6".equals(year18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					} else if (year8.equals("2")) {
-						if (year7.equals("3")) {
-							starMap.put("YL1", "★");
+						if ("3".equals(year7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (year18.equals("4")) {
-							starMap.put("Y18", "★");
+						if ("4".equals(year18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year14.equals("8")) {
-						if (year15.equals("7")) {
-							starMap.put("Y15", "★");
+					if ("8".equals(year14)) {
+						if ("7".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (year16.equals("6")) {
-							starMap.put("Y16", "★");
+						if ("6".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (year14.equals("2")) {
-						if (year15.equals("3")) {
-							starMap.put("Y15", "★");
+					} else if ("2".equals(year14)) {
+						if ("3".equals(year15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (year16.equals("4")) {
-							starMap.put("Y16", "★");
+						if ("4".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 
 					// Yd18 ⑥:3、9
 				} else if ("Yd18".equals(year)) {
 					// 左
-					if (year9.equals("9")) {
-						if (year8.equals("8")) {
-							starMap.put("YL2", "★");
+					if ("9".equals(year9)) {
+						if ("8".equals(year8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (year7.equals("7")) {
-							starMap.put("YL1", "★");
+						if ("7".equals(year7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-					} else if (year9.equals("3")) {
-						if (year8.equals("4")) {
-							starMap.put("YL2", "★");
+					} else if ("3".equals(year9)) {
+						if ("4".equals(year8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (year7.equals("5")) {
-							starMap.put("YL1", "★");
+						if ("5".equals(year7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (year15.equals("9")) {
-						if (year16.equals("8")) {
-							starMap.put("Y16", "★");
+					if ("9".equals(year15)) {
+						if ("8".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (year17.equals("7")) {
-							starMap.put("Y17", "★");
+						if ("7".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (year15.equals("3")) {
-						if (year16.equals("4")) {
-							starMap.put("Y16", "★");
+					} else if ("3".equals(year15)) {
+						if ("4".equals(year16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (year17.equals("5")) {
-							starMap.put("Y17", "★");
+						if ("5".equals(year17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 				}
@@ -1564,620 +1776,620 @@ public class ProcessAction {
 					// Yc1 ④:7、1
 					if ("Yc1".equals(year)) {
 						// 左
-						if (year4.equals("7")) {
-							if (year3.equals("6")) {
-								starMap.put("Y3", "★");
+						if ("7".equals(year4)) {
+							if ("6".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("5")) {
-								starMap.put("Y2", "★");
+							if ("5".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("1")) {
-							if (year3.equals("2")) {
-								starMap.put("Y3", "★");
+						} else if ("1".equals(year4)) {
+							if ("2".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("3")) {
-								starMap.put("Y2", "★");
+							if ("3".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year1.equals("7")) {
-							if (year2.equals("6")) {
-								starMap.put("YR2", "★");
+						if ("7".equals(year1)) {
+							if ("6".equals(year2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year3.equals("5")) {
-								starMap.put("YR1", "★");
+							if ("5".equals(year3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (year1.equals("1")) {
-							if (year2.equals("2")) {
-								starMap.put("YR2", "★");
+						} else if ("1".equals(year1)) {
+							if ("2".equals(year2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year3.equals("3")) {
-								starMap.put("YR1", "★");
+							if ("3".equals(year3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
 						// Yc2 ⑤:8、2
 					} else if ("Yc2".equals(year)) {
 						// 左
-						if (year5.equals("8")) {
-							if (year4.equals("7")) {
-								starMap.put("Y4", "★");
+						if ("8".equals(year5)) {
+							if ("7".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year3.equals("6")) {
-								starMap.put("Y3", "★");
+							if ("6".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("2")) {
-							if (year4.equals("3")) {
-								starMap.put("Y4", "★");
+						} else if ("2".equals(year5)) {
+							if ("3".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year3.equals("4")) {
-								starMap.put("Y3", "★");
+							if ("4".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year2.equals("8")) {
-							if (year3.equals("7")) {
-								starMap.put("YR1", "★");
+						if ("8".equals(year2)) {
+							if ("7".equals(year3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("6")) {
-								starMap.put("Y1", "★");
+							if ("6".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (year2.equals("2")) {
-							if (year3.equals("3")) {
-								starMap.put("YR1", "★");
+						} else if ("2".equals(year2)) {
+							if ("3".equals(year3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("4")) {
-								starMap.put("Y1", "★");
+							if ("4".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
 						// Yc3 ⑥:9、3
 					} else if ("Yc3".equals(year)) {
 						// 左
-						if (year6.equals("9")) {
-							if (year5.equals("8")) {
-								starMap.put("Y5", "★");
+						if ("9".equals(year6)) {
+							if ("8".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("7")) {
-								starMap.put("Y4", "★");
+							if ("7".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("3")) {
-							if (year5.equals("4")) {
-								starMap.put("Y5", "★");
+						} else if ("3".equals(year6)) {
+							if ("4".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("5")) {
-								starMap.put("Y4", "★");
+							if ("5".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year3.equals("9")) {
-							if (year1.equals("8")) {
-								starMap.put("Y1", "★");
+						if ("9".equals(year3)) {
+							if ("8".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("7")) {
-								starMap.put("Y2", "★");
+							if ("7".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year3.equals("3")) {
-							if (year1.equals("4")) {
-								starMap.put("Y1", "★");
+						} else if ("3".equals(year3)) {
+							if ("4".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("5")) {
-								starMap.put("Y2", "★");
+							if ("5".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// Yc4 ⑦:10、4
 					} else if ("Yc4".equals(year)) {
 						// 左
-						if (year7.equals("10")) {
-							if (year6.equals("9")) {
-								starMap.put("Y6", "★");
+						if ("10".equals(year7)) {
+							if ("9".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("8")) {
-								starMap.put("Y5", "★");
+							if ("8".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("4")) {
-							if (year6.equals("5")) {
-								starMap.put("Y6", "★");
+						} else if ("4".equals(year7)) {
+							if ("5".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("6")) {
-								starMap.put("Y5", "★");
+							if ("6".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year1.equals("10")) {
-							if (year2.equals("9")) {
-								starMap.put("Y2", "★");
+						if ("10".equals(year1)) {
+							if ("9".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("8")) {
-								starMap.put("Y3", "★");
+							if ("8".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year1.equals("4")) {
-							if (year2.equals("5")) {
-								starMap.put("Y2", "★");
+						} else if ("4".equals(year1)) {
+							if ("5".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("6")) {
-								starMap.put("Y3", "★");
+							if ("6".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// Yc5 ⑧:11、5
 					} else if ("Yc5".equals(year)) {
 						// 左
-						if (year8.equals("11")) {
-							if (year7.equals("10")) {
-								starMap.put("Y7", "★");
+						if ("11".equals(year8)) {
+							if ("10".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("9")) {
-								starMap.put("Y6", "★");
+							if ("9".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("5")) {
-							if (year7.equals("6")) {
-								starMap.put("Y7", "★");
+						} else if ("5".equals(year8)) {
+							if ("6".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("7")) {
-								starMap.put("Y6", "★");
+							if ("7".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year2.equals("11")) {
-							if (year3.equals("10")) {
-								starMap.put("Y3", "★");
+						if ("11".equals(year2)) {
+							if ("10".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("9")) {
-								starMap.put("Y4", "★");
+							if ("9".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year2.equals("5")) {
-							if (year3.equals("6")) {
-								starMap.put("Y3", "★");
+						} else if ("5".equals(year2)) {
+							if ("6".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("7")) {
-								starMap.put("Y4", "★");
+							if ("7".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// Yc6 ⑨:12、6
 					} else if ("Yc6".equals(year)) {
 						// 左
-						if (year9.equals("12")) {
-							if (year8.equals("11")) {
-								starMap.put("Y8", "★");
+						if ("12".equals(year9)) {
+							if ("11".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("10")) {
-								starMap.put("Y7", "★");
+							if ("10".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("6")) {
-							if (year8.equals("7")) {
-								starMap.put("Y8", "★");
+						} else if ("6".equals(year9)) {
+							if ("7".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("8")) {
-								starMap.put("Y7", "★");
+							if ("8".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year3.equals("12")) {
-							if (year4.equals("11")) {
-								starMap.put("Y4", "★");
+						if ("12".equals(year3)) {
+							if ("11".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("10")) {
-								starMap.put("Y5", "★");
+							if ("10".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year3.equals("6")) {
-							if (year4.equals("7")) {
-								starMap.put("Y4", "★");
+						} else if ("6".equals(year3)) {
+							if ("7".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("8")) {
-								starMap.put("Y5", "★");
+							if ("8".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// Yc7 ⑩:1、7
 					} else if ("Yc7".equals(year)) {
 						// 左
-						if (year10.equals("1")) {
-							if (year9.equals("12")) {
-								starMap.put("Y9", "★");
+						if ("1".equals(year10)) {
+							if ("12".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("11")) {
-								starMap.put("Y8", "★");
+							if ("11".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("7")) {
-							if (year9.equals("8")) {
-								starMap.put("Y9", "★");
+						} else if ("7".equals(year10)) {
+							if ("8".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("9")) {
-								starMap.put("Y8", "★");
+							if ("9".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year4.equals("1")) {
-							if (year5.equals("12")) {
-								starMap.put("Y5", "★");
+						if ("1".equals(year4)) {
+							if ("12".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("11")) {
-								starMap.put("Y6", "★");
+							if ("11".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("7")) {
-							if (year5.equals("8")) {
-								starMap.put("Y5", "★");
+						} else if ("7".equals(year4)) {
+							if ("8".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("9")) {
-								starMap.put("Y6", "★");
+							if ("9".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// Yc8 ⑪:2、8
 					} else if ("Yc8".equals(year)) {
 						// 左
-						if (year11.equals("2")) {
-							if (year10.equals("1")) {
-								starMap.put("Y10", "★");
+						if ("2".equals(year11)) {
+							if ("1".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("12")) {
-								starMap.put("Y9", "★");
+							if ("12".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("8")) {
-							if (year10.equals("9")) {
-								starMap.put("Y10", "★");
+						} else if ("8".equals(year11)) {
+							if ("9".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("10")) {
-								starMap.put("Y9", "★");
+							if ("10".equals("10")) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year5.equals("2")) {
-							if (year6.equals("1")) {
-								starMap.put("Y6", "★");
+						if ("2".equals(year5)) {
+							if ("1".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("11")) {
-								starMap.put("Y7", "★");
+							if ("11".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("8")) {
-							if (year6.equals("9")) {
-								starMap.put("Y6", "★");
+						} else if ("8".equals(year5)) {
+							if ("9".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("10")) {
-								starMap.put("Y7", "★");
+							if ("10".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// Yc9 ⑫:3、9
 					} else if ("Yc9".equals(year)) {
 						// 左
-						if (year12.equals("3")) {
-							if (year11.equals("2")) {
-								starMap.put("Y11", "★");
+						if ("3".equals(year12)) {
+							if ("2".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("1")) {
-								starMap.put("Y10", "★");
+							if ("1".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("9")) {
-							if (year11.equals("10")) {
-								starMap.put("Y11", "★");
+						} else if ("9".equals(year12)) {
+							if ("10".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("11")) {
-								starMap.put("Y10", "★");
+							if ("11".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year6.equals("3")) {
-							if (year7.equals("2")) {
-								starMap.put("Y7", "★");
+						if ("3".equals(year6)) {
+							if ("2".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("1")) {
-								starMap.put("Y8", "★");
+							if ("1".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("9")) {
-							if (year7.equals("10")) {
-								starMap.put("Y7", "★");
+						} else if ("9".equals(year6)) {
+							if ("10".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("11")) {
-								starMap.put("Y8", "★");
+							if ("11".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// Yc10 ①:4、10
 					} else if ("Yc10".equals(year)) {
 						// 左
-						if (year13.equals("4")) {
-							if (year12.equals("3")) {
-								starMap.put("Y12", "★");
+						if ("4".equals(year13)) {
+							if ("3".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("2")) {
-								starMap.put("Y11", "★");
+							if ("2".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("10")) {
-							if (year12.equals("11")) {
-								starMap.put("Y12", "★");
+						} else if ("10".equals(year13)) {
+							if ("11".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("12")) {
-								starMap.put("Y11", "★");
+							if ("12".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year7.equals("4")) {
-							if (year8.equals("3")) {
-								starMap.put("Y8", "★");
+						if ("4".equals(year7)) {
+							if ("3".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("2")) {
-								starMap.put("Y9", "★");
+							if ("2".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("10")) {
-							if (year8.equals("11")) {
-								starMap.put("Y8", "★");
+						} else if ("10".equals(year7)) {
+							if ("11".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("12")) {
-								starMap.put("Y9", "★");
+							if ("12".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// Yc11 ②:5、11
 					} else if ("Yc11".equals(year)) {
 						// 左
-						if (year14.equals("5")) {
-							if (year13.equals("4")) {
-								starMap.put("Y13", "★");
+						if ("5".equals(year14)) {
+							if ("4".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("3")) {
-								starMap.put("Y12", "★");
+							if ("3".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("11")) {
-							if (year13.equals("12")) {
-								starMap.put("Y13", "★");
+						} else if ("11".equals(year14)) {
+							if ("12".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("1")) {
-								starMap.put("Y12", "★");
+							if ("1".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year8.equals("5")) {
-							if (year9.equals("4")) {
-								starMap.put("Y9", "★");
+						if ("5".equals(year8)) {
+							if ("4".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("3")) {
-								starMap.put("Y10", "★");
+							if ("3".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("11")) {
-							if (year9.equals("12")) {
-								starMap.put("Y9", "★");
+						} else if ("11".equals(year8)) {
+							if ("12".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("1")) {
-								starMap.put("Y10", "★");
+							if ("1".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc12 ③:6、12
 					} else if ("Yc12".equals(year)) {
 						// 左
-						if (year15.equals("6")) {
-							if (year14.equals("5")) {
-								starMap.put("Y14", "★");
+						if ("6".equals(year15)) {
+							if ("5".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("4")) {
-								starMap.put("Y13", "★");
+							if ("4".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("12")) {
-							if (year14.equals("1")) {
-								starMap.put("Y14", "★");
+						} else if ("12".equals(year15)) {
+							if ("1".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("2")) {
-								starMap.put("Y13", "★");
+							if ("2".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year9.equals("6")) {
-							if (year10.equals("5")) {
-								starMap.put("Y10", "★");
+						if ("6".equals(year9)) {
+							if ("5".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("4")) {
-								starMap.put("Y11", "★");
+							if ("4".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("12")) {
-							if (year10.equals("1")) {
-								starMap.put("Y10", "★");
+						} else if ("12".equals(year9)) {
+							if ("1".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("2")) {
-								starMap.put("Y11", "★");
+							if ("2".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc13 ④:7、1
 					} else if ("Yc13".equals(year)) {
 						// 左
-						if (year16.equals("7")) {
-							if (year15.equals("6")) {
-								starMap.put("Y15", "★");
+						if ("7".equals(year16)) {
+							if ("6".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("5")) {
-								starMap.put("Y14", "★");
+							if ("5".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year16.equals("1")) {
-							if (year15.equals("2")) {
-								starMap.put("Y15", "★");
+						} else if ("1".equals(year16)) {
+							if ("2".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("3")) {
-								starMap.put("Y14", "★");
+							if ("3".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year10.equals("7")) {
-							if (year11.equals("6")) {
-								starMap.put("Y11", "★");
+						if ("7".equals(year10)) {
+							if ("6".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("5")) {
-								starMap.put("Y12", "★");
+							if ("5".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("1")) {
-							if (year11.equals("2")) {
-								starMap.put("Y11", "★");
+						} else if ("1".equals(year10)) {
+							if ("2".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("3")) {
-								starMap.put("Y12", "★");
+							if ("3".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc14 ⑤:2、8
 					} else if ("Yc14".equals(year)) {
 						// 左
-						if (year17.equals("2")) {
-							if (year16.equals("3")) {
-								starMap.put("Y16", "★");
+						if ("2".equals(year17)) {
+							if ("3".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("4")) {
-								starMap.put("Y15", "★");
+							if ("4".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year17.equals("8")) {
-							if (year16.equals("7")) {
-								starMap.put("Y16", "★");
+						} else if ("8".equals(year17)) {
+							if ("7".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("6")) {
-								starMap.put("Y15", "★");
+							if ("6".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year11.equals("2")) {
-							if (year12.equals("3")) {
-								starMap.put("Y12", "★");
+						if ("2".equals(year11)) {
+							if ("3".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("4")) {
-								starMap.put("Y13", "★");
+							if ("4".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("8")) {
-							if (year12.equals("7")) {
-								starMap.put("Y12", "★");
+						} else if ("8".equals(year11)) {
+							if ("7".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("6")) {
-								starMap.put("Y13", "★");
+							if ("6".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc15 ⑥:3、9
 					} else if ("Yc15".equals(year)) {
 						// 左
-						if (year18.equals("3")) {
-							if (year17.equals("4")) {
-								starMap.put("Y17", "★");
+						if ("3".equals(year18)) {
+							if ("4".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("5")) {
-								starMap.put("Y16", "★");
+							if ("5".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year18.equals("9")) {
-							if (year17.equals("8")) {
-								starMap.put("Y17", "★");
+						} else if ("9".equals(year18)) {
+							if ("8".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("7")) {
-								starMap.put("Y16", "★");
+							if ("7".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year12.equals("3")) {
-							if (year13.equals("4")) {
-								starMap.put("Y13", "★");
+						if ("3".equals(year12)) {
+							if ("4".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("5")) {
-								starMap.put("Y14", "★");
+							if ("5".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("9")) {
-							if (year13.equals("8")) {
-								starMap.put("Y13", "★");
+						} else if ("9".equals(year12)) {
+							if ("8".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("7")) {
-								starMap.put("Y14", "★");
+							if ("7".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc16 ⑦:10、4
 					} else if ("Yc16".equals(year)) {
 						// 左
-						if (year10.equals("10")) {
-							if (year18.equals("9")) {
-								starMap.put("Y18", "★");
+						if ("10".equals(year10)) {
+							if ("9".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("8")) {
-								starMap.put("Y17", "★");
+							if ("8".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("4")) {
-							if (year18.equals("5")) {
-								starMap.put("Y18", "★");
+						} else if ("4".equals(year10)) {
+							if ("5".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("6")) {
-								starMap.put("Y17", "★");
+							if ("6".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year13.equals("10")) {
-							if (year14.equals("9")) {
-								starMap.put("Y14", "★");
+						if ("10".equals(year13)) {
+							if ("9".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("8")) {
-								starMap.put("Y15", "★");
+							if ("8".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("4")) {
-							if (year14.equals("5")) {
-								starMap.put("Y14", "★");
+						} else if ("4".equals(year13)) {
+							if ("5".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("6")) {
-								starMap.put("Y15", "★");
+							if ("6".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc17 ⑧:11、5
 					} else if ("Yc17".equals(year)) {
 						// 左
-						if (year11.equals("11")) {
-							if (year10.equals("10")) {
-								starMap.put("YL1", "★");
+						if ("11".equals(year11)) {
+							if ("10".equals(year10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("9")) {
-								starMap.put("Y18", "★");
+							if ("9".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("5")) {
-							if (year10.equals("6")) {
-								starMap.put("YL1", "★");
+						} else if ("5".equals(year11)) {
+							if ("6".equals(year10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("7")) {
-								starMap.put("Y18", "★");
+							if ("7".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year14.equals("11")) {
-							if (year15.equals("10")) {
-								starMap.put("Y15", "★");
+						if ("11".equals(year14)) {
+							if ("10".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("9")) {
-								starMap.put("Y16", "★");
+							if ("9".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("5")) {
-							if (year15.equals("6")) {
-								starMap.put("Y15", "★");
+						} else if ("5".equals(year14)) {
+							if ("6".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("7")) {
-								starMap.put("Y16", "★");
+							if ("7".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
 						// Yc18 ⑨:12、6
 					} else if ("Yc18".equals(year)) {
 						// 左
-						if (year12.equals("12")) {
-							if (year11.equals("11")) {
-								starMap.put("YL2", "★");
+						if ("12".equals(year12)) {
+							if ("11".equals(year11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year10.equals("10")) {
-								starMap.put("YL1", "★");
+							if ("10".equals(year10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("6")) {
-							if (year11.equals("7")) {
-								starMap.put("YL2", "★");
+						} else if ("6".equals("6")) {
+							if ("7".equals(year11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year10.equals("8")) {
-								starMap.put("YL1", "★");
+							if ("8".equals(year10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year15.equals("12")) {
-							if (year16.equals("11")) {
-								starMap.put("Y16", "★");
+						if ("12".equals(year15)) {
+							if ("11".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("10")) {
-								starMap.put("Y17", "★");
+							if ("10".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("6")) {
-							if (year16.equals("7")) {
-								starMap.put("Y16", "★");
+						} else if ("6".equals(year15)) {
+							if ("7".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("8")) {
-								starMap.put("Y17", "★");
+							if ("8".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -2192,620 +2404,620 @@ public class ProcessAction {
 					// Yb1 ⑦:10、4
 					if ("Yb1".equals(year)) {
 						// 左
-						if (year4.equals("10")) {
-							if (year3.equals("9")) {
-								starMap.put("Y3", "★");
+						if ("10".equals(year4)) {
+							if ("9".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("8")) {
-								starMap.put("Y2", "★");
+							if ("8".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("4")) {
-							if (year3.equals("5")) {
-								starMap.put("Y3", "★");
+						} else if ("4".equals(year4)) {
+							if ("5".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("6")) {
-								starMap.put("Y2", "★");
+							if ("6".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year4.equals("10")) {
-							if (year5.equals("9")) {
-								starMap.put("YR2", "★");
+						if ("10".equals(year4)) {
+							if ("9".equals(year5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year6.equals("8")) {
-								starMap.put("YR1", "★");
+							if ("8".equals(year6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("4")) {
-							if (year5.equals("5")) {
-								starMap.put("YR2", "★");
+						} else if ("4".equals(year4)) {
+							if ("5".equals(year5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year6.equals("6")) {
-								starMap.put("YR1", "★");
+							if ("6".equals(year6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
 						// Yb2 ⑧:11、5
 					} else if ("Yb2".equals(year)) {
 						// 左
-						if (year5.equals("11")) {
+						if ("11".equals(year5)) {
 							if (year4.equals("10")) {
-								starMap.put("Y4", "★");
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 							if (year3.equals("9")) {
-								starMap.put("Y3", "★");
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("5")) {
-							if (year4.equals("6")) {
-								starMap.put("Y4", "★");
+						} else if ("5".equals(year5)) {
+							if ("6".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year3.equals("7")) {
-								starMap.put("Y3", "★");
+							if ("7".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year5.equals("11")) {
-							if (year6.equals("10")) {
-								starMap.put("YR1", "★");
+						if ("11".equals(year5)) {
+							if ("10".equals(year6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("9")) {
-								starMap.put("Y1", "★");
+							if ("9".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("5")) {
-							if (year6.equals("6")) {
-								starMap.put("YR1", "★");
+						} else if ("5".equals("5")) {
+							if ("6".equals(year6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("7")) {
-								starMap.put("Y1", "★");
+							if ("7".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
 						// Yb3 ⑨:12、6
 					} else if ("Yb3".equals(year)) {
 						// 左
-						if (year6.equals("12")) {
-							if (year5.equals("11")) {
-								starMap.put("Y5", "★");
+						if ("12".equals(year6)) {
+							if ("11".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("10")) {
-								starMap.put("Y4", "★");
+							if ("10".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("6")) {
-							if (year5.equals("7")) {
-								starMap.put("Y5", "★");
+						} else if ("6".equals(year6)) {
+							if ("7".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("8")) {
-								starMap.put("Y4", "★");
+							if ("8".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year6.equals("12")) {
-							if (year1.equals("11")) {
-								starMap.put("Y1", "★");
+						if ("12".equals(year6)) {
+							if ("11".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("10")) {
-								starMap.put("Y2", "★");
+							if ("10".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("6")) {
-							if (year1.equals("7")) {
-								starMap.put("Y1", "★");
+						} else if ("6".equals(year6)) {
+							if ("7".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("8")) {
-								starMap.put("Y2", "★");
+							if ("8".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// Yb4 ⑩:1、7
 					} else if ("Yb4".equals(year)) {
 						// 左
-						if (year7.equals("1")) {
-							if (year6.equals("12")) {
-								starMap.put("Y6", "★");
+						if ("1".equals(year7)) {
+							if ("12".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("11")) {
-								starMap.put("Y5", "★");
+							if ("11".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("7")) {
-							if (year6.equals("8")) {
-								starMap.put("Y6", "★");
+						} else if ("7".equals(year7)) {
+							if ("8".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("9")) {
-								starMap.put("Y5", "★");
+							if ("9".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year1.equals("1")) {
-							if (year2.equals("12")) {
-								starMap.put("Y2", "★");
+						if ("1".equals(year1)) {
+							if ("12".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("11")) {
-								starMap.put("Y3", "★");
+							if ("11".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year1.equals("7")) {
-							if (year2.equals("8")) {
-								starMap.put("Y2", "★");
+						} else if ("7".equals(year1)) {
+							if ("8".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("9")) {
-								starMap.put("Y3", "★");
+							if ("9".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// Yb5 ⑪:2、8
 					} else if ("Yb5".equals(year)) {
 						// 左
-						if (year8.equals("2")) {
-							if (year7.equals("1")) {
-								starMap.put("Y7", "★");
+						if ("2".equals(year8)) {
+							if ("1".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("12")) {
-								starMap.put("Y6", "★");
+							if ("12".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("8")) {
-							if (year7.equals("9")) {
-								starMap.put("Y7", "★");
+						} else if ("8".equals(year8)) {
+							if ("9".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("10")) {
-								starMap.put("Y6", "★");
+							if ("10".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year2.equals("2")) {
-							if (year3.equals("1")) {
-								starMap.put("Y3", "★");
+						if ("2".equals(year2)) {
+							if ("1".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("12")) {
-								starMap.put("Y4", "★");
+							if ("12".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year2.equals("8")) {
-							if (year3.equals("9")) {
-								starMap.put("Y3", "★");
+						} else if ("8".equals(year2)) {
+							if ("9".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("10")) {
-								starMap.put("Y4", "★");
+							if ("10".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// Yb6 ⑫:3、9
 					} else if ("Yb6".equals(year)) {
 						// 左
-						if (year9.equals("3")) {
-							if (year8.equals("2")) {
-								starMap.put("Y8", "★");
+						if ("3".equals(year9)) {
+							if ("2".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("1")) {
-								starMap.put("Y7", "★");
+							if ("1".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("9")) {
-							if (year8.equals("10")) {
-								starMap.put("Y8", "★");
+						} else if ("9".equals(year9)) {
+							if ("10".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("11")) {
-								starMap.put("Y7", "★");
+							if ("11".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year3.equals("3")) {
-							if (year4.equals("2")) {
-								starMap.put("Y4", "★");
+						if ("3".equals(year3)) {
+							if ("2".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("1")) {
-								starMap.put("Y5", "★");
+							if ("1".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year3.equals("9")) {
-							if (year4.equals("10")) {
-								starMap.put("Y4", "★");
+						} else if ("9".equals(year3)) {
+							if ("10".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("11")) {
-								starMap.put("Y5", "★");
+							if ("11".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// Yb7 ①:4、10
 					} else if ("Yb7".equals(year)) {
 						// 左
-						if (year10.equals("4")) {
-							if (year9.equals("3")) {
-								starMap.put("Y9", "★");
+						if ("4".equals(year10)) {
+							if ("3".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("2")) {
-								starMap.put("Y8", "★");
+							if ("2".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("10")) {
-							if (year9.equals("11")) {
-								starMap.put("Y9", "★");
+						} else if ("10".equals(year10)) {
+							if ("11".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("12")) {
-								starMap.put("Y8", "★");
+							if ("12".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year4.equals("4")) {
-							if (year5.equals("3")) {
-								starMap.put("Y5", "★");
+						if ("4".equals(year4)) {
+							if ("3".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("2")) {
-								starMap.put("Y6", "★");
+							if ("2".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("10")) {
-							if (year5.equals("11")) {
-								starMap.put("Y5", "★");
+						} else if ("10".equals(year4)) {
+							if ("11".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("12")) {
-								starMap.put("Y6", "★");
+							if ("12".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// Yb8 ②:5、11
 					} else if ("Yb8".equals(year)) {
 						// 左
-						if (year11.equals("5")) {
-							if (year10.equals("4")) {
-								starMap.put("Y10", "★");
+						if ("5".equals(year11)) {
+							if ("4".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("3")) {
-								starMap.put("Y9", "★");
+							if ("3".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("11")) {
-							if (year10.equals("12")) {
-								starMap.put("Y10", "★");
+						} else if ("11".equals(year11)) {
+							if ("12".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("1")) {
-								starMap.put("Y9", "★");
+							if ("1".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year5.equals("5")) {
-							if (year6.equals("4")) {
-								starMap.put("Y6", "★");
+						if ("5".equals(year5)) {
+							if ("4".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("3")) {
-								starMap.put("Y7", "★");
+							if ("3".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("11")) {
-							if (year6.equals("12")) {
-								starMap.put("Y6", "★");
+						} else if ("11".equals(year5)) {
+							if ("12".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("1")) {
-								starMap.put("Y7", "★");
+							if ("1".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// Yb9 ③:6、12
 					} else if ("Yb9".equals(year)) {
 						// 左
-						if (year12.equals("6")) {
-							if (year11.equals("5")) {
-								starMap.put("Y11", "★");
+						if ("6".equals(year12)) {
+							if ("5".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("4")) {
-								starMap.put("Y10", "★");
+							if ("4".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("12")) {
-							if (year11.equals("1")) {
-								starMap.put("Y11", "★");
+						} else if ("12".equals(year12)) {
+							if ("1".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("2")) {
-								starMap.put("Y10", "★");
+							if ("2".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year6.equals("6")) {
-							if (year7.equals("5")) {
-								starMap.put("Y7", "★");
+						if ("6".equals(year6)) {
+							if ("5".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("4")) {
-								starMap.put("Y8", "★");
+							if ("4".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("12")) {
-							if (year7.equals("1")) {
-								starMap.put("Y7", "★");
+						} else if ("12".equals(year6)) {
+							if ("1".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("2")) {
-								starMap.put("Y8", "★");
+							if ("2".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// Yb10 ④:7、1
 					} else if ("Yb10".equals(year)) {
 						// 左
-						if (year13.equals("7")) {
-							if (year12.equals("6")) {
-								starMap.put("Y12", "★");
+						if ("7".equals(year13)) {
+							if ("6".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("5")) {
-								starMap.put("Y11", "★");
+							if ("5".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("1")) {
-							if (year12.equals("2")) {
-								starMap.put("Y12", "★");
+						} else if ("1".equals(year13)) {
+							if ("2".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("3")) {
-								starMap.put("Y11", "★");
+							if ("3".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year7.equals("7")) {
-							if (year8.equals("6")) {
-								starMap.put("Y8", "★");
+						if ("7".equals(year7)) {
+							if ("6".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("5")) {
-								starMap.put("Y9", "★");
+							if ("5".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("1")) {
-							if (year8.equals("2")) {
-								starMap.put("Y8", "★");
+						} else if ("1".equals(year7)) {
+							if ("2".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("3")) {
-								starMap.put("Y9", "★");
+							if ("3".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// Yb11 ⑤:8、2
 					} else if ("Yb11".equals(year)) {
 						// 左
-						if (year14.equals("8")) {
-							if (year13.equals("7")) {
-								starMap.put("Y13", "★");
+						if ("8".equals(year14)) {
+							if ("7".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("6")) {
-								starMap.put("Y12", "★");
+							if ("6".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("2")) {
-							if (year13.equals("3")) {
-								starMap.put("Y13", "★");
+						} else if ("2".equals(year14)) {
+							if ("3".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("4")) {
-								starMap.put("Y12", "★");
+							if ("4".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year8.equals("8")) {
-							if (year9.equals("7")) {
-								starMap.put("Y9", "★");
+						if ("8".equals(year8)) {
+							if ("7".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("6")) {
-								starMap.put("Y10", "★");
+							if ("6".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("2")) {
-							if (year9.equals("3")) {
-								starMap.put("Y9", "★");
+						} else if ("2".equals(year8)) {
+							if ("3".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("4")) {
-								starMap.put("Y10", "★");
+							if ("4".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb12 ⑥:9、3
 					} else if ("Yb12".equals(year)) {
 						// 左
-						if (year15.equals("9")) {
-							if (year14.equals("10")) {
-								starMap.put("Y14", "★");
+						if ("9".equals(year15)) {
+							if ("10".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("11")) {
-								starMap.put("Y13", "★");
+							if ("11".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("3")) {
-							if (year14.equals("4")) {
-								starMap.put("Y14", "★");
+						} else if ("3".equals(year15)) {
+							if ("4".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("5")) {
-								starMap.put("Y13", "★");
+							if ("5".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year9.equals("9")) {
-							if (year10.equals("8")) {
-								starMap.put("Y10", "★");
+						if ("9".equals(year9)) {
+							if ("8".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("7")) {
-								starMap.put("Y11", "★");
+							if ("7".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("3")) {
-							if (year10.equals("4")) {
-								starMap.put("Y10", "★");
+						} else if ("3".equals(year9)) {
+							if ("4".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("5")) {
-								starMap.put("Y11", "★");
+							if ("5".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb13 ⑦:10、4
 					} else if ("Yb13".equals(year)) {
 						// 左
-						if (year16.equals("10")) {
-							if (year15.equals("9")) {
-								starMap.put("Y15", "★");
+						if ("10".equals(year16)) {
+							if ("9".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("8")) {
-								starMap.put("Y14", "★");
+							if ("8".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year16.equals("4")) {
-							if (year15.equals("5")) {
-								starMap.put("Y15", "★");
+						} else if ("4".equals(year16)) {
+							if ("5".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("6")) {
-								starMap.put("Y14", "★");
+							if ("6".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year10.equals("10")) {
-							if (year11.equals("9")) {
-								starMap.put("Y11", "★");
+						if ("10".equals(year10)) {
+							if ("9".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("8")) {
-								starMap.put("Y12", "★");
+							if ("8".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("4")) {
-							if (year11.equals("5")) {
-								starMap.put("Y11", "★");
+						} else if ("4".equals(year10)) {
+							if ("5".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("6")) {
-								starMap.put("Y12", "★");
+							if ("6".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb14 ⑧:11、5
 					} else if ("Yb14".equals(year)) {
 						// 左
-						if (year17.equals("11")) {
-							if (year16.equals("10")) {
-								starMap.put("Y16", "★");
+						if ("11".equals(year17)) {
+							if ("10".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("9")) {
-								starMap.put("Y15", "★");
+							if ("9".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year17.equals("5")) {
-							if (year16.equals("6")) {
-								starMap.put("Y16", "★");
+						} else if ("5".equals(year17)) {
+							if ("6".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("7")) {
-								starMap.put("Y15", "★");
+							if ("7".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year11.equals("11")) {
-							if (year12.equals("10")) {
-								starMap.put("Y12", "★");
+						if ("11".equals(year11)) {
+							if ("10".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("9")) {
-								starMap.put("Y13", "★");
+							if ("9".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("5")) {
-							if (year12.equals("6")) {
-								starMap.put("Y12", "★");
+						} else if ("5".equals(year11)) {
+							if ("6".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("7")) {
-								starMap.put("Y13", "★");
+							if ("7".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb15 ⑨:12、6
 					} else if ("Yb15".equals(year)) {
 						// 左
-						if (year18.equals("12")) {
-							if (year17.equals("11")) {
-								starMap.put("Y17", "★");
+						if ("12".equals(year18)) {
+							if ("11".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("10")) {
-								starMap.put("Y16", "★");
+							if ("10".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year18.equals("6")) {
-							if (year17.equals("7")) {
-								starMap.put("Y17", "★");
+						} else if ("6".equals(year18)) {
+							if ("7".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("8")) {
-								starMap.put("Y16", "★");
+							if ("8".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year12.equals("12")) {
-							if (year13.equals("11")) {
-								starMap.put("Y13", "★");
+						if ("12".equals(year12)) {
+							if ("11".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("10")) {
-								starMap.put("Y14", "★");
+							if ("10".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("6")) {
-							if (year13.equals("7")) {
-								starMap.put("Y13", "★");
+						} else if ("6".equals(year12)) {
+							if ("7".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("8")) {
-								starMap.put("Y14", "★");
+							if ("8".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb16 ⑩:1、7
 					} else if ("Yb16".equals(year)) {
 						// 左
-						if (year1.equals("1")) {
-							if (year18.equals("12")) {
-								starMap.put("Y18", "★");
+						if ("1".equals(year1)) {
+							if ("12".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("11")) {
-								starMap.put("Y17", "★");
+							if ("11".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year1.equals("7")) {
-							if (year18.equals("8")) {
-								starMap.put("Y18", "★");
+						} else if ("7".equals(year1)) {
+							if ("8".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("9")) {
-								starMap.put("Y17", "★");
+							if ("9".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year13.equals("1")) {
-							if (year14.equals("12")) {
-								starMap.put("Y14", "★");
+						if ("1".equals(year13)) {
+							if ("12".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("11")) {
-								starMap.put("Y15", "★");
+							if ("11".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("7")) {
-							if (year14.equals("8")) {
-								starMap.put("Y14", "★");
+						} else if ("7".equals(year13)) {
+							if ("8".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("9")) {
-								starMap.put("Y15", "★");
+							if ("9".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb17 ⑪:2、8
 					} else if ("Yb17".equals(year)) {
 						// 左
-						if (year2.equals("2")) {
-							if (year1.equals("1")) {
-								starMap.put("YL1", "★");
+						if ("2".equals(year2)) {
+							if ("1".equals(year1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("12")) {
-								starMap.put("Y18", "★");
+							if ("12".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (year2.equals("8")) {
-							if (year1.equals("9")) {
-								starMap.put("YL1", "★");
+						} else if ("8".equals(year2)) {
+							if ("9".equals(year1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("10")) {
-								starMap.put("Y18", "★");
+							if ("10".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year14.equals("2")) {
-							if (year15.equals("1")) {
-								starMap.put("Y15", "★");
+						if ("2".equals(year14)) {
+							if ("1".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("12")) {
-								starMap.put("Y16", "★");
+							if ("12".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("8")) {
-							if (year15.equals("9")) {
-								starMap.put("Y15", "★");
+						} else if ("8".equals(year14)) {
+							if ("9".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("10")) {
-								starMap.put("Y16", "★");
+							if ("10".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
 						// Yb18 ⑫:3、9
 					} else if ("Yb18".equals(year)) {
 						// 左
-						if (year3.equals("3")) {
-							if (year2.equals("2")) {
-								starMap.put("YL2", "★");
+						if ("3".equals(year3)) {
+							if ("2".equals(year2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year1.equals("1")) {
-								starMap.put("YL1", "★");
+							if ("1".equals(year1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (year3.equals("9")) {
-							if (year2.equals("10")) {
-								starMap.put("YL2", "★");
+						} else if ("9".equals(year3)) {
+							if ("10".equals(year2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year1.equals("11")) {
-								starMap.put("YL1", "★");
+							if ("11".equals(year1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year15.equals("3")) {
-							if (year16.equals("2")) {
-								starMap.put("Y16", "★");
+						if ("3".equals(year15)) {
+							if ("2".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("1")) {
-								starMap.put("Y17", "★");
+							if ("1".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("9")) {
-							if (year16.equals("10")) {
-								starMap.put("Y16", "★");
+						} else if ("9".equals(year15)) {
+							if ("10".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("11")) {
-								starMap.put("Y17", "★");
+							if ("11".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -2821,620 +3033,620 @@ public class ProcessAction {
 					// Ya1 ⑩:1、7
 					if ("Ya1".equals(year)) {
 						// 左
-						if (year4.equals("1")) {
-							if (year3.equals("12")) {
-								starMap.put("Y3", "★");
+						if ("1".equals(year4)) {
+							if ("12".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("11")) {
-								starMap.put("Y2", "★");
+							if ("11".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("7")) {
-							if (year3.equals("8")) {
-								starMap.put("Y3", "★");
+						} else if ("7".equals(year4)) {
+							if ("8".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year2.equals("9")) {
-								starMap.put("Y2", "★");
+							if ("9".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year7.equals("1")) {
-							if (year8.equals("12")) {
-								starMap.put("YR2", "★");
+						if ("1".equals(year7)) {
+							if ("12".equals(year8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year9.equals("11")) {
-								starMap.put("YR1", "★");
+							if ("11".equals(year9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("7")) {
-							if (year8.equals("8")) {
-								starMap.put("YR2", "★");
+						} else if ("7".equals(year7)) {
+							if ("8".equals(year8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (year9.equals("9")) {
-								starMap.put("YR1", "★");
+							if ("9".equals(year9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
 						// Ya2 ⑪:2、8
 					} else if ("Ya2".equals(year)) {
 						// 左
-						if (year5.equals("2")) {
-							if (year4.equals("1")) {
-								starMap.put("Y4", "★");
+						if ("2".equals(year5)) {
+							if ("1".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year3.equals("12")) {
-								starMap.put("Y3", "★");
+							if ("12".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("8")) {
-							if (year4.equals("9")) {
-								starMap.put("Y4", "★");
+						} else if ("8".equals(year5)) {
+							if ("9".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year3.equals("10")) {
-								starMap.put("Y3", "★");
+							if ("10".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year8.equals("2")) {
-							if (year9.equals("1")) {
-								starMap.put("YR1", "★");
+						if ("2".equals(year8)) {
+							if ("1".equals(year9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("12")) {
-								starMap.put("Y1", "★");
+							if ("12".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("8")) {
-							if (year9.equals("9")) {
-								starMap.put("YR1", "★");
+						} else if ("8".equals(year8)) {
+							if ("9".equals(year9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (year1.equals("10")) {
-								starMap.put("Y1", "★");
+							if ("10".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
 						// Ya3 ⑫:3、9
 					} else if ("Ya3".equals(year)) {
 						// 左
-						if (year6.equals("3")) {
-							if (year5.equals("2")) {
-								starMap.put("Y5", "★");
+						if ("3".equals(year6)) {
+							if ("2".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("1")) {
-								starMap.put("Y4", "★");
+							if ("1".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("9")) {
-							if (year5.equals("10")) {
-								starMap.put("Y5", "★");
+						} else if ("9".equals(year6)) {
+							if ("10".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year4.equals("11")) {
-								starMap.put("Y4", "★");
+							if ("11".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year9.equals("3")) {
-							if (year1.equals("2")) {
-								starMap.put("Y1", "★");
+						if ("3".equals(year9)) {
+							if ("2".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("1")) {
-								starMap.put("Y2", "★");
+							if ("1".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("9")) {
-							if (year1.equals("10")) {
-								starMap.put("Y1", "★");
+						} else if ("9".equals(year9)) {
+							if ("10".equals(year1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (year2.equals("11")) {
-								starMap.put("Y2", "★");
+							if ("11".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// Ya4 ①:4、10
 					} else if ("Ya4".equals(year)) {
 						// 左
-						if (year7.equals("4")) {
-							if (year6.equals("3")) {
-								starMap.put("Y6", "★");
+						if ("4".equals(year7)) {
+							if ("3".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("2")) {
-								starMap.put("Y5", "★");
+							if ("2".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("10")) {
-							if (year6.equals("11")) {
-								starMap.put("Y6", "★");
+						} else if ("10".equals("10")) {
+							if ("11".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year5.equals("12")) {
-								starMap.put("Y5", "★");
+							if ("12".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year1.equals("4")) {
-							if (year2.equals("3")) {
-								starMap.put("Y2", "★");
+						if ("4".equals(year1)) {
+							if ("3".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("2")) {
-								starMap.put("Y3", "★");
+							if ("2".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (year1.equals("10")) {
-							if (year2.equals("11")) {
-								starMap.put("Y2", "★");
+						} else if ("10".equals(year1)) {
+							if ("11".equals(year2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (year3.equals("12")) {
-								starMap.put("Y3", "★");
+							if ("12".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// Ya5 ②:5、11
 					} else if ("Ya5".equals(year)) {
 						// 左
-						if (year8.equals("5")) {
-							if (year7.equals("4")) {
-								starMap.put("Y7", "★");
+						if ("5".equals(year8)) {
+							if ("4".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("3")) {
-								starMap.put("Y6", "★");
+							if ("3".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("11")) {
-							if (year7.equals("12")) {
-								starMap.put("Y7", "★");
+						} else if ("11".equals(year8)) {
+							if ("12".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year6.equals("1")) {
-								starMap.put("Y6", "★");
+							if ("1".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year2.equals("5")) {
-							if (year3.equals("4")) {
-								starMap.put("Y3", "★");
+						if ("5".equals(year2)) {
+							if ("4".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("3")) {
-								starMap.put("Y4", "★");
+							if ("3".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (year2.equals("11")) {
-							if (year3.equals("12")) {
-								starMap.put("Y3", "★");
+						} else if ("11".equals(year2)) {
+							if ("12".equals(year3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (year4.equals("1")) {
-								starMap.put("Y4", "★");
+							if ("1".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// Ya6 ③:6、12
 					} else if ("Ya6".equals(year)) {
 						// 左
-						if (year9.equals("6")) {
-							if (year8.equals("5")) {
-								starMap.put("Y8", "★");
+						if ("6".equals(year9)) {
+							if ("5".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("4")) {
-								starMap.put("Y7", "★");
+							if ("4".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("12")) {
-							if (year8.equals("1")) {
-								starMap.put("Y8", "★");
+						} else if ("12".equals(year9)) {
+							if ("1".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year7.equals("2")) {
-								starMap.put("Y7", "★");
+							if ("2".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year3.equals("6")) {
-							if (year4.equals("5")) {
-								starMap.put("Y4", "★");
+						if ("6".equals(year3)) {
+							if ("5".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("4")) {
-								starMap.put("Y5", "★");
+							if ("4".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (year3.equals("12")) {
-							if (year4.equals("1")) {
-								starMap.put("Y4", "★");
+						} else if ("12".equals(year3)) {
+							if ("1".equals(year4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (year5.equals("2")) {
-								starMap.put("Y5", "★");
+							if ("2".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// Ya7 ④:7、1
 					} else if ("Ya7".equals(year)) {
 						// 左
-						if (year10.equals("7")) {
-							if (year9.equals("6")) {
-								starMap.put("Y9", "★");
+						if ("7".equals(year10)) {
+							if ("6".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("5")) {
-								starMap.put("Y8", "★");
+							if ("5".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("1")) {
-							if (year9.equals("2")) {
-								starMap.put("Y9", "★");
+						} else if ("1".equals(year10)) {
+							if ("2".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year8.equals("3")) {
-								starMap.put("Y8", "★");
+							if ("3".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year4.equals("7")) {
-							if (year5.equals("6")) {
-								starMap.put("Y5", "★");
+						if ("7".equals(year4)) {
+							if ("6".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("5")) {
-								starMap.put("Y6", "★");
+							if ("5".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("1")) {
-							if (year5.equals("2")) {
-								starMap.put("Y5", "★");
+						} else if ("1".equals(year4)) {
+							if ("2".equals(year5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (year6.equals("3")) {
-								starMap.put("Y6", "★");
+							if ("3".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// Ya8 ⑤:8、2
 					} else if ("Ya8".equals(year)) {
 						// 左
-						if (year11.equals("8")) {
-							if (year10.equals("7")) {
-								starMap.put("Y10", "★");
+						if ("8".equals(year11)) {
+							if ("7".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("6")) {
-								starMap.put("Y9", "★");
+							if ("6".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("2")) {
-							if (year10.equals("3")) {
-								starMap.put("Y10", "★");
+						} else if ("2".equals(year11)) {
+							if ("3".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year9.equals("4")) {
-								starMap.put("Y9", "★");
+							if ("4".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year5.equals("8")) {
-							if (year6.equals("7")) {
-								starMap.put("Y6", "★");
+						if ("8".equals(year5)) {
+							if ("7".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("6")) {
-								starMap.put("Y7", "★");
+							if ("6".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("2")) {
-							if (year6.equals("3")) {
-								starMap.put("Y6", "★");
+						} else if ("2".equals(year5)) {
+							if ("3".equals(year6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (year7.equals("4")) {
-								starMap.put("Y7", "★");
+							if ("4".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// Ya9 ⑥:9、3
 					} else if ("Ya9".equals(year)) {
 						// 左
-						if (year12.equals("9")) {
-							if (year11.equals("8")) {
-								starMap.put("Y11", "★");
+						if ("9".equals(year12)) {
+							if ("8".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("7")) {
-								starMap.put("Y10", "★");
+							if ("7".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("3")) {
-							if (year11.equals("4")) {
-								starMap.put("Y11", "★");
+						} else if ("3".equals(year12)) {
+							if ("4".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year10.equals("5")) {
-								starMap.put("Y10", "★");
+							if ("5".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year6.equals("9")) {
-							if (year7.equals("8")) {
-								starMap.put("Y7", "★");
+						if ("9".equals(year6)) {
+							if ("8".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("7")) {
-								starMap.put("Y8", "★");
+							if ("7".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("3")) {
-							if (year7.equals("4")) {
-								starMap.put("Y7", "★");
+						} else if ("3".equals(year6)) {
+							if ("4".equals(year7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (year8.equals("5")) {
-								starMap.put("Y8", "★");
+							if ("5".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// Ya10 ⑦:10、4
 					} else if ("Ya10".equals(year)) {
 						// 左
-						if (year13.equals("10")) {
-							if (year12.equals("9")) {
-								starMap.put("Y12", "★");
+						if ("10".equals(year13)) {
+							if ("9".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("8")) {
-								starMap.put("Y11", "★");
+							if ("8".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("4")) {
-							if (year12.equals("5")) {
-								starMap.put("Y12", "★");
+						} else if ("4".equals(year13)) {
+							if ("5".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year11.equals("6")) {
-								starMap.put("Y11", "★");
+							if ("6".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year7.equals("10")) {
-							if (year8.equals("9")) {
-								starMap.put("Y8", "★");
+						if ("10".equals(year7)) {
+							if ("9".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("8")) {
-								starMap.put("Y9", "★");
+							if ("8".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (year7.equals("4")) {
-							if (year8.equals("5")) {
-								starMap.put("Y8", "★");
+						} else if ("4".equals(year7)) {
+							if ("5".equals(year8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (year9.equals("6")) {
-								starMap.put("Y9", "★");
+							if ("6".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// Ya11 ⑧:11、5
 					} else if ("Ya11".equals(year)) {
 						// 左
-						if (year14.equals("11")) {
-							if (year13.equals("10")) {
-								starMap.put("Y13", "★");
+						if ("11".equals(year14)) {
+							if ("10".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("9")) {
-								starMap.put("Y12", "★");
+							if ("9".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("5")) {
-							if (year13.equals("6")) {
-								starMap.put("Y13", "★");
+						} else if ("5".equals(year14)) {
+							if ("6".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year12.equals("7")) {
-								starMap.put("Y12", "★");
+							if ("7".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year8.equals("11")) {
-							if (year9.equals("10")) {
-								starMap.put("Y9", "★");
+						if ("11".equals(year8)) {
+							if ("10".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("9")) {
-								starMap.put("Y10", "★");
+							if ("9".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (year8.equals("5")) {
-							if (year9.equals("6")) {
-								starMap.put("Y9", "★");
+						} else if ("5".equals(year8)) {
+							if ("6".equals(year9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (year10.equals("7")) {
-								starMap.put("Y10", "★");
+							if ("7".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya12 ⑨:12、6
 					} else if ("Ya12".equals(year)) {
 						// 左
-						if (year15.equals("12")) {
-							if (year14.equals("11")) {
-								starMap.put("Y14", "★");
+						if ("12".equals(year15)) {
+							if ("11".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("10")) {
-								starMap.put("Y13", "★");
+							if ("10".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("6")) {
-							if (year14.equals("7")) {
-								starMap.put("Y14", "★");
+						} else if ("6".equals(year15)) {
+							if ("7".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year13.equals("8")) {
-								starMap.put("Y13", "★");
+							if ("8".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year9.equals("12")) {
-							if (year10.equals("11")) {
-								starMap.put("Y10", "★");
+						if ("12".equals(year9)) {
+							if ("11".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("10")) {
-								starMap.put("Y11", "★");
+							if ("10".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (year9.equals("6")) {
-							if (year10.equals("7")) {
-								starMap.put("Y10", "★");
+						} else if ("6".equals(year9)) {
+							if ("7".equals(year10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (year11.equals("8")) {
-								starMap.put("Y11", "★");
+							if ("8".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya13 ⑩:1、7
 					} else if ("Ya13".equals(year)) {
 						// 左
-						if (year16.equals("1")) {
-							if (year15.equals("12")) {
-								starMap.put("Y15", "★");
+						if ("1".equals(year16)) {
+							if ("12".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("11")) {
-								starMap.put("Y14", "★");
+							if ("11".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year16.equals("7")) {
-							if (year15.equals("8")) {
-								starMap.put("Y15", "★");
+						} else if ("7".equals(year16)) {
+							if ("8".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year14.equals("9")) {
-								starMap.put("Y14", "★");
+							if ("9".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year10.equals("1")) {
-							if (year11.equals("12")) {
-								starMap.put("Y11", "★");
+						if ("1".equals(year10)) {
+							if ("12".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("11")) {
-								starMap.put("Y12", "★");
+							if ("11".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (year10.equals("7")) {
-							if (year11.equals("8")) {
-								starMap.put("Y11", "★");
+						} else if ("7".equals(year10)) {
+							if ("8".equals(year11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (year12.equals("9")) {
-								starMap.put("Y12", "★");
+							if ("9".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya14 ⑪:2、8
 					} else if ("Ya14".equals(year)) {
 						// 左
-						if (year17.equals("2")) {
-							if (year16.equals("1")) {
-								starMap.put("Y16", "★");
+						if ("2".equals(year17)) {
+							if ("1".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("12")) {
-								starMap.put("Y15", "★");
+							if ("12".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year17.equals("8")) {
-							if (year16.equals("9")) {
-								starMap.put("Y16", "★");
+						} else if ("8".equals(year17)) {
+							if ("9".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year15.equals("10")) {
-								starMap.put("Y15", "★");
+							if ("10".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year11.equals("2")) {
-							if (year12.equals("1")) {
-								starMap.put("Y12", "★");
+						if ("2".equals(year11)) {
+							if ("1".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("12")) {
-								starMap.put("Y13", "★");
+							if ("12".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (year11.equals("8")) {
-							if (year12.equals("9")) {
-								starMap.put("Y12", "★");
+						} else if ("8".equals(year11)) {
+							if ("9".equals(year12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (year13.equals("10")) {
-								starMap.put("Y13", "★");
+							if ("10".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya15 ⑫:3、9
 					} else if ("Ya15".equals(year)) {
 						// 左
-						if (year18.equals("3")) {
-							if (year17.equals("2")) {
-								starMap.put("Y17", "★");
+						if ("3".equals(year18)) {
+							if ("2".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("1")) {
-								starMap.put("Y16", "★");
+							if ("1".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year18.equals("9")) {
-							if (year17.equals("10")) {
-								starMap.put("Y17", "★");
+						} else if ("9".equals(year18)) {
+							if ("10".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (year16.equals("11")) {
-								starMap.put("Y16", "★");
+							if ("11".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year12.equals("3")) {
-							if (year13.equals("2")) {
-								starMap.put("Y13", "★");
+						if ("3".equals(year12)) {
+							if ("2".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("1")) {
-								starMap.put("Y14", "★");
+							if ("1".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (year12.equals("9")) {
-							if (year13.equals("10")) {
-								starMap.put("Y13", "★");
+						} else if ("9".equals(year12)) {
+							if ("10".equals(year13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (year14.equals("11")) {
-								starMap.put("Y14", "★");
+							if ("11".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya16 ①:4、10
 					} else if ("Ya16".equals(year)) {
 						// 左
-						if (year4.equals("4")) {
-							if (year18.equals("3")) {
-								starMap.put("Y18", "★");
+						if ("4".equals(year4)) {
+							if ("3".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("2")) {
-								starMap.put("Y17", "★");
+							if ("2".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year4.equals("10")) {
-							if (year18.equals("11")) {
-								starMap.put("Y18", "★");
+						} else if ("10".equals(year4)) {
+							if ("11".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (year17.equals("12")) {
-								starMap.put("Y17", "★");
+							if ("12".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year13.equals("4")) {
-							if (year14.equals("3")) {
-								starMap.put("Y14", "★");
+						if ("4".equals(year13)) {
+							if ("3".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("2")) {
-								starMap.put("Y15", "★");
+							if ("2".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (year13.equals("10")) {
-							if (year14.equals("11")) {
-								starMap.put("Y14", "★");
+						} else if ("10".equals(year13)) {
+							if ("11".equals(year14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (year15.equals("12")) {
-								starMap.put("Y15", "★");
+							if ("12".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya17 ②:5、11
 					} else if ("Ya17".equals(year)) {
 						// 左
-						if (year5.equals("5")) {
-							if (year4.equals("4")) {
-								starMap.put("YL1", "★");
+						if ("5".equals(year5)) {
+							if ("4".equals(year4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("3")) {
-								starMap.put("Y18", "★");
+							if ("3".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (year5.equals("11")) {
-							if (year4.equals("12")) {
-								starMap.put("YL1", "★");
+						} else if ("11".equals(year5)) {
+							if ("12".equals(year4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (year18.equals("1")) {
-								starMap.put("Y18", "★");
+							if ("1".equals(year18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year14.equals("5")) {
-							if (year15.equals("4")) {
-								starMap.put("Y15", "★");
+						if ("5".equals(year14)) {
+							if ("4".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("3")) {
-								starMap.put("Y16", "★");
+							if ("3".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (year14.equals("11")) {
-							if (year15.equals("12")) {
-								starMap.put("Y15", "★");
+						} else if ("11".equals(year14)) {
+							if ("12".equals(year15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (year16.equals("1")) {
-								starMap.put("Y16", "★");
+							if ("1".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
 						// Ya18 ③:6、12
 					} else if ("Ya18".equals(year)) {
 						// 左
-						if (year6.equals("6")) {
-							if (year5.equals("5")) {
-								starMap.put("YL2", "★");
+						if ("6".equals(year6)) {
+							if ("5".equals(year5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year4.equals("4")) {
-								starMap.put("YL1", "★");
+							if ("4".equals(year4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (year6.equals("12")) {
-							if (year5.equals("1")) {
-								starMap.put("YL2", "★");
+						} else if ("12".equals(year6)) {
+							if ("1".equals(year5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (year4.equals("2")) {
-								starMap.put("YL1", "★");
+							if ("2".equals(year4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (year15.equals("6")) {
-							if (year16.equals("5")) {
-								starMap.put("Y16", "★");
+						if ("6".equals(year15)) {
+							if ("5".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("4")) {
-								starMap.put("Y17", "★");
+							if ("4".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (year15.equals("12")) {
-							if (year16.equals("1")) {
-								starMap.put("Y16", "★");
+						} else if ("12".equals(year15)) {
+							if ("1".equals(year16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (year17.equals("2")) {
-								starMap.put("Y17", "★");
+							if ("2".equals(year17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -3455,623 +3667,624 @@ public class ProcessAction {
 		// 先にD行で〇を付けた数字を見る、D行の数字を見た結果がなければ、C行を見る...の順番に。
 		if (null != dLine) {
 			for (String month : dLine) {
-				// Md1 ①:4、10
-				if ("Md1".equals(month)) {
+				// Yd1 ①:4、10
+				if ("Yd1".equals(month)) {
 					// 左
-					if (month4.equals("4")) {
-						if (month3.equals("3")) {
-							starMap.put("M3", "★");
+					if ("4".equals(month4)) {
+						if (month3.equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (month2.equals("2")) {
-							starMap.put("M2", "★");
+						if ("2".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-					} else if (month4.equals("10")) {
-						if (month3.equals("11")) {
-							starMap.put("M3", "★");
+					} else if ("10".equals(month4)) {
+						if ("11".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (month2.equals("12")) {
-							starMap.put("M2", "★");
+						if ("12".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month10.equals("4")) {
-						if (month11.equals("3")) {
-							starMap.put("MR2", "★");
+					if ("4".equals(month10)) {
+						if ("3".equals(month11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (month12.equals("2")) {
-							starMap.put("MR1", "★");
+						if ("2".equals(month12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-					} else if (month10.equals("10")) {
-						if (month11.equals("11")) {
-							starMap.put("MR2", "★");
+					} else if ("10".equals(month10)) {
+						if ("11".equals(month11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (month12.equals("12")) {
-							starMap.put("MR1", "★");
+						if ("12".equals(month12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
 					}
-					// Md2 ②:5、11
-				} else if ("Md2".equals(month)) {
+					// Yd2 ②:5、11
+				} else if ("Yd2".equals(month)) {
 					// 左
-					if (month5.equals("5")) {
-						if (month4.equals("4")) {
-							starMap.put("M4", "★");
+					if ("5".equals(month5)) {
+						if ("4".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (month3.equals("3")) {
-							starMap.put("M3", "★");
+						if ("3".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-					} else if (month5.equals("11")) {
-						if (month4.equals("12")) {
-							starMap.put("M4", "★");
+					} else if ("11".equals(month5)) {
+						if ("12".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (month3.equals("1")) {
-							starMap.put("M3", "★");
+						if ("1".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month11.equals("5")) {
-						if (month12.equals("4")) {
-							starMap.put("MR1", "★");
+					if ("5".equals(month11)) {
+						if ("4".equals(month12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-						if (month1.equals("3")) {
-							starMap.put("M1", "★");
+						if ("3".equals(month1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+					} else if ("11".equals(month11)) {
+						if ("12".equals(month12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
+						}
+						if ("1".equals(month1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+					}
+					// Yd3 ③:6、12
+				} else if ("Yd3".equals(month)) {
+					// 左
+					if ("6".equals(month6)) {
+						if ("5".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("4".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					} else if ("12".equals(month6)) {
+						if ("1".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("2".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("6".equals(month12)) {
+						if ("5".equals(month1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+						if ("4".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+					} else if ("12".equals(month12)) {
+						if ("1".equals(month1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+						if ("2".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+					}
+					// Yd4 ④:7、1
+				} else if ("Yd4".equals(month)) {
+					// 左
+					if ("7".equals(month7)) {
+						if ("6".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("5".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					} else if ("1".equals(month7)) {
+						if ("2".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("3".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("7".equals(month1)) {
+						if ("6".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+						if ("5".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+					} else if ("1".equals(month1)) {
+						if ("2".equals(month2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+						if ("3".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+					}
+					// Yd5 ⑤:2、8
+				} else if ("Yd5".equals(month)) {
+					// 左
+					if ("8".equals(month8)) {
+						if ("7".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("6".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					} else if ("2".equals(month8)) {
+						if ("3".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("4".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("8".equals(month2)) {
+						if ("7".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+						if ("6".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					} else if ("2".equals(month2)) {
+						if ("3".equals(month3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+						if ("4".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					}
+					// Yd6 ⑥:3、9
+				} else if ("Yd6".equals(month)) {
+					// 左
+					if ("9".equals(month9)) {
+						if ("8".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("7".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					} else if ("3".equals(month9)) {
+						if ("4".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("5".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("9".equals(month3)) {
+						if ("8".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+						if ("7".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					} else if ("3".equals(month3)) {
+						if ("4".equals(month4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+						if ("5".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					}
+					// Yd7 ⑦:4、10
+				} else if ("Yd7".equals(month)) {
+					// 左
+					if ("10".equals(month10)) {
+						if ("9".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("8".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					} else if ("4".equals(month10)) {
+						if ("5".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("6".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("10".equals(month4)) {
+						if ("9".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("8".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					} else if ("4".equals(month4)) {
+						if ("5".equals(month5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("6".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					}
+					// Yd8 ⑧:5、11
+				} else if ("Yd8".equals(month)) {
+					// 左
+					if ("11".equals(month11)) {
+						if ("10".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("9".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					} else if ("5".equals(month11)) {
+						if ("6".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("7".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("11".equals(month5)) {
+						if ("10".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("9".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					} else if ("5".equals(month5)) {
+						if ("6".equals(month6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("7".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					}
+					// Yd9 ⑨:6、12
+				} else if ("Yd9".equals(month)) {
+					// 左
+					if ("12".equals(month12)) {
+						if ("11".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("10".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					} else if ("6".equals(month12)) {
+						if ("7".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("8".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("12".equals(month6)) {
+						if ("11".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("10".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					} else if ("6".equals(month6)) {
+						if ("7".equals(month7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("8".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					}
+					// Yd10 ⑩:1、7
+				} else if ("Yd10".equals(month)) {
+					// 左
+					if ("1".equals(month13)) {
+						if ("12".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("11".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					} else if ("7".equals(month13)) {
+						if ("8".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("9".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("1".equals(month7)) {
+						if ("12".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("11".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					} else if ("7".equals(month7)) {
+						if ("8".equals(month8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("9".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					}
+					// Yd11 ⑪:2、8
+				} else if ("Yd11".equals(month)) {
+					// 左
+					if ("2".equals(month14)) {
+						if ("1".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+						if ("12".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					} else if ("8".equals(month14)) {
+						if ("9".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+						if ("10".equals("month12")) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("2".equals(month8)) {
+						if ("1".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("12".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					} else if ("8".equals(month8)) {
+						if ("9".equals(month9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("10".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd12 ⑫:3、9
+				} else if ("Yd12".equals(month)) {
+					// 左
+					if ("3".equals(month15)) {
+						if ("2".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+						if ("1".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+					} else if ("9".equals(month15)) {
+						if ("10".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+						if ("1".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("3".equals(month9)) {
+						if ("2".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("1".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					} else if ("9".equals(month9)) {
+						if ("10".equals(month10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("11".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd13 ①:4、10
+				} else if ("Yd13".equals(month)) {
+					// 左
+					if ("4".equals(month16)) {
+						if ("3".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+						if ("2".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+					} else if ("10".equals(month16)) {
+						if ("11".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+						if ("12".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("4".equals(month10)) {
+						if ("3".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("2".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					} else if ("10".equals(month10)) {
+						if ("11".equals(month11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("12".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd14 ②:5、11
+				} else if ("Yd14".equals(month)) {
+					// 左
+					if ("5".equals(month17)) {
+						if ("4".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
+						}
+						if ("3".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+					} else if ("11".equals(month17)) {
+						if ("12".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
+						}
+						if ("13".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("5".equals(month11)) {
+
+						if ("4".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("3".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					} else if (month11.equals("11")) {
-						if (month12.equals("12")) {
-							starMap.put("MR1", "★");
+						if ("12".equals(month12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (month1.equals("1")) {
-							starMap.put("M1", "★");
+						if ("13".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					}
-					// Md3 ③:6、12
-				} else if ("Md3".equals(month)) {
+
+					// Yd15 ③:6、12
+				} else if ("Yd15".equals(month)) {
 					// 左
-					if (month6.equals("6")) {
-						if (month5.equals("5")) {
-							starMap.put("M5", "★");
+					if ("6".equals(month18)) {
+						if ("5".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (month4.equals("4")) {
-							starMap.put("M4", "★");
+						if ("4".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (month6.equals("12")) {
-						if (month5.equals("1")) {
-							starMap.put("M5", "★");
+					} else if ("12".equals(month18)) {
+						if ("1".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (month4.equals("2")) {
-							starMap.put("M4", "★");
+						if ("2".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month12.equals("6")) {
-						if (month1.equals("5")) {
-							starMap.put("M1", "★");
+					if ("6".equals(month12)) {
+						if ("5".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (month2.equals("4")) {
-							starMap.put("M2", "★");
+						if ("4".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-					} else if (month12.equals("12")) {
-						if (month1.equals("1")) {
-							starMap.put("M1", "★");
+					} else if ("12".equals(month12)) {
+						if ("1".equals(month13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (month2.equals("2")) {
-							starMap.put("M2", "★");
+						if ("2".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
 					}
-					// Md4 ④:7、1
-				} else if ("Md4".equals(month)) {
+
+					// Yd16 ④:7、1
+				} else if ("Yd16".equals(month)) {
 					// 左
-					if (month7.equals("7")) {
-						if (month6.equals("6")) {
-							starMap.put("M6", "★");
+					if ("7".equals(month7)) {
+						if ("6".equals(month18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (month5.equals("5")) {
-							starMap.put("M5", "★");
+						if ("5".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (month7.equals("1")) {
-						if (month6.equals("2")) {
-							starMap.put("M6", "★");
+					} else if ("1".equals(month7)) {
+						if ("2".equals(month18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (month5.equals("3")) {
-							starMap.put("M5", "★");
+						if ("3".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month1.equals("7")) {
-						if (month2.equals("6")) {
-							starMap.put("M2", "★");
+					if ("7".equals(month13)) {
+						if ("6".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (month3.equals("5")) {
-							starMap.put("M3", "★");
+						if ("5".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-					} else if (month1.equals("1")) {
-						if (month2.equals("2")) {
-							starMap.put("M2", "★");
+					} else if ("1".equals(month13)) {
+						if ("2".equals(month14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (month3.equals("3")) {
-							starMap.put("M3", "★");
+						if ("3".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
 					}
-					// Md5 ⑤:2、8
-				} else if ("Md5".equals(month)) {
+
+					// Yd17 ⑤:2、8
+				} else if ("Yd17".equals(month)) {
 					// 左
-					if (month8.equals("8")) {
-						if (month7.equals("7")) {
-							starMap.put("M7", "★");
+					if ("8".equals(month8)) {
+						if ("7".equals(month7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (month6.equals("6")) {
-							starMap.put("M6", "★");
+						if ("6".equals(month18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					} else if (month8.equals("2")) {
-						if (month7.equals("3")) {
-							starMap.put("M7", "★");
+						if ("3".equals(month7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (month6.equals("4")) {
-							starMap.put("M6", "★");
-						}
-					}
-					// 右
-					if (month2.equals("8")) {
-						if (month3.equals("7")) {
-							starMap.put("M3", "★");
-						}
-						if (month4.equals("6")) {
-							starMap.put("M4", "★");
-						}
-					} else if (month2.equals("2")) {
-						if (month3.equals("3")) {
-							starMap.put("M3", "★");
-						}
-						if (month4.equals("4")) {
-							starMap.put("M4", "★");
-						}
-					}
-					// Md6 ⑥:3、9
-				} else if ("Md6".equals(month)) {
-					// 左
-					if (month9.equals("9")) {
-						if (month8.equals("8")) {
-							starMap.put("M8", "★");
-						}
-						if (month7.equals("7")) {
-							starMap.put("M7", "★");
-						}
-					} else if (month9.equals("3")) {
-						if (month8.equals("4")) {
-							starMap.put("M8", "★");
-						}
-						if (month7.equals("5")) {
-							starMap.put("M7", "★");
+						if ("4".equals(month18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month3.equals("9")) {
-						if (month4.equals("8")) {
-							starMap.put("M4", "★");
+					if ("8".equals(month14)) {
+						if ("7".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (month5.equals("7")) {
-							starMap.put("M5", "★");
+						if ("6".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (month3.equals("3")) {
-						if (month4.equals("4")) {
-							starMap.put("M4", "★");
+					} else if ("2".equals(month14)) {
+						if ("3".equals(month15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (month5.equals("5")) {
-							starMap.put("M5", "★");
-						}
-					}
-					// Md7 ⑦:4、10
-				} else if ("Md7".equals(month)) {
-					// 左
-					if (month10.equals("10")) {
-						if (month9.equals("9")) {
-							starMap.put("M9", "★");
-						}
-						if (month8.equals("8")) {
-							starMap.put("M8", "★");
-						}
-					} else if (month10.equals("4")) {
-						if (month9.equals("5")) {
-							starMap.put("M9", "★");
-						}
-						if (month8.equals("6")) {
-							starMap.put("M8", "★");
-						}
-					}
-					// 右
-					if (month4.equals("10")) {
-						if (month5.equals("9")) {
-							starMap.put("M5", "★");
-						}
-						if (month6.equals("8")) {
-							starMap.put("M6", "★");
-						}
-					} else if (month4.equals("4")) {
-						if (month5.equals("5")) {
-							starMap.put("M5", "★");
-						}
-						if (month6.equals("6")) {
-							starMap.put("M6", "★");
-						}
-					}
-					// Md8 ⑧:5、11
-				} else if ("Md8".equals(month)) {
-					// 左
-					if (month11.equals("11")) {
-						if (month10.equals("10")) {
-							starMap.put("M10", "★");
-						}
-						if (month9.equals("9")) {
-							starMap.put("M9", "★");
-						}
-					} else if (month11.equals("5")) {
-						if (month10.equals("6")) {
-							starMap.put("M10", "★");
-						}
-						if (month9.equals("7")) {
-							starMap.put("M9", "★");
-						}
-					}
-					// 右
-					if (month5.equals("11")) {
-						if (month6.equals("10")) {
-							starMap.put("M6", "★");
-						}
-						if (month7.equals("9")) {
-							starMap.put("M7", "★");
-						}
-					} else if (month5.equals("5")) {
-						if (month6.equals("6")) {
-							starMap.put("M6", "★");
-						}
-						if (month7.equals("7")) {
-							starMap.put("M7", "★");
-						}
-					}
-					// Md9 ⑨:6、12
-				} else if ("Md9".equals(month)) {
-					// 左
-					if (month12.equals("12")) {
-						if (month11.equals("11")) {
-							starMap.put("M11", "★");
-						}
-						if (month10.equals("10")) {
-							starMap.put("M10", "★");
-						}
-					} else if (month12.equals("6")) {
-						if (month11.equals("7")) {
-							starMap.put("M11", "★");
-						}
-						if (month10.equals("8")) {
-							starMap.put("M10", "★");
-						}
-					}
-					// 右
-					if (month6.equals("12")) {
-						if (month7.equals("11")) {
-							starMap.put("M7", "★");
-						}
-						if (month8.equals("10")) {
-							starMap.put("M8", "★");
-						}
-					} else if (month6.equals("6")) {
-						if (month7.equals("7")) {
-							starMap.put("M7", "★");
-						}
-						if (month8.equals("8")) {
-							starMap.put("M8", "★");
-						}
-					}
-					// Md10 ⑩:1、7
-				} else if ("Md10".equals(month)) {
-					// 左
-					if (month13.equals("1")) {
-						if (month12.equals("12")) {
-							starMap.put("M12", "★");
-						}
-						if (month11.equals("11")) {
-							starMap.put("M11", "★");
-						}
-					} else if (month13.equals("7")) {
-						if (month12.equals("8")) {
-							starMap.put("M12", "★");
-						}
-						if (month11.equals("9")) {
-							starMap.put("M11", "★");
-						}
-					}
-					// 右
-					if (month7.equals("1")) {
-						if (month8.equals("12")) {
-							starMap.put("M8", "★");
-						}
-						if (month9.equals("11")) {
-							starMap.put("M9", "★");
-						}
-					} else if (month7.equals("7")) {
-						if (month8.equals("8")) {
-							starMap.put("M8", "★");
-						}
-						if (month9.equals("9")) {
-							starMap.put("M9", "★");
-						}
-					}
-					// Md11 ⑪:2、8
-				} else if ("Md11".equals(month)) {
-					// 左
-					if (month14.equals("2")) {
-						if (month13.equals("1")) {
-							starMap.put("M13", "★");
-						}
-						if (month12.equals("12")) {
-							starMap.put("M12", "★");
-						}
-					} else if (month14.equals("8")) {
-						if (month13.equals("9")) {
-							starMap.put("M13", "★");
-						}
-						if (month12.equals("10")) {
-							starMap.put("M12", "★");
-						}
-					}
-					// 右
-					if (month8.equals("2")) {
-						if (month9.equals("1")) {
-							starMap.put("M9", "★");
-						}
-						if (month10.equals("12")) {
-							starMap.put("M10", "★");
-						}
-					} else if (month8.equals("8")) {
-						if (month9.equals("9")) {
-							starMap.put("M9", "★");
-						}
-						if (month10.equals("10")) {
-							starMap.put("M10", "★");
+						if ("4".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 
-					// Md12 ⑫:3、9
-				} else if ("Md12".equals(month)) {
+					// Yd18 ⑥:3、9
+				} else if ("Yd18".equals(month)) {
 					// 左
-					if (month15.equals("3")) {
-						if (month14.equals("2")) {
-							starMap.put("M14", "★");
+					if ("9".equals(month9)) {
+						if ("8".equals(month8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (month13.equals("1")) {
-							starMap.put("M13", "★");
+						if ("7".equals(month7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-					} else if (month15.equals("9")) {
-						if (month14.equals("10")) {
-							starMap.put("M14", "★");
+					} else if ("3".equals(month9)) {
+						if ("4".equals(month8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (month13.equals("1")) {
-							starMap.put("M13", "★");
+						if ("5".equals(month7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (month9.equals("3")) {
-						if (month10.equals("2")) {
-							starMap.put("M10", "★");
+					if ("9".equals(month15)) {
+						if ("8".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (month11.equals("1")) {
-							starMap.put("M11", "★");
+						if ("7".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (month9.equals("9")) {
-						if (month10.equals("10")) {
-							starMap.put("M10", "★");
+					} else if ("3".equals(month15)) {
+						if ("4".equals(month16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (month11.equals("11")) {
-							starMap.put("M11", "★");
-						}
-					}
-
-					// Md13 ①:4、10
-				} else if ("Md13".equals(month)) {
-					// 左
-					if (month16.equals("4")) {
-						if (month15.equals("3")) {
-							starMap.put("M15", "★");
-						}
-						if (month14.equals("2")) {
-							starMap.put("M14", "★");
-						}
-					} else if (month16.equals("10")) {
-						if (month15.equals("11")) {
-							starMap.put("M15", "★");
-						}
-						if (month14.equals("12")) {
-							starMap.put("M14", "★");
-						}
-					}
-					// 右
-					if (month10.equals("4")) {
-						if (month11.equals("3")) {
-							starMap.put("M11", "★");
-						}
-						if (month12.equals("2")) {
-							starMap.put("M12", "★");
-						}
-					} else if (month10.equals("10")) {
-						if (month11.equals("11")) {
-							starMap.put("M11", "★");
-						}
-						if (month12.equals("12")) {
-							starMap.put("M12", "★");
-						}
-					}
-
-					// Md14 ②:5、11
-				} else if ("Md14".equals(month)) {
-					// 左
-					if (month17.equals("5")) {
-						if (month16.equals("4")) {
-							starMap.put("M16", "★");
-						}
-						if (month15.equals("3")) {
-							starMap.put("M15", "★");
-						}
-					} else if (month17.equals("11")) {
-						if (month16.equals("12")) {
-							starMap.put("M16", "★");
-						}
-						if (month15.equals("13")) {
-							starMap.put("M15", "★");
-						}
-					}
-					// 右
-					if (month11.equals("5")) {
-						if (month12.equals("4")) {
-							starMap.put("M12", "★");
-						}
-						if (month13.equals("3")) {
-							starMap.put("M13", "★");
-						}
-					} else if (month11.equals("11")) {
-						if (month12.equals("12")) {
-							starMap.put("M12", "★");
-						}
-						if (month13.equals("13")) {
-							starMap.put("M13", "★");
-						}
-					}
-
-					// Md15 ③:6、12
-				} else if ("Md15".equals(month)) {
-					// 左
-					if (month18.equals("6")) {
-						if (month17.equals("5")) {
-							starMap.put("M17", "★");
-						}
-						if (month16.equals("4")) {
-							starMap.put("M16", "★");
-						}
-					} else if (month18.equals("12")) {
-						if (month17.equals("1")) {
-							starMap.put("M17", "★");
-						}
-						if (month16.equals("2")) {
-							starMap.put("M16", "★");
-						}
-					}
-					// 右
-					if (month12.equals("6")) {
-						if (month13.equals("5")) {
-							starMap.put("M13", "★");
-						}
-						if (month14.equals("4")) {
-							starMap.put("M14", "★");
-						}
-					} else if (month12.equals("12")) {
-						if (month13.equals("1")) {
-							starMap.put("M13", "★");
-						}
-						if (month14.equals("2")) {
-							starMap.put("M14", "★");
-						}
-					}
-
-					// Md16 ④:7、1
-				} else if ("Md16".equals(month)) {
-					// 左
-					if (month7.equals("7")) {
-						if (month18.equals("6")) {
-							starMap.put("M18", "★");
-						}
-						if (month17.equals("5")) {
-							starMap.put("M17", "★");
-						}
-					} else if (month7.equals("1")) {
-						if (month18.equals("2")) {
-							starMap.put("M18", "★");
-						}
-						if (month17.equals("3")) {
-							starMap.put("M17", "★");
-						}
-					}
-					// 右
-					if (month13.equals("7")) {
-						if (month14.equals("6")) {
-							starMap.put("M14", "★");
-						}
-						if (month15.equals("5")) {
-							starMap.put("M15", "★");
-						}
-					} else if (month13.equals("1")) {
-						if (month14.equals("2")) {
-							starMap.put("M14", "★");
-						}
-						if (month15.equals("3")) {
-							starMap.put("M15", "★");
-						}
-					}
-
-					// Md17 ⑤:2、8
-				} else if ("Md17".equals(month)) {
-					// 左
-					if (month8.equals("8")) {
-						if (month7.equals("7")) {
-							starMap.put("ML1", "★");
-						}
-						if (month18.equals("6")) {
-							starMap.put("M18", "★");
-						}
-					} else if (month8.equals("2")) {
-						if (month7.equals("3")) {
-							starMap.put("ML1", "★");
-						}
-						if (month18.equals("4")) {
-							starMap.put("M18", "★");
-						}
-					}
-					// 右
-					if (month14.equals("8")) {
-						if (month15.equals("7")) {
-							starMap.put("M15", "★");
-						}
-						if (month16.equals("6")) {
-							starMap.put("M16", "★");
-						}
-					} else if (month14.equals("2")) {
-						if (month15.equals("3")) {
-							starMap.put("M15", "★");
-						}
-						if (month16.equals("4")) {
-							starMap.put("M16", "★");
-						}
-					}
-
-					// Md18 ⑥:3、9
-				} else if ("Md18".equals(month)) {
-					// 左
-					if (month9.equals("9")) {
-						if (month8.equals("8")) {
-							starMap.put("ML2", "★");
-						}
-						if (month7.equals("7")) {
-							starMap.put("ML1", "★");
-						}
-					} else if (month9.equals("3")) {
-						if (month8.equals("4")) {
-							starMap.put("ML2", "★");
-						}
-						if (month7.equals("5")) {
-							starMap.put("ML1", "★");
-						}
-					}
-					// 右
-					if (month15.equals("9")) {
-						if (month16.equals("8")) {
-							starMap.put("M16", "★");
-						}
-						if (month17.equals("7")) {
-							starMap.put("M17", "★");
-						}
-					} else if (month15.equals("3")) {
-						if (month16.equals("4")) {
-							starMap.put("M16", "★");
-						}
-						if (month17.equals("5")) {
-							starMap.put("M17", "★");
+						if ("5".equals(month17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 				}
@@ -4082,623 +4295,623 @@ public class ProcessAction {
 		if (null != cLine) {
 			if (starMap.size() == 0) {
 				for (String month : cLine) {
-					// Mc1 ④:7、1
-					if ("Mc1".equals(month)) {
+					// Yc1 ④:7、1
+					if ("Yc1".equals(month)) {
 						// 左
-						if (month4.equals("7")) {
-							if (month3.equals("6")) {
-								starMap.put("M3", "★");
+						if ("7".equals(month4)) {
+							if ("6".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("5")) {
-								starMap.put("M2", "★");
+							if ("5".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("1")) {
-							if (month3.equals("2")) {
-								starMap.put("M3", "★");
+						} else if ("1".equals(month4)) {
+							if ("2".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("3")) {
-								starMap.put("M2", "★");
+							if ("3".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month1.equals("7")) {
-							if (month2.equals("6")) {
-								starMap.put("MR2", "★");
+						if ("7".equals(month1)) {
+							if ("6".equals(month2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month3.equals("5")) {
-								starMap.put("MR1", "★");
+							if ("5".equals(month3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (month1.equals("1")) {
-							if (month2.equals("2")) {
-								starMap.put("MR2", "★");
+						} else if ("1".equals(month1)) {
+							if ("2".equals(month2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month3.equals("3")) {
-								starMap.put("MR1", "★");
+							if ("3".equals(month3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Mc2 ⑤:8、2
-					} else if ("Mc2".equals(month)) {
+						// Yc2 ⑤:8、2
+					} else if ("Yc2".equals(month)) {
 						// 左
-						if (month5.equals("8")) {
-							if (month4.equals("7")) {
-								starMap.put("M4", "★");
+						if ("8".equals(month5)) {
+							if ("7".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month3.equals("6")) {
-								starMap.put("M3", "★");
+							if ("6".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("2")) {
-							if (month4.equals("3")) {
-								starMap.put("M4", "★");
+						} else if ("2".equals(month5)) {
+							if ("3".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month3.equals("4")) {
-								starMap.put("M3", "★");
+							if ("4".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month2.equals("8")) {
-							if (month3.equals("7")) {
-								starMap.put("MR1", "★");
+						if ("8".equals(month2)) {
+							if ("7".equals(month3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month1.equals("6")) {
-								starMap.put("M1", "★");
+							if ("6".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (month2.equals("2")) {
-							if (month3.equals("3")) {
-								starMap.put("MR1", "★");
+						} else if ("2".equals(month2)) {
+							if ("3".equals(month3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month1.equals("4")) {
-								starMap.put("M1", "★");
+							if ("4".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Mc3 ⑥:9、3
-					} else if ("Mc3".equals(month)) {
+						// Yc3 ⑥:9、3
+					} else if ("Yc3".equals(month)) {
 						// 左
-						if (month6.equals("9")) {
-							if (month5.equals("8")) {
-								starMap.put("M5", "★");
+						if ("9".equals(month6)) {
+							if ("8".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month4.equals("7")) {
-								starMap.put("M4", "★");
+							if ("7".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("3")) {
-							if (month5.equals("4")) {
-								starMap.put("M5", "★");
+						} else if ("3".equals(month6)) {
+							if ("4".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month4.equals("5")) {
-								starMap.put("M4", "★");
+							if ("5".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month3.equals("9")) {
-							if (month1.equals("8")) {
-								starMap.put("M1", "★");
+						if ("9".equals(month3)) {
+							if ("8".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month2.equals("7")) {
-								starMap.put("M2", "★");
+							if ("7".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month3.equals("3")) {
-							if (month1.equals("4")) {
-								starMap.put("M1", "★");
+						} else if ("3".equals(month3)) {
+							if ("4".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month2.equals("5")) {
-								starMap.put("M2", "★");
+							if ("5".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Mc4 ⑦:10、4
-					} else if ("Mc4".equals(month)) {
+						// Yc4 ⑦:10、4
+					} else if ("Yc4".equals(month)) {
 						// 左
-						if (month7.equals("10")) {
-							if (month6.equals("9")) {
-								starMap.put("M6", "★");
+						if ("10".equals(month7)) {
+							if ("9".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month5.equals("8")) {
-								starMap.put("M5", "★");
+							if ("8".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("4")) {
-							if (month6.equals("5")) {
-								starMap.put("M6", "★");
+						} else if ("4".equals(month7)) {
+							if ("5".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month5.equals("6")) {
-								starMap.put("M5", "★");
+							if ("6".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month1.equals("10")) {
-							if (month2.equals("9")) {
-								starMap.put("M2", "★");
+						if ("10".equals(month1)) {
+							if ("9".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month3.equals("8")) {
-								starMap.put("M3", "★");
+							if ("8".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (month1.equals("4")) {
-							if (month2.equals("5")) {
-								starMap.put("M2", "★");
+						} else if ("4".equals(month1)) {
+							if ("5".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month3.equals("6")) {
-								starMap.put("M3", "★");
+							if ("6".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Mc5 ⑧:11、5
-					} else if ("Mc5".equals(month)) {
+						// Yc5 ⑧:11、5
+					} else if ("Yc5".equals(month)) {
 						// 左
-						if (month8.equals("11")) {
-							if (month7.equals("10")) {
-								starMap.put("M7", "★");
+						if ("11".equals(month8)) {
+							if ("10".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month6.equals("9")) {
-								starMap.put("M6", "★");
+							if ("9".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("5")) {
-							if (month7.equals("6")) {
-								starMap.put("M7", "★");
+						} else if ("5".equals(month8)) {
+							if ("6".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month6.equals("7")) {
-								starMap.put("M6", "★");
+							if ("7".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month2.equals("11")) {
-							if (month3.equals("10")) {
-								starMap.put("M3", "★");
+						if ("11".equals(month2)) {
+							if ("10".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month4.equals("9")) {
-								starMap.put("M4", "★");
+							if ("9".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month2.equals("5")) {
-							if (month3.equals("6")) {
-								starMap.put("M3", "★");
+						} else if ("5".equals(month2)) {
+							if ("6".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month4.equals("7")) {
-								starMap.put("M4", "★");
+							if ("7".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Mc6 ⑨:12、6
-					} else if ("Mc6".equals(month)) {
+						// Yc6 ⑨:12、6
+					} else if ("Yc6".equals(month)) {
 						// 左
-						if (month9.equals("12")) {
-							if (month8.equals("11")) {
-								starMap.put("M8", "★");
+						if ("12".equals(month9)) {
+							if ("11".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month7.equals("10")) {
-								starMap.put("M7", "★");
+							if ("10".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("6")) {
-							if (month8.equals("7")) {
-								starMap.put("M8", "★");
+						} else if ("6".equals(month9)) {
+							if ("7".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month7.equals("8")) {
-								starMap.put("M7", "★");
+							if ("8".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month3.equals("12")) {
-							if (month4.equals("11")) {
-								starMap.put("M4", "★");
+						if ("12".equals(month3)) {
+							if ("11".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month5.equals("10")) {
-								starMap.put("M5", "★");
+							if ("10".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month3.equals("6")) {
-							if (month4.equals("7")) {
-								starMap.put("M4", "★");
+						} else if ("6".equals(month3)) {
+							if ("7".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month5.equals("8")) {
-								starMap.put("M5", "★");
+							if ("8".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Mc7 ⑩:1、7
-					} else if ("Mc7".equals(month)) {
+						// Yc7 ⑩:1、7
+					} else if ("Yc7".equals(month)) {
 						// 左
-						if (month10.equals("1")) {
-							if (month9.equals("12")) {
-								starMap.put("M9", "★");
+						if ("1".equals(month10)) {
+							if ("12".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month8.equals("11")) {
-								starMap.put("M8", "★");
+							if ("11".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("7")) {
-							if (month9.equals("8")) {
-								starMap.put("M9", "★");
+						} else if ("7".equals(month10)) {
+							if ("8".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month8.equals("9")) {
-								starMap.put("M8", "★");
+							if ("9".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month4.equals("1")) {
-							if (month5.equals("12")) {
-								starMap.put("M5", "★");
+						if ("1".equals(month4)) {
+							if ("12".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month6.equals("11")) {
-								starMap.put("M6", "★");
+							if ("11".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("7")) {
-							if (month5.equals("8")) {
-								starMap.put("M5", "★");
+						} else if ("7".equals(month4)) {
+							if ("8".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month6.equals("9")) {
-								starMap.put("M6", "★");
+							if ("9".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Mc8 ⑪:2、8
-					} else if ("Mc8".equals(month)) {
+						// Yc8 ⑪:2、8
+					} else if ("Yc8".equals(month)) {
 						// 左
-						if (month11.equals("2")) {
-							if (month10.equals("1")) {
-								starMap.put("M10", "★");
+						if ("2".equals(month11)) {
+							if ("1".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month9.equals("12")) {
-								starMap.put("M9", "★");
+							if ("12".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("8")) {
-							if (month10.equals("9")) {
-								starMap.put("M10", "★");
+						} else if ("8".equals(month11)) {
+							if ("9".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month9.equals("10")) {
-								starMap.put("M9", "★");
+							if ("10".equals("10")) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month5.equals("2")) {
-							if (month6.equals("1")) {
-								starMap.put("M6", "★");
+						if ("2".equals(month5)) {
+							if ("1".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month7.equals("11")) {
-								starMap.put("M7", "★");
+							if ("11".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("8")) {
-							if (month6.equals("9")) {
-								starMap.put("M6", "★");
+						} else if ("8".equals(month5)) {
+							if ("9".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month7.equals("10")) {
-								starMap.put("M7", "★");
+							if ("10".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
-						// Mc9 ⑫:3、9
-					} else if ("Mc9".equals(month)) {
+						// Yc9 ⑫:3、9
+					} else if ("Yc9".equals(month)) {
 						// 左
-						if (month12.equals("3")) {
-							if (month11.equals("2")) {
-								starMap.put("M11", "★");
+						if ("3".equals(month12)) {
+							if ("2".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month10.equals("1")) {
-								starMap.put("M10", "★");
+							if ("1".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("9")) {
-							if (month11.equals("10")) {
-								starMap.put("M11", "★");
+						} else if ("9".equals(month12)) {
+							if ("10".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month10.equals("11")) {
-								starMap.put("M10", "★");
+							if ("11".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month6.equals("3")) {
-							if (month7.equals("2")) {
-								starMap.put("M7", "★");
+						if ("3".equals(month6)) {
+							if ("2".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month8.equals("1")) {
-								starMap.put("M8", "★");
+							if ("1".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("9")) {
-							if (month7.equals("10")) {
-								starMap.put("M7", "★");
+						} else if ("9".equals(month6)) {
+							if ("10".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month8.equals("11")) {
-								starMap.put("M8", "★");
+							if ("11".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
-						// Mc10 ①:4、10
-					} else if ("Mc10".equals(month)) {
+						// Yc10 ①:4、10
+					} else if ("Yc10".equals(month)) {
 						// 左
-						if (month13.equals("4")) {
-							if (month12.equals("3")) {
-								starMap.put("M12", "★");
+						if ("4".equals(month13)) {
+							if ("3".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month11.equals("2")) {
-								starMap.put("M11", "★");
+							if ("2".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("10")) {
-							if (month12.equals("11")) {
-								starMap.put("M12", "★");
+						} else if ("10".equals(month13)) {
+							if ("11".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month11.equals("12")) {
-								starMap.put("M11", "★");
+							if ("12".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month7.equals("4")) {
-							if (month8.equals("3")) {
-								starMap.put("M8", "★");
+						if ("4".equals(month7)) {
+							if ("3".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month9.equals("2")) {
-								starMap.put("M9", "★");
+							if ("2".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("10")) {
-							if (month8.equals("11")) {
-								starMap.put("M8", "★");
+						} else if ("10".equals(month7)) {
+							if ("11".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month9.equals("12")) {
-								starMap.put("M9", "★");
+							if ("12".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
-						// Mc11 ②:5、11
-					} else if ("Mc11".equals(month)) {
+						// Yc11 ②:5、11
+					} else if ("Yc11".equals(month)) {
 						// 左
-						if (month14.equals("5")) {
-							if (month13.equals("4")) {
-								starMap.put("M13", "★");
+						if ("5".equals(month14)) {
+							if ("4".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month12.equals("3")) {
-								starMap.put("M12", "★");
+							if ("3".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("11")) {
-							if (month13.equals("12")) {
-								starMap.put("M13", "★");
+						} else if ("11".equals(month14)) {
+							if ("12".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month12.equals("1")) {
-								starMap.put("M12", "★");
+							if ("1".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month8.equals("5")) {
-							if (month9.equals("4")) {
-								starMap.put("M9", "★");
+						if ("5".equals(month8)) {
+							if ("4".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month10.equals("3")) {
-								starMap.put("M10", "★");
+							if ("3".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("11")) {
-							if (month9.equals("12")) {
-								starMap.put("M9", "★");
+						} else if ("11".equals(month8)) {
+							if ("12".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month10.equals("1")) {
-								starMap.put("M10", "★");
+							if ("1".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc12 ③:6、12
-					} else if ("Mc12".equals(month)) {
+						// Yc12 ③:6、12
+					} else if ("Yc12".equals(month)) {
 						// 左
-						if (month15.equals("6")) {
-							if (month14.equals("5")) {
-								starMap.put("M14", "★");
+						if ("6".equals(month15)) {
+							if ("5".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("4")) {
-								starMap.put("M13", "★");
+							if ("4".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("12")) {
-							if (month14.equals("1")) {
-								starMap.put("M14", "★");
+						} else if ("12".equals(month15)) {
+							if ("1".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("2")) {
-								starMap.put("M13", "★");
+							if ("2".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month9.equals("6")) {
-							if (month10.equals("5")) {
-								starMap.put("M10", "★");
+						if ("6".equals(month9)) {
+							if ("5".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("4")) {
-								starMap.put("M11", "★");
+							if ("4".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("12")) {
-							if (month10.equals("1")) {
-								starMap.put("M10", "★");
+						} else if ("12".equals(month9)) {
+							if ("1".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("2")) {
-								starMap.put("M11", "★");
+							if ("2".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc13 ④:7、1
-					} else if ("Mc13".equals(month)) {
+						// Yc13 ④:7、1
+					} else if ("Yc13".equals(month)) {
 						// 左
-						if (month16.equals("7")) {
-							if (month15.equals("6")) {
-								starMap.put("M15", "★");
+						if ("7".equals(month16)) {
+							if ("6".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("5")) {
-								starMap.put("M14", "★");
+							if ("5".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month16.equals("1")) {
-							if (month15.equals("2")) {
-								starMap.put("M15", "★");
+						} else if ("1".equals(month16)) {
+							if ("2".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("3")) {
-								starMap.put("M14", "★");
+							if ("3".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month10.equals("7")) {
-							if (month11.equals("6")) {
-								starMap.put("M11", "★");
+						if ("7".equals(month10)) {
+							if ("6".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("5")) {
-								starMap.put("M12", "★");
+							if ("5".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("1")) {
-							if (month11.equals("2")) {
-								starMap.put("M11", "★");
+						} else if ("1".equals(month10)) {
+							if ("2".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("3")) {
-								starMap.put("M12", "★");
+							if ("3".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc14 ⑤:2、8
-					} else if ("Mc14".equals(month)) {
+						// Yc14 ⑤:2、8
+					} else if ("Yc14".equals(month)) {
 						// 左
-						if (month17.equals("2")) {
-							if (month16.equals("3")) {
-								starMap.put("M16", "★");
+						if ("2".equals(month17)) {
+							if ("3".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("4")) {
-								starMap.put("M15", "★");
+							if ("4".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month17.equals("8")) {
-							if (month16.equals("7")) {
-								starMap.put("M16", "★");
+						} else if ("8".equals(month17)) {
+							if ("7".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("6")) {
-								starMap.put("M15", "★");
+							if ("6".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month11.equals("2")) {
-							if (month12.equals("3")) {
-								starMap.put("M12", "★");
+						if ("2".equals(month11)) {
+							if ("3".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("4")) {
-								starMap.put("M13", "★");
+							if ("4".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("8")) {
-							if (month12.equals("7")) {
-								starMap.put("M12", "★");
+						} else if ("8".equals(month11)) {
+							if ("7".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("6")) {
-								starMap.put("M13", "★");
+							if ("6".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc15 ⑥:3、9
-					} else if ("Mc15".equals(month)) {
+						// Yc15 ⑥:3、9
+					} else if ("Yc15".equals(month)) {
 						// 左
-						if (month18.equals("3")) {
-							if (month17.equals("4")) {
-								starMap.put("M17", "★");
+						if ("3".equals(month18)) {
+							if ("4".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("5")) {
-								starMap.put("M16", "★");
+							if ("5".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month18.equals("9")) {
-							if (month17.equals("8")) {
-								starMap.put("M17", "★");
+						} else if ("9".equals(month18)) {
+							if ("8".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("7")) {
-								starMap.put("M16", "★");
+							if ("7".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month12.equals("3")) {
-							if (month13.equals("4")) {
-								starMap.put("M13", "★");
+						if ("3".equals(month12)) {
+							if ("4".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("5")) {
-								starMap.put("M14", "★");
+							if ("5".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("9")) {
-							if (month13.equals("8")) {
-								starMap.put("M13", "★");
+						} else if ("9".equals(month12)) {
+							if ("8".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("7")) {
-								starMap.put("M14", "★");
+							if ("7".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc16 ⑦:10、4
-					} else if ("Mc16".equals(month)) {
+						// Yc16 ⑦:10、4
+					} else if ("Yc16".equals(month)) {
 						// 左
-						if (month10.equals("10")) {
-							if (month18.equals("9")) {
-								starMap.put("M18", "★");
+						if ("10".equals(month10)) {
+							if ("9".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("8")) {
-								starMap.put("M17", "★");
+							if ("8".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("4")) {
-							if (month18.equals("5")) {
-								starMap.put("M18", "★");
+						} else if ("4".equals(month10)) {
+							if ("5".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("6")) {
-								starMap.put("M17", "★");
+							if ("6".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month13.equals("10")) {
-							if (month14.equals("9")) {
-								starMap.put("M14", "★");
+						if ("10".equals(month13)) {
+							if ("9".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("8")) {
-								starMap.put("M15", "★");
+							if ("8".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("4")) {
-							if (month14.equals("5")) {
-								starMap.put("M14", "★");
+						} else if ("4".equals(month13)) {
+							if ("5".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("6")) {
-								starMap.put("M15", "★");
+							if ("6".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc17 ⑧:11、5
-					} else if ("Mc17".equals(month)) {
+						// Yc17 ⑧:11、5
+					} else if ("Yc17".equals(month)) {
 						// 左
-						if (month11.equals("11")) {
-							if (month10.equals("10")) {
-								starMap.put("ML1", "★");
+						if ("11".equals(month11)) {
+							if ("10".equals(month10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("9")) {
-								starMap.put("M18", "★");
+							if ("9".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("5")) {
-							if (month10.equals("6")) {
-								starMap.put("ML1", "★");
+						} else if ("5".equals(month11)) {
+							if ("6".equals(month10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("7")) {
-								starMap.put("M18", "★");
+							if ("7".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month14.equals("11")) {
-							if (month15.equals("10")) {
-								starMap.put("M15", "★");
+						if ("11".equals(month14)) {
+							if ("10".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("9")) {
-								starMap.put("M16", "★");
+							if ("9".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("5")) {
-							if (month15.equals("6")) {
-								starMap.put("M15", "★");
+						} else if ("5".equals(month14)) {
+							if ("6".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("7")) {
-								starMap.put("M16", "★");
+							if ("7".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Mc18 ⑨:12、6
-					} else if ("Mc18".equals(month)) {
+						// Yc18 ⑨:12、6
+					} else if ("Yc18".equals(month)) {
 						// 左
-						if (month12.equals("12")) {
-							if (month11.equals("11")) {
-								starMap.put("ML2", "★");
+						if ("12".equals(month12)) {
+							if ("11".equals(month11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month10.equals("10")) {
-								starMap.put("ML1", "★");
+							if ("10".equals(month10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("6")) {
-							if (month11.equals("7")) {
-								starMap.put("ML2", "★");
+						} else if ("6".equals("6")) {
+							if ("7".equals(month11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month10.equals("8")) {
-								starMap.put("ML1", "★");
+							if ("8".equals(month10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month15.equals("12")) {
-							if (month16.equals("11")) {
-								starMap.put("M16", "★");
+						if ("12".equals(month15)) {
+							if ("11".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("10")) {
-								starMap.put("M17", "★");
+							if ("10".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("6")) {
-							if (month16.equals("7")) {
-								starMap.put("M16", "★");
+						} else if ("6".equals(month15)) {
+							if ("7".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("8")) {
-								starMap.put("M17", "★");
+							if ("8".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -4710,623 +4923,623 @@ public class ProcessAction {
 		if (null != bLine) {
 			if (starMap.size() == 0) {
 				for (String month : bLine) {
-					// Mb1 ⑦:10、4
-					if ("Mb1".equals(month)) {
+					// Yb1 ⑦:10、4
+					if ("Yb1".equals(month)) {
 						// 左
-						if (month4.equals("10")) {
-							if (month3.equals("9")) {
-								starMap.put("M3", "★");
+						if ("10".equals(month4)) {
+							if ("9".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("8")) {
-								starMap.put("M2", "★");
+							if ("8".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("4")) {
-							if (month3.equals("5")) {
-								starMap.put("M3", "★");
+						} else if ("4".equals(month4)) {
+							if ("5".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("6")) {
-								starMap.put("M2", "★");
+							if ("6".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month4.equals("10")) {
-							if (month5.equals("9")) {
-								starMap.put("MR2", "★");
+						if ("10".equals(month4)) {
+							if ("9".equals(month5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month6.equals("8")) {
-								starMap.put("MR1", "★");
+							if ("8".equals(month6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("4")) {
-							if (month5.equals("5")) {
-								starMap.put("MR2", "★");
+						} else if ("4".equals(month4)) {
+							if ("5".equals(month5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month6.equals("6")) {
-								starMap.put("MR1", "★");
+							if ("6".equals(month6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Mb2 ⑧:11、5
-					} else if ("Mb2".equals(month)) {
+						// Yb2 ⑧:11、5
+					} else if ("Yb2".equals(month)) {
 						// 左
-						if (month5.equals("11")) {
+						if ("11".equals(month5)) {
 							if (month4.equals("10")) {
-								starMap.put("M4", "★");
-							}
-							if (month3.equals("9")) {
-								starMap.put("M3", "★");
-							}
-						} else if (month5.equals("5")) {
-							if (month4.equals("6")) {
-								starMap.put("M4", "★");
-							}
-							if (month3.equals("7")) {
-								starMap.put("M3", "★");
-							}
-						}
-						// 右
-						if (month5.equals("11")) {
-							if (month6.equals("10")) {
-								starMap.put("MR1", "★");
-							}
-							if (month1.equals("9")) {
-								starMap.put("M1", "★");
-							}
-						} else if (month5.equals("5")) {
-							if (month6.equals("6")) {
-								starMap.put("MR1", "★");
-							}
-							if (month1.equals("7")) {
-								starMap.put("M1", "★");
-							}
-						}
-						// Mb3 ⑨:12、6
-					} else if ("Mb3".equals(month)) {
-						// 左
-						if (month6.equals("12")) {
-							if (month5.equals("11")) {
-								starMap.put("M5", "★");
-							}
-							if (month4.equals("10")) {
-								starMap.put("M4", "★");
-							}
-						} else if (month6.equals("6")) {
-							if (month5.equals("7")) {
-								starMap.put("M5", "★");
-							}
-							if (month4.equals("8")) {
-								starMap.put("M4", "★");
-							}
-						}
-						// 右
-						if (month6.equals("12")) {
-							if (month1.equals("11")) {
-								starMap.put("M1", "★");
-							}
-							if (month2.equals("10")) {
-								starMap.put("M2", "★");
-							}
-						} else if (month6.equals("6")) {
-							if (month1.equals("7")) {
-								starMap.put("M1", "★");
-							}
-							if (month2.equals("8")) {
-								starMap.put("M2", "★");
-							}
-						}
-						// Mb4 ⑩:1、7
-					} else if ("Mb4".equals(month)) {
-						// 左
-						if (month7.equals("1")) {
-							if (month6.equals("12")) {
-								starMap.put("M6", "★");
-							}
-							if (month5.equals("11")) {
-								starMap.put("M5", "★");
-							}
-						} else if (month7.equals("7")) {
-							if (month6.equals("8")) {
-								starMap.put("M6", "★");
-							}
-							if (month5.equals("9")) {
-								starMap.put("M5", "★");
-							}
-						}
-						// 右
-						if (month1.equals("1")) {
-							if (month2.equals("12")) {
-								starMap.put("M2", "★");
-							}
-							if (month3.equals("11")) {
-								starMap.put("M3", "★");
-							}
-						} else if (month1.equals("7")) {
-							if (month2.equals("8")) {
-								starMap.put("M2", "★");
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 							if (month3.equals("9")) {
-								starMap.put("M3", "★");
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						}
-						// Mb5 ⑪:2、8
-					} else if ("Mb5".equals(month)) {
-						// 左
-						if (month8.equals("2")) {
-							if (month7.equals("1")) {
-								starMap.put("M7", "★");
+						} else if ("5".equals(month5)) {
+							if ("6".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month6.equals("12")) {
-								starMap.put("M6", "★");
-							}
-						} else if (month8.equals("8")) {
-							if (month7.equals("9")) {
-								starMap.put("M7", "★");
-							}
-							if (month6.equals("10")) {
-								starMap.put("M6", "★");
+							if ("7".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month2.equals("2")) {
-							if (month3.equals("1")) {
-								starMap.put("M3", "★");
+						if ("11".equals(month5)) {
+							if ("10".equals(month6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month4.equals("12")) {
-								starMap.put("M4", "★");
+							if ("9".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (month2.equals("8")) {
-							if (month3.equals("9")) {
-								starMap.put("M3", "★");
+						} else if ("5".equals("5")) {
+							if ("6".equals(month6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month4.equals("10")) {
-								starMap.put("M4", "★");
+							if ("7".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Mb6 ⑫:3、9
-					} else if ("Mb6".equals(month)) {
+						// Yb3 ⑨:12、6
+					} else if ("Yb3".equals(month)) {
 						// 左
-						if (month9.equals("3")) {
-							if (month8.equals("2")) {
-								starMap.put("M8", "★");
+						if ("12".equals(month6)) {
+							if ("11".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month7.equals("1")) {
-								starMap.put("M7", "★");
+							if ("10".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("9")) {
-							if (month8.equals("10")) {
-								starMap.put("M8", "★");
+						} else if ("6".equals(month6)) {
+							if ("7".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month7.equals("11")) {
-								starMap.put("M7", "★");
+							if ("8".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month3.equals("3")) {
-							if (month4.equals("2")) {
-								starMap.put("M4", "★");
+						if ("12".equals(month6)) {
+							if ("11".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month5.equals("1")) {
-								starMap.put("M5", "★");
+							if ("10".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month3.equals("9")) {
-							if (month4.equals("10")) {
-								starMap.put("M4", "★");
+						} else if ("6".equals(month6)) {
+							if ("7".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month5.equals("11")) {
-								starMap.put("M5", "★");
+							if ("8".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Mb7 ①:4、10
-					} else if ("Mb7".equals(month)) {
+						// Yb4 ⑩:1、7
+					} else if ("Yb4".equals(month)) {
 						// 左
-						if (month10.equals("4")) {
-							if (month9.equals("3")) {
-								starMap.put("M9", "★");
+						if ("1".equals(month7)) {
+							if ("12".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month8.equals("2")) {
-								starMap.put("M8", "★");
+							if ("11".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("10")) {
-							if (month9.equals("11")) {
-								starMap.put("M9", "★");
+						} else if ("7".equals(month7)) {
+							if ("8".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month8.equals("12")) {
-								starMap.put("M8", "★");
+							if ("9".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month4.equals("4")) {
-							if (month5.equals("3")) {
-								starMap.put("M5", "★");
+						if ("1".equals(month1)) {
+							if ("12".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month6.equals("2")) {
-								starMap.put("M6", "★");
+							if ("11".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("10")) {
-							if (month5.equals("11")) {
-								starMap.put("M5", "★");
+						} else if ("7".equals(month1)) {
+							if ("8".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month6.equals("12")) {
-								starMap.put("M6", "★");
+							if ("9".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Mb8 ②:5、11
-					} else if ("Mb8".equals(month)) {
+						// Yb5 ⑪:2、8
+					} else if ("Yb5".equals(month)) {
 						// 左
-						if (month11.equals("5")) {
-							if (month10.equals("4")) {
-								starMap.put("M10", "★");
+						if ("2".equals(month8)) {
+							if ("1".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month9.equals("3")) {
-								starMap.put("M9", "★");
+							if ("12".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("11")) {
-							if (month10.equals("12")) {
-								starMap.put("M10", "★");
+						} else if ("8".equals(month8)) {
+							if ("9".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month9.equals("1")) {
-								starMap.put("M9", "★");
+							if ("10".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month5.equals("5")) {
-							if (month6.equals("4")) {
-								starMap.put("M6", "★");
+						if ("2".equals(month2)) {
+							if ("1".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month7.equals("3")) {
-								starMap.put("M7", "★");
+							if ("12".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("11")) {
-							if (month6.equals("12")) {
-								starMap.put("M6", "★");
+						} else if ("8".equals(month2)) {
+							if ("9".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month7.equals("1")) {
-								starMap.put("M7", "★");
+							if ("10".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Mb9 ③:6、12
-					} else if ("Mb9".equals(month)) {
+						// Yb6 ⑫:3、9
+					} else if ("Yb6".equals(month)) {
 						// 左
-						if (month12.equals("6")) {
-							if (month11.equals("5")) {
-								starMap.put("M11", "★");
+						if ("3".equals(month9)) {
+							if ("2".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month10.equals("4")) {
-								starMap.put("M10", "★");
+							if ("1".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("12")) {
-							if (month11.equals("1")) {
-								starMap.put("M11", "★");
+						} else if ("9".equals(month9)) {
+							if ("10".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month10.equals("2")) {
-								starMap.put("M10", "★");
+							if ("11".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month6.equals("6")) {
-							if (month7.equals("5")) {
-								starMap.put("M7", "★");
+						if ("3".equals(month3)) {
+							if ("2".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month8.equals("4")) {
-								starMap.put("M8", "★");
+							if ("1".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("12")) {
-							if (month7.equals("1")) {
-								starMap.put("M7", "★");
+						} else if ("9".equals(month3)) {
+							if ("10".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month8.equals("2")) {
-								starMap.put("M8", "★");
+							if ("11".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Mb10 ④:7、1
-					} else if ("Mb10".equals(month)) {
+						// Yb7 ①:4、10
+					} else if ("Yb7".equals(month)) {
 						// 左
-						if (month13.equals("7")) {
-							if (month12.equals("6")) {
-								starMap.put("M12", "★");
+						if ("4".equals(month10)) {
+							if ("3".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month11.equals("5")) {
-								starMap.put("M11", "★");
+							if ("2".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("1")) {
-							if (month12.equals("2")) {
-								starMap.put("M12", "★");
+						} else if ("10".equals(month10)) {
+							if ("11".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month11.equals("3")) {
-								starMap.put("M11", "★");
+							if ("12".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month7.equals("7")) {
-							if (month8.equals("6")) {
-								starMap.put("M8", "★");
+						if ("4".equals(month4)) {
+							if ("3".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month9.equals("5")) {
-								starMap.put("M9", "★");
+							if ("2".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("1")) {
-							if (month8.equals("2")) {
-								starMap.put("M8", "★");
+						} else if ("10".equals(month4)) {
+							if ("11".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month9.equals("3")) {
-								starMap.put("M9", "★");
+							if ("12".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Mb11 ⑤:8、2
-					} else if ("Mb11".equals(month)) {
+						// Yb8 ②:5、11
+					} else if ("Yb8".equals(month)) {
 						// 左
-						if (month14.equals("8")) {
-							if (month13.equals("7")) {
-								starMap.put("M13", "★");
+						if ("5".equals(month11)) {
+							if ("4".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month12.equals("6")) {
-								starMap.put("M12", "★");
+							if ("3".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("2")) {
-							if (month13.equals("3")) {
-								starMap.put("M13", "★");
+						} else if ("11".equals(month11)) {
+							if ("12".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month12.equals("4")) {
-								starMap.put("M12", "★");
+							if ("1".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month8.equals("8")) {
-							if (month9.equals("7")) {
-								starMap.put("M9", "★");
+						if ("5".equals(month5)) {
+							if ("4".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month10.equals("6")) {
-								starMap.put("M10", "★");
+							if ("3".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("2")) {
-							if (month9.equals("3")) {
-								starMap.put("M9", "★");
+						} else if ("11".equals(month5)) {
+							if ("12".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month10.equals("4")) {
-								starMap.put("M10", "★");
+							if ("1".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+						}
+						// Yb9 ③:6、12
+					} else if ("Yb9".equals(month)) {
+						// 左
+						if ("6".equals(month12)) {
+							if ("5".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+							if ("4".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						} else if ("12".equals(month12)) {
+							if ("1".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+							if ("2".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("6".equals(month6)) {
+							if ("5".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+							if ("4".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+						} else if ("12".equals(month6)) {
+							if ("1".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+							if ("2".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+						}
+						// Yb10 ④:7、1
+					} else if ("Yb10".equals(month)) {
+						// 左
+						if ("7".equals(month13)) {
+							if ("6".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+							if ("5".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+						} else if ("1".equals(month13)) {
+							if ("2".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+							if ("3".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("7".equals(month7)) {
+							if ("6".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+							if ("5".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+						} else if ("1".equals(month7)) {
+							if ("2".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+							if ("3".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+						}
+						// Yb11 ⑤:8、2
+					} else if ("Yb11".equals(month)) {
+						// 左
+						if ("8".equals(month14)) {
+							if ("7".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
+							}
+							if ("6".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+						} else if ("2".equals(month14)) {
+							if ("3".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
+							}
+							if ("4".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("8".equals(month8)) {
+							if ("7".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+							if ("6".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						} else if ("2".equals(month8)) {
+							if ("3".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+							if ("4".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb12 ⑥:9、3
-					} else if ("Mb12".equals(month)) {
+						// Yb12 ⑥:9、3
+					} else if ("Yb12".equals(month)) {
 						// 左
-						if (month15.equals("9")) {
-							if (month14.equals("10")) {
-								starMap.put("M14", "★");
+						if ("9".equals(month15)) {
+							if ("10".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("11")) {
-								starMap.put("M13", "★");
+							if ("11".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("3")) {
-							if (month14.equals("4")) {
-								starMap.put("M14", "★");
+						} else if ("3".equals(month15)) {
+							if ("4".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("5")) {
-								starMap.put("M13", "★");
+							if ("5".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month9.equals("9")) {
-							if (month10.equals("8")) {
-								starMap.put("M10", "★");
+						if ("9".equals(month9)) {
+							if ("8".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("7")) {
-								starMap.put("M11", "★");
+							if ("7".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("3")) {
-							if (month10.equals("4")) {
-								starMap.put("M10", "★");
+						} else if ("3".equals(month9)) {
+							if ("4".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("5")) {
-								starMap.put("M11", "★");
+							if ("5".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb13 ⑦:10、4
-					} else if ("Mb13".equals(month)) {
+						// Yb13 ⑦:10、4
+					} else if ("Yb13".equals(month)) {
 						// 左
-						if (month16.equals("10")) {
-							if (month15.equals("9")) {
-								starMap.put("M15", "★");
+						if ("10".equals(month16)) {
+							if ("9".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("8")) {
-								starMap.put("M14", "★");
+							if ("8".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month16.equals("4")) {
-							if (month15.equals("5")) {
-								starMap.put("M15", "★");
+						} else if ("4".equals(month16)) {
+							if ("5".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("6")) {
-								starMap.put("M14", "★");
+							if ("6".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month10.equals("10")) {
-							if (month11.equals("9")) {
-								starMap.put("M11", "★");
+						if ("10".equals(month10)) {
+							if ("9".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("8")) {
-								starMap.put("M12", "★");
+							if ("8".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("4")) {
-							if (month11.equals("5")) {
-								starMap.put("M11", "★");
+						} else if ("4".equals(month10)) {
+							if ("5".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("6")) {
-								starMap.put("M12", "★");
+							if ("6".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb14 ⑧:11、5
-					} else if ("Mb14".equals(month)) {
+						// Yb14 ⑧:11、5
+					} else if ("Yb14".equals(month)) {
 						// 左
-						if (month17.equals("11")) {
-							if (month16.equals("10")) {
-								starMap.put("M16", "★");
+						if ("11".equals(month17)) {
+							if ("10".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("9")) {
-								starMap.put("M15", "★");
+							if ("9".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month17.equals("5")) {
-							if (month16.equals("6")) {
-								starMap.put("M16", "★");
+						} else if ("5".equals(month17)) {
+							if ("6".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("7")) {
-								starMap.put("M15", "★");
+							if ("7".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month11.equals("11")) {
-							if (month12.equals("10")) {
-								starMap.put("M12", "★");
+						if ("11".equals(month11)) {
+							if ("10".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("9")) {
-								starMap.put("M13", "★");
+							if ("9".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("5")) {
-							if (month12.equals("6")) {
-								starMap.put("M12", "★");
+						} else if ("5".equals(month11)) {
+							if ("6".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("7")) {
-								starMap.put("M13", "★");
+							if ("7".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb15 ⑨:12、6
-					} else if ("Mb15".equals(month)) {
+						// Yb15 ⑨:12、6
+					} else if ("Yb15".equals(month)) {
 						// 左
-						if (month18.equals("12")) {
-							if (month17.equals("11")) {
-								starMap.put("M17", "★");
+						if ("12".equals(month18)) {
+							if ("11".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("10")) {
-								starMap.put("M16", "★");
+							if ("10".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month18.equals("6")) {
-							if (month17.equals("7")) {
-								starMap.put("M17", "★");
+						} else if ("6".equals(month18)) {
+							if ("7".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("8")) {
-								starMap.put("M16", "★");
+							if ("8".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month12.equals("12")) {
-							if (month13.equals("11")) {
-								starMap.put("M13", "★");
+						if ("12".equals(month12)) {
+							if ("11".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("10")) {
-								starMap.put("M14", "★");
+							if ("10".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("6")) {
-							if (month13.equals("7")) {
-								starMap.put("M13", "★");
+						} else if ("6".equals(month12)) {
+							if ("7".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("8")) {
-								starMap.put("M14", "★");
+							if ("8".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb16 ⑩:1、7
-					} else if ("Mb16".equals(month)) {
+						// Yb16 ⑩:1、7
+					} else if ("Yb16".equals(month)) {
 						// 左
-						if (month1.equals("1")) {
-							if (month18.equals("12")) {
-								starMap.put("M18", "★");
+						if ("1".equals(month1)) {
+							if ("12".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("11")) {
-								starMap.put("M17", "★");
+							if ("11".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month1.equals("7")) {
-							if (month18.equals("8")) {
-								starMap.put("M18", "★");
+						} else if ("7".equals(month1)) {
+							if ("8".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("9")) {
-								starMap.put("M17", "★");
+							if ("9".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month13.equals("1")) {
-							if (month14.equals("12")) {
-								starMap.put("M14", "★");
+						if ("1".equals(month13)) {
+							if ("12".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("11")) {
-								starMap.put("M15", "★");
+							if ("11".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("7")) {
-							if (month14.equals("8")) {
-								starMap.put("M14", "★");
+						} else if ("7".equals(month13)) {
+							if ("8".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("9")) {
-								starMap.put("M15", "★");
+							if ("9".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb17 ⑪:2、8
-					} else if ("Mb17".equals(month)) {
+						// Yb17 ⑪:2、8
+					} else if ("Yb17".equals(month)) {
 						// 左
-						if (month2.equals("2")) {
-							if (month1.equals("1")) {
-								starMap.put("ML1", "★");
+						if ("2".equals(month2)) {
+							if ("1".equals(month1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("12")) {
-								starMap.put("M18", "★");
+							if ("12".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (month2.equals("8")) {
-							if (month1.equals("9")) {
-								starMap.put("ML1", "★");
+						} else if ("8".equals(month2)) {
+							if ("9".equals(month1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("10")) {
-								starMap.put("M18", "★");
+							if ("10".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month14.equals("2")) {
-							if (month15.equals("1")) {
-								starMap.put("M15", "★");
+						if ("2".equals(month14)) {
+							if ("1".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("12")) {
-								starMap.put("M16", "★");
+							if ("12".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("8")) {
-							if (month15.equals("9")) {
-								starMap.put("M15", "★");
+						} else if ("8".equals(month14)) {
+							if ("9".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("10")) {
-								starMap.put("M16", "★");
+							if ("10".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Mb18 ⑫:3、9
-					} else if ("Mb18".equals(month)) {
+						// Yb18 ⑫:3、9
+					} else if ("Yb18".equals(month)) {
 						// 左
-						if (month3.equals("3")) {
-							if (month2.equals("2")) {
-								starMap.put("ML2", "★");
+						if ("3".equals(month3)) {
+							if ("2".equals(month2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month1.equals("1")) {
-								starMap.put("ML1", "★");
+							if ("1".equals(month1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (month3.equals("9")) {
-							if (month2.equals("10")) {
-								starMap.put("ML2", "★");
+						} else if ("9".equals(month3)) {
+							if ("10".equals(month2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month1.equals("11")) {
-								starMap.put("ML1", "★");
+							if ("11".equals(month1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month15.equals("3")) {
-							if (month16.equals("2")) {
-								starMap.put("M16", "★");
+						if ("3".equals(month15)) {
+							if ("2".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("1")) {
-								starMap.put("M17", "★");
+							if ("1".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("9")) {
-							if (month16.equals("10")) {
-								starMap.put("M16", "★");
+						} else if ("9".equals(month15)) {
+							if ("10".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("11")) {
-								starMap.put("M17", "★");
+							if ("11".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -5339,623 +5552,623 @@ public class ProcessAction {
 		if (null != aLine) {
 			if (starMap.size() == 0) {
 				for (String month : aLine) {
-					// Ma1 ⑩:1、7
-					if ("Ma1".equals(month)) {
+					// Ya1 ⑩:1、7
+					if ("Ya1".equals(month)) {
 						// 左
-						if (month4.equals("1")) {
-							if (month3.equals("12")) {
-								starMap.put("M3", "★");
+						if ("1".equals(month4)) {
+							if ("12".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("11")) {
-								starMap.put("M2", "★");
+							if ("11".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("7")) {
-							if (month3.equals("8")) {
-								starMap.put("M3", "★");
+						} else if ("7".equals(month4)) {
+							if ("8".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month2.equals("9")) {
-								starMap.put("M2", "★");
+							if ("9".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month7.equals("1")) {
-							if (month8.equals("12")) {
-								starMap.put("MR2", "★");
+						if ("1".equals(month7)) {
+							if ("12".equals(month8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month9.equals("11")) {
-								starMap.put("MR1", "★");
+							if ("11".equals(month9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("7")) {
-							if (month8.equals("8")) {
-								starMap.put("MR2", "★");
+						} else if ("7".equals(month7)) {
+							if ("8".equals(month8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (month9.equals("9")) {
-								starMap.put("MR1", "★");
+							if ("9".equals(month9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Ma2 ⑪:2、8
-					} else if ("Ma2".equals(month)) {
+						// Ya2 ⑪:2、8
+					} else if ("Ya2".equals(month)) {
 						// 左
-						if (month5.equals("2")) {
-							if (month4.equals("1")) {
-								starMap.put("M4", "★");
+						if ("2".equals(month5)) {
+							if ("1".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month3.equals("12")) {
-								starMap.put("M3", "★");
+							if ("12".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("8")) {
-							if (month4.equals("9")) {
-								starMap.put("M4", "★");
+						} else if ("8".equals(month5)) {
+							if ("9".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month3.equals("10")) {
-								starMap.put("M3", "★");
+							if ("10".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month8.equals("2")) {
-							if (month9.equals("1")) {
-								starMap.put("MR1", "★");
+						if ("2".equals(month8)) {
+							if ("1".equals(month9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month1.equals("12")) {
-								starMap.put("M1", "★");
+							if ("12".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("8")) {
-							if (month9.equals("9")) {
-								starMap.put("MR1", "★");
+						} else if ("8".equals(month8)) {
+							if ("9".equals(month9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (month1.equals("10")) {
-								starMap.put("M1", "★");
+							if ("10".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Ma3 ⑫:3、9
-					} else if ("Ma3".equals(month)) {
+						// Ya3 ⑫:3、9
+					} else if ("Ya3".equals(month)) {
 						// 左
-						if (month6.equals("3")) {
-							if (month5.equals("2")) {
-								starMap.put("M5", "★");
+						if ("3".equals(month6)) {
+							if ("2".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month4.equals("1")) {
-								starMap.put("M4", "★");
+							if ("1".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("9")) {
-							if (month5.equals("10")) {
-								starMap.put("M5", "★");
+						} else if ("9".equals(month6)) {
+							if ("10".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month4.equals("11")) {
-								starMap.put("M4", "★");
+							if ("11".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month9.equals("3")) {
-							if (month1.equals("2")) {
-								starMap.put("M1", "★");
+						if ("3".equals(month9)) {
+							if ("2".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month2.equals("1")) {
-								starMap.put("M2", "★");
+							if ("1".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("9")) {
-							if (month1.equals("10")) {
-								starMap.put("M1", "★");
+						} else if ("9".equals(month9)) {
+							if ("10".equals(month1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (month2.equals("11")) {
-								starMap.put("M2", "★");
+							if ("11".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Ma4 ①:4、10
-					} else if ("Ma4".equals(month)) {
+						// Ya4 ①:4、10
+					} else if ("Ya4".equals(month)) {
 						// 左
-						if (month7.equals("4")) {
-							if (month6.equals("3")) {
-								starMap.put("M6", "★");
+						if ("4".equals(month7)) {
+							if ("3".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month5.equals("2")) {
-								starMap.put("M5", "★");
+							if ("2".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("10")) {
-							if (month6.equals("11")) {
-								starMap.put("M6", "★");
+						} else if ("10".equals("10")) {
+							if ("11".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month5.equals("12")) {
-								starMap.put("M5", "★");
+							if ("12".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month1.equals("4")) {
-							if (month2.equals("3")) {
-								starMap.put("M2", "★");
+						if ("4".equals(month1)) {
+							if ("3".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month3.equals("2")) {
-								starMap.put("M3", "★");
+							if ("2".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (month1.equals("10")) {
-							if (month2.equals("11")) {
-								starMap.put("M2", "★");
+						} else if ("10".equals(month1)) {
+							if ("11".equals(month2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (month3.equals("12")) {
-								starMap.put("M3", "★");
+							if ("12".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Ma5 ②:5、11
-					} else if ("Ma5".equals(month)) {
+						// Ya5 ②:5、11
+					} else if ("Ya5".equals(month)) {
 						// 左
-						if (month8.equals("5")) {
-							if (month7.equals("4")) {
-								starMap.put("M7", "★");
+						if ("5".equals(month8)) {
+							if ("4".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month6.equals("3")) {
-								starMap.put("M6", "★");
+							if ("3".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("11")) {
-							if (month7.equals("12")) {
-								starMap.put("M7", "★");
+						} else if ("11".equals(month8)) {
+							if ("12".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month6.equals("1")) {
-								starMap.put("M6", "★");
+							if ("1".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month2.equals("5")) {
-							if (month3.equals("4")) {
-								starMap.put("M3", "★");
+						if ("5".equals(month2)) {
+							if ("4".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month4.equals("3")) {
-								starMap.put("M4", "★");
+							if ("3".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (month2.equals("11")) {
-							if (month3.equals("12")) {
-								starMap.put("M3", "★");
+						} else if ("11".equals(month2)) {
+							if ("12".equals(month3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (month4.equals("1")) {
-								starMap.put("M4", "★");
+							if ("1".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Ma6 ③:6、12
-					} else if ("Ma6".equals(month)) {
+						// Ya6 ③:6、12
+					} else if ("Ya6".equals(month)) {
 						// 左
-						if (month9.equals("6")) {
-							if (month8.equals("5")) {
-								starMap.put("M8", "★");
+						if ("6".equals(month9)) {
+							if ("5".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month7.equals("4")) {
-								starMap.put("M7", "★");
+							if ("4".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("12")) {
-							if (month8.equals("1")) {
-								starMap.put("M8", "★");
+						} else if ("12".equals(month9)) {
+							if ("1".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month7.equals("2")) {
-								starMap.put("M7", "★");
+							if ("2".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month3.equals("6")) {
-							if (month4.equals("5")) {
-								starMap.put("M4", "★");
+						if ("6".equals(month3)) {
+							if ("5".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month5.equals("4")) {
-								starMap.put("M5", "★");
+							if ("4".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (month3.equals("12")) {
-							if (month4.equals("1")) {
-								starMap.put("M4", "★");
+						} else if ("12".equals(month3)) {
+							if ("1".equals(month4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (month5.equals("2")) {
-								starMap.put("M5", "★");
+							if ("2".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Ma7 ④:7、1
-					} else if ("Ma7".equals(month)) {
+						// Ya7 ④:7、1
+					} else if ("Ya7".equals(month)) {
 						// 左
-						if (month10.equals("7")) {
-							if (month9.equals("6")) {
-								starMap.put("M9", "★");
+						if ("7".equals(month10)) {
+							if ("6".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month8.equals("5")) {
-								starMap.put("M8", "★");
+							if ("5".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("1")) {
-							if (month9.equals("2")) {
-								starMap.put("M9", "★");
+						} else if ("1".equals(month10)) {
+							if ("2".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month8.equals("3")) {
-								starMap.put("M8", "★");
+							if ("3".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month4.equals("7")) {
-							if (month5.equals("6")) {
-								starMap.put("M5", "★");
+						if ("7".equals(month4)) {
+							if ("6".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month6.equals("5")) {
-								starMap.put("M6", "★");
+							if ("5".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("1")) {
-							if (month5.equals("2")) {
-								starMap.put("M5", "★");
+						} else if ("1".equals(month4)) {
+							if ("2".equals(month5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (month6.equals("3")) {
-								starMap.put("M6", "★");
+							if ("3".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Ma8 ⑤:8、2
-					} else if ("Ma8".equals(month)) {
+						// Ya8 ⑤:8、2
+					} else if ("Ya8".equals(month)) {
 						// 左
-						if (month11.equals("8")) {
-							if (month10.equals("7")) {
-								starMap.put("M10", "★");
+						if ("8".equals(month11)) {
+							if ("7".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month9.equals("6")) {
-								starMap.put("M9", "★");
+							if ("6".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("2")) {
-							if (month10.equals("3")) {
-								starMap.put("M10", "★");
+						} else if ("2".equals(month11)) {
+							if ("3".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month9.equals("4")) {
-								starMap.put("M9", "★");
+							if ("4".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month5.equals("8")) {
-							if (month6.equals("7")) {
-								starMap.put("M6", "★");
+						if ("8".equals(month5)) {
+							if ("7".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month7.equals("6")) {
-								starMap.put("M7", "★");
+							if ("6".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("2")) {
-							if (month6.equals("3")) {
-								starMap.put("M6", "★");
+						} else if ("2".equals(month5)) {
+							if ("3".equals(month6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (month7.equals("4")) {
-								starMap.put("M7", "★");
+							if ("4".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
-						// Ma9 ⑥:9、3
-					} else if ("Ma9".equals(month)) {
+						// Ya9 ⑥:9、3
+					} else if ("Ya9".equals(month)) {
 						// 左
-						if (month12.equals("9")) {
-							if (month11.equals("8")) {
-								starMap.put("M11", "★");
+						if ("9".equals(month12)) {
+							if ("8".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month10.equals("7")) {
-								starMap.put("M10", "★");
+							if ("7".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("3")) {
-							if (month11.equals("4")) {
-								starMap.put("M11", "★");
+						} else if ("3".equals(month12)) {
+							if ("4".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month10.equals("5")) {
-								starMap.put("M10", "★");
+							if ("5".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month6.equals("9")) {
-							if (month7.equals("8")) {
-								starMap.put("M7", "★");
+						if ("9".equals(month6)) {
+							if ("8".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month8.equals("7")) {
-								starMap.put("M8", "★");
+							if ("7".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("3")) {
-							if (month7.equals("4")) {
-								starMap.put("M7", "★");
+						} else if ("3".equals(month6)) {
+							if ("4".equals(month7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (month8.equals("5")) {
-								starMap.put("M8", "★");
+							if ("5".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
-						// Ma10 ⑦:10、4
-					} else if ("Ma10".equals(month)) {
+						// Ya10 ⑦:10、4
+					} else if ("Ya10".equals(month)) {
 						// 左
-						if (month13.equals("10")) {
-							if (month12.equals("9")) {
-								starMap.put("M12", "★");
+						if ("10".equals(month13)) {
+							if ("9".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month11.equals("8")) {
-								starMap.put("M11", "★");
+							if ("8".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("4")) {
-							if (month12.equals("5")) {
-								starMap.put("M12", "★");
+						} else if ("4".equals(month13)) {
+							if ("5".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month11.equals("6")) {
-								starMap.put("M11", "★");
+							if ("6".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month7.equals("10")) {
-							if (month8.equals("9")) {
-								starMap.put("M8", "★");
+						if ("10".equals(month7)) {
+							if ("9".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month9.equals("8")) {
-								starMap.put("M9", "★");
+							if ("8".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (month7.equals("4")) {
-							if (month8.equals("5")) {
-								starMap.put("M8", "★");
+						} else if ("4".equals(month7)) {
+							if ("5".equals(month8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (month9.equals("6")) {
-								starMap.put("M9", "★");
+							if ("6".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
-						// Ma11 ⑧:11、5
-					} else if ("Ma11".equals(month)) {
+						// Ya11 ⑧:11、5
+					} else if ("Ya11".equals(month)) {
 						// 左
-						if (month14.equals("11")) {
-							if (month13.equals("10")) {
-								starMap.put("M13", "★");
+						if ("11".equals(month14)) {
+							if ("10".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month12.equals("9")) {
-								starMap.put("M12", "★");
+							if ("9".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("5")) {
-							if (month13.equals("6")) {
-								starMap.put("M13", "★");
+						} else if ("5".equals(month14)) {
+							if ("6".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month12.equals("7")) {
-								starMap.put("M12", "★");
+							if ("7".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month8.equals("11")) {
-							if (month9.equals("10")) {
-								starMap.put("M9", "★");
+						if ("11".equals(month8)) {
+							if ("10".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month10.equals("9")) {
-								starMap.put("M10", "★");
+							if ("9".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (month8.equals("5")) {
-							if (month9.equals("6")) {
-								starMap.put("M9", "★");
+						} else if ("5".equals(month8)) {
+							if ("6".equals(month9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (month10.equals("7")) {
-								starMap.put("M10", "★");
+							if ("7".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma12 ⑨:12、6
-					} else if ("Ma12".equals(month)) {
+						// Ya12 ⑨:12、6
+					} else if ("Ya12".equals(month)) {
 						// 左
-						if (month15.equals("12")) {
-							if (month14.equals("11")) {
-								starMap.put("M14", "★");
+						if ("12".equals(month15)) {
+							if ("11".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("10")) {
-								starMap.put("M13", "★");
+							if ("10".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("6")) {
-							if (month14.equals("7")) {
-								starMap.put("M14", "★");
+						} else if ("6".equals(month15)) {
+							if ("7".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month13.equals("8")) {
-								starMap.put("M13", "★");
+							if ("8".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month9.equals("12")) {
-							if (month10.equals("11")) {
-								starMap.put("M10", "★");
+						if ("12".equals(month9)) {
+							if ("11".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("10")) {
-								starMap.put("M11", "★");
+							if ("10".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (month9.equals("6")) {
-							if (month10.equals("7")) {
-								starMap.put("M10", "★");
+						} else if ("6".equals(month9)) {
+							if ("7".equals(month10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (month11.equals("8")) {
-								starMap.put("M11", "★");
+							if ("8".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma13 ⑩:1、7
-					} else if ("Ma13".equals(month)) {
+						// Ya13 ⑩:1、7
+					} else if ("Ya13".equals(month)) {
 						// 左
-						if (month16.equals("1")) {
-							if (month15.equals("12")) {
-								starMap.put("M15", "★");
+						if ("1".equals(month16)) {
+							if ("12".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("11")) {
-								starMap.put("M14", "★");
+							if ("11".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month16.equals("7")) {
-							if (month15.equals("8")) {
-								starMap.put("M15", "★");
+						} else if ("7".equals(month16)) {
+							if ("8".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month14.equals("9")) {
-								starMap.put("M14", "★");
+							if ("9".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month10.equals("1")) {
-							if (month11.equals("12")) {
-								starMap.put("M11", "★");
+						if ("1".equals(month10)) {
+							if ("12".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("11")) {
-								starMap.put("M12", "★");
+							if ("11".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (month10.equals("7")) {
-							if (month11.equals("8")) {
-								starMap.put("M11", "★");
+						} else if ("7".equals(month10)) {
+							if ("8".equals(month11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (month12.equals("9")) {
-								starMap.put("M12", "★");
+							if ("9".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma14 ⑪:2、8
-					} else if ("Ma14".equals(month)) {
+						// Ya14 ⑪:2、8
+					} else if ("Ya14".equals(month)) {
 						// 左
-						if (month17.equals("2")) {
-							if (month16.equals("1")) {
-								starMap.put("M16", "★");
+						if ("2".equals(month17)) {
+							if ("1".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("12")) {
-								starMap.put("M15", "★");
+							if ("12".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month17.equals("8")) {
-							if (month16.equals("9")) {
-								starMap.put("M16", "★");
+						} else if ("8".equals(month17)) {
+							if ("9".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month15.equals("10")) {
-								starMap.put("M15", "★");
+							if ("10".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month11.equals("2")) {
-							if (month12.equals("1")) {
-								starMap.put("M12", "★");
+						if ("2".equals(month11)) {
+							if ("1".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("12")) {
-								starMap.put("M13", "★");
+							if ("12".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (month11.equals("8")) {
-							if (month12.equals("9")) {
-								starMap.put("M12", "★");
+						} else if ("8".equals(month11)) {
+							if ("9".equals(month12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (month13.equals("10")) {
-								starMap.put("M13", "★");
+							if ("10".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma15 ⑫:3、9
-					} else if ("Ma15".equals(month)) {
+						// Ya15 ⑫:3、9
+					} else if ("Ya15".equals(month)) {
 						// 左
-						if (month18.equals("3")) {
-							if (month17.equals("2")) {
-								starMap.put("M17", "★");
+						if ("3".equals(month18)) {
+							if ("2".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("1")) {
-								starMap.put("M16", "★");
+							if ("1".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month18.equals("9")) {
-							if (month17.equals("10")) {
-								starMap.put("M17", "★");
+						} else if ("9".equals(month18)) {
+							if ("10".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (month16.equals("11")) {
-								starMap.put("M16", "★");
+							if ("11".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month12.equals("3")) {
-							if (month13.equals("2")) {
-								starMap.put("M13", "★");
+						if ("3".equals(month12)) {
+							if ("2".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("1")) {
-								starMap.put("M14", "★");
+							if ("1".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (month12.equals("9")) {
-							if (month13.equals("10")) {
-								starMap.put("M13", "★");
+						} else if ("9".equals(month12)) {
+							if ("10".equals(month13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (month14.equals("11")) {
-								starMap.put("M14", "★");
+							if ("11".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma16 ①:4、10
-					} else if ("Ma16".equals(month)) {
+						// Ya16 ①:4、10
+					} else if ("Ya16".equals(month)) {
 						// 左
-						if (month4.equals("4")) {
-							if (month18.equals("3")) {
-								starMap.put("M18", "★");
+						if ("4".equals(month4)) {
+							if ("3".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("2")) {
-								starMap.put("M17", "★");
+							if ("2".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month4.equals("10")) {
-							if (month18.equals("11")) {
-								starMap.put("M18", "★");
+						} else if ("10".equals(month4)) {
+							if ("11".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (month17.equals("12")) {
-								starMap.put("M17", "★");
+							if ("12".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month13.equals("4")) {
-							if (month14.equals("3")) {
-								starMap.put("M14", "★");
+						if ("4".equals(month13)) {
+							if ("3".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("2")) {
-								starMap.put("M15", "★");
+							if ("2".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (month13.equals("10")) {
-							if (month14.equals("11")) {
-								starMap.put("M14", "★");
+						} else if ("10".equals(month13)) {
+							if ("11".equals(month14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (month15.equals("12")) {
-								starMap.put("M15", "★");
+							if ("12".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma17 ②:5、11
-					} else if ("Ma17".equals(month)) {
+						// Ya17 ②:5、11
+					} else if ("Ya17".equals(month)) {
 						// 左
-						if (month5.equals("5")) {
-							if (month4.equals("4")) {
-								starMap.put("ML1", "★");
+						if ("5".equals(month5)) {
+							if ("4".equals(month4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("3")) {
-								starMap.put("M18", "★");
+							if ("3".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (month5.equals("11")) {
-							if (month4.equals("12")) {
-								starMap.put("ML1", "★");
+						} else if ("11".equals(month5)) {
+							if ("12".equals(month4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (month18.equals("1")) {
-								starMap.put("M18", "★");
+							if ("1".equals(month18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month14.equals("5")) {
-							if (month15.equals("4")) {
-								starMap.put("M15", "★");
+						if ("5".equals(month14)) {
+							if ("4".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("3")) {
-								starMap.put("M16", "★");
+							if ("3".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (month14.equals("11")) {
-							if (month15.equals("12")) {
-								starMap.put("M15", "★");
+						} else if ("11".equals(month14)) {
+							if ("12".equals(month15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (month16.equals("1")) {
-								starMap.put("M16", "★");
+							if ("1".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Ma18 ③:6、12
-					} else if ("Ma18".equals(month)) {
+						// Ya18 ③:6、12
+					} else if ("Ya18".equals(month)) {
 						// 左
-						if (month6.equals("6")) {
-							if (month5.equals("5")) {
-								starMap.put("ML2", "★");
+						if ("6".equals(month6)) {
+							if ("5".equals(month5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month4.equals("4")) {
-								starMap.put("ML1", "★");
+							if ("4".equals(month4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (month6.equals("12")) {
-							if (month5.equals("1")) {
-								starMap.put("ML2", "★");
+						} else if ("12".equals(month6)) {
+							if ("1".equals(month5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (month4.equals("2")) {
-								starMap.put("ML1", "★");
+							if ("2".equals(month4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (month15.equals("6")) {
-							if (month16.equals("5")) {
-								starMap.put("M16", "★");
+						if ("6".equals(month15)) {
+							if ("5".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("4")) {
-								starMap.put("M17", "★");
+							if ("4".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (month15.equals("12")) {
-							if (month16.equals("1")) {
-								starMap.put("M16", "★");
+						} else if ("12".equals(month15)) {
+							if ("1".equals(month16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (month17.equals("2")) {
-								starMap.put("M17", "★");
+							if ("2".equals(month17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -5963,6 +6176,7 @@ public class ProcessAction {
 				}
 			}
 		}
+
 		// 日の行ポイントの数字★を付ける
 		aLine = new ArrayList<String>();
 		bLine = new ArrayList<String>();
@@ -5971,626 +6185,628 @@ public class ProcessAction {
 
 		// 行を分類する(a,b,c,dを分類)
 		this.lineSortPro(dayMaruResult, aLine, bLine, cLine, dLine);
+
 		// 先にD行で〇を付けた数字を見る、D行の数字を見た結果がなければ、C行を見る...の順番に。
 		if (null != dLine) {
 			for (String day : dLine) {
-				// Dd1 ①:4、10
-				if ("Dd1".equals(day)) {
+				// Yd1 ①:4、10
+				if ("Yd1".equals(day)) {
 					// 左
-					if (day4.equals("4")) {
-						if (day3.equals("3")) {
-							starMap.put("D3", "★");
+					if ("4".equals(day4)) {
+						if (day3.equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (day2.equals("2")) {
-							starMap.put("D2", "★");
+						if ("2".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
-					} else if (day4.equals("10")) {
-						if (day3.equals("11")) {
-							starMap.put("D3", "★");
+					} else if ("10".equals(day4)) {
+						if ("11".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-						if (day2.equals("12")) {
-							starMap.put("D2", "★");
+						if ("12".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day10.equals("4")) {
-						if (day11.equals("3")) {
-							starMap.put("DR2", "★");
+					if ("4".equals(day10)) {
+						if ("3".equals(day11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (day12.equals("2")) {
-							starMap.put("DR1", "★");
+						if ("2".equals(day12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-					} else if (day10.equals("10")) {
-						if (day11.equals("11")) {
-							starMap.put("DR2", "★");
+					} else if ("10".equals(day10)) {
+						if ("11".equals(day11)) {
+							starMap.put("YR2", TEXT.RED_STAR);
 						}
-						if (day12.equals("12")) {
-							starMap.put("DR1", "★");
+						if ("12".equals(day12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
 					}
-					// Dd2 ②:5、11
-				} else if ("Dd2".equals(day)) {
+					// Yd2 ②:5、11
+				} else if ("Yd2".equals(day)) {
 					// 左
-					if (day5.equals("5")) {
-						if (day4.equals("4")) {
-							starMap.put("D4", "★");
+					if ("5".equals(day5)) {
+						if ("4".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (day3.equals("3")) {
-							starMap.put("D3", "★");
+						if ("3".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
-					} else if (day5.equals("11")) {
-						if (day4.equals("12")) {
-							starMap.put("D4", "★");
+					} else if ("11".equals(day5)) {
+						if ("12".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
 						}
-						if (day3.equals("1")) {
-							starMap.put("D3", "★");
+						if ("1".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day11.equals("5")) {
-						if (day12.equals("4")) {
-							starMap.put("DR1", "★");
+					if ("5".equals(day11)) {
+						if ("4".equals(day12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
 						}
-						if (day1.equals("3")) {
-							starMap.put("D1", "★");
+						if ("3".equals(day1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+					} else if ("11".equals(day11)) {
+						if ("12".equals(day12)) {
+							starMap.put("YR1", TEXT.RED_STAR);
+						}
+						if ("1".equals(day1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+					}
+					// Yd3 ③:6、12
+				} else if ("Yd3".equals(day)) {
+					// 左
+					if ("6".equals(day6)) {
+						if ("5".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("4".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					} else if ("12".equals(day6)) {
+						if ("1".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("2".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("6".equals(day12)) {
+						if ("5".equals(day1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+						if ("4".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+					} else if ("12".equals(day12)) {
+						if ("1".equals(day1)) {
+							starMap.put("Y1", TEXT.RED_STAR);
+						}
+						if ("2".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+					}
+					// Yd4 ④:7、1
+				} else if ("Yd4".equals(day)) {
+					// 左
+					if ("7".equals(day7)) {
+						if ("6".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("5".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					} else if ("1".equals(day7)) {
+						if ("2".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("3".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("7".equals(day1)) {
+						if ("6".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+						if ("5".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+					} else if ("1".equals(day1)) {
+						if ("2".equals(day2)) {
+							starMap.put("Y2", TEXT.RED_STAR);
+						}
+						if ("3".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+					}
+					// Yd5 ⑤:2、8
+				} else if ("Yd5".equals(day)) {
+					// 左
+					if ("8".equals(day8)) {
+						if ("7".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("6".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					} else if ("2".equals(day8)) {
+						if ("3".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("4".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("8".equals(day2)) {
+						if ("7".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+						if ("6".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					} else if ("2".equals(day2)) {
+						if ("3".equals(day3)) {
+							starMap.put("Y3", TEXT.RED_STAR);
+						}
+						if ("4".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+					}
+					// Yd6 ⑥:3、9
+				} else if ("Yd6".equals(day)) {
+					// 左
+					if ("9".equals(day9)) {
+						if ("8".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("7".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					} else if ("3".equals(day9)) {
+						if ("4".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("5".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("9".equals(day3)) {
+						if ("8".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+						if ("7".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					} else if ("3".equals(day3)) {
+						if ("4".equals(day4)) {
+							starMap.put("Y4", TEXT.RED_STAR);
+						}
+						if ("5".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+					}
+					// Yd7 ⑦:4、10
+				} else if ("Yd7".equals(day)) {
+					// 左
+					if ("10".equals(day10)) {
+						if ("9".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("8".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					} else if ("4".equals(day10)) {
+						if ("5".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("6".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("10".equals(day4)) {
+						if ("9".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("8".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					} else if ("4".equals(day4)) {
+						if ("5".equals(day5)) {
+							starMap.put("Y5", TEXT.RED_STAR);
+						}
+						if ("6".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+					}
+					// Yd8 ⑧:5、11
+				} else if ("Yd8".equals(day)) {
+					// 左
+					if ("11".equals(day11)) {
+						if ("10".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("9".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					} else if ("5".equals(day11)) {
+						if ("6".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("7".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("11".equals(day5)) {
+						if ("10".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("9".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					} else if ("5".equals(day5)) {
+						if ("6".equals(day6)) {
+							starMap.put("Y6", TEXT.RED_STAR);
+						}
+						if ("7".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+					}
+					// Yd9 ⑨:6、12
+				} else if ("Yd9".equals(day)) {
+					// 左
+					if ("12".equals(day12)) {
+						if ("11".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("10".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					} else if ("6".equals(day12)) {
+						if ("7".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("8".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("12".equals(day6)) {
+						if ("11".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("10".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					} else if ("6".equals(day6)) {
+						if ("7".equals(day7)) {
+							starMap.put("Y7", TEXT.RED_STAR);
+						}
+						if ("8".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+					}
+					// Yd10 ⑩:1、7
+				} else if ("Yd10".equals(day)) {
+					// 左
+					if ("1".equals(day13)) {
+						if ("12".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("11".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					} else if ("7".equals(day13)) {
+						if ("8".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("9".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("1".equals(day7)) {
+						if ("12".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("11".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					} else if ("7".equals(day7)) {
+						if ("8".equals(day8)) {
+							starMap.put("Y8", TEXT.RED_STAR);
+						}
+						if ("9".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+					}
+					// Yd11 ⑪:2、8
+				} else if ("Yd11".equals(day)) {
+					// 左
+					if ("2".equals(day14)) {
+						if ("1".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+						if ("12".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					} else if ("8".equals(day14)) {
+						if ("9".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+						if ("10".equals("day12")) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("2".equals(day8)) {
+						if ("1".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("12".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					} else if ("8".equals(day8)) {
+						if ("9".equals(day9)) {
+							starMap.put("Y9", TEXT.RED_STAR);
+						}
+						if ("10".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd12 ⑫:3、9
+				} else if ("Yd12".equals(day)) {
+					// 左
+					if ("3".equals(day15)) {
+						if ("2".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+						if ("1".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+					} else if ("9".equals(day15)) {
+						if ("10".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+						if ("1".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("3".equals(day9)) {
+						if ("2".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("1".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					} else if ("9".equals(day9)) {
+						if ("10".equals(day10)) {
+							starMap.put("Y10", TEXT.RED_STAR);
+						}
+						if ("11".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd13 ①:4、10
+				} else if ("Yd13".equals(day)) {
+					// 左
+					if ("4".equals(day16)) {
+						if ("3".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+						if ("2".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+					} else if ("10".equals(day16)) {
+						if ("11".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+						if ("12".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("4".equals(day10)) {
+						if ("3".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("2".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					} else if ("10".equals(day10)) {
+						if ("11".equals(day11)) {
+							starMap.put("Y11", TEXT.RED_STAR);
+						}
+						if ("12".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+					}
+
+					// Yd14 ②:5、11
+				} else if ("Yd14".equals(day)) {
+					// 左
+					if ("5".equals(day17)) {
+						if ("4".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
+						}
+						if ("3".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+					} else if ("11".equals(day17)) {
+						if ("12".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
+						}
+						if ("13".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
+						}
+					}
+					// 右
+					if ("5".equals(day11)) {
+
+						if ("4".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
+						}
+						if ("3".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					} else if (day11.equals("11")) {
-						if (day12.equals("12")) {
-							starMap.put("DR1", "★");
+						if ("12".equals(day12)) {
+							starMap.put("Y12", TEXT.RED_STAR);
 						}
-						if (day1.equals("1")) {
-							starMap.put("D1", "★");
+						if ("13".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
 					}
-					// Dd3 ③:6、12
-				} else if ("Dd3".equals(day)) {
+
+					// Yd15 ③:6、12
+				} else if ("Yd15".equals(day)) {
 					// 左
-					if (day6.equals("6")) {
-						if (day5.equals("5")) {
-							starMap.put("D5", "★");
+					if ("6".equals(day18)) {
+						if ("5".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (day4.equals("4")) {
-							starMap.put("D4", "★");
+						if ("4".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (day6.equals("12")) {
-						if (day5.equals("1")) {
-							starMap.put("D5", "★");
+					} else if ("12".equals(day18)) {
+						if ("1".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-						if (day4.equals("2")) {
-							starMap.put("D4", "★");
+						if ("2".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day12.equals("6")) {
-						if (day1.equals("5")) {
-							starMap.put("D1", "★");
+					if ("6".equals(day12)) {
+						if ("5".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (day2.equals("4")) {
-							starMap.put("D2", "★");
+						if ("4".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-					} else if (day12.equals("12")) {
-						if (day1.equals("1")) {
-							starMap.put("D1", "★");
+					} else if ("12".equals(day12)) {
+						if ("1".equals(day13)) {
+							starMap.put("Y13", TEXT.RED_STAR);
 						}
-						if (day2.equals("2")) {
-							starMap.put("D2", "★");
+						if ("2".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
 					}
-					// Dd4 ④:7、1
-				} else if ("Dd4".equals(day)) {
+
+					// Yd16 ④:7、1
+				} else if ("Yd16".equals(day)) {
 					// 左
-					if (day7.equals("7")) {
-						if (day6.equals("6")) {
-							starMap.put("D6", "★");
+					if ("7".equals(day7)) {
+						if ("6".equals(day18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (day5.equals("5")) {
-							starMap.put("D5", "★");
+						if ("5".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (day7.equals("1")) {
-						if (day6.equals("2")) {
-							starMap.put("D6", "★");
+					} else if ("1".equals(day7)) {
+						if ("2".equals(day18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
-						if (day5.equals("3")) {
-							starMap.put("D5", "★");
+						if ("3".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day1.equals("7")) {
-						if (day2.equals("6")) {
-							starMap.put("D2", "★");
+					if ("7".equals(day13)) {
+						if ("6".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (day3.equals("5")) {
-							starMap.put("D3", "★");
+						if ("5".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-					} else if (day1.equals("1")) {
-						if (day2.equals("2")) {
-							starMap.put("D2", "★");
+					} else if ("1".equals(day13)) {
+						if ("2".equals(day14)) {
+							starMap.put("Y14", TEXT.RED_STAR);
 						}
-						if (day3.equals("3")) {
-							starMap.put("D3", "★");
+						if ("3".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
 					}
-					// Dd5 ⑤:2、8
-				} else if ("Dd5".equals(day)) {
+
+					// Yd17 ⑤:2、8
+				} else if ("Yd17".equals(day)) {
 					// 左
-					if (day8.equals("8")) {
-						if (day7.equals("7")) {
-							starMap.put("D7", "★");
+					if ("8".equals(day8)) {
+						if ("7".equals(day7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (day6.equals("6")) {
-							starMap.put("D6", "★");
+						if ("6".equals(day18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					} else if (day8.equals("2")) {
-						if (day7.equals("3")) {
-							starMap.put("D7", "★");
+						if ("3".equals(day7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-						if (day6.equals("4")) {
-							starMap.put("D6", "★");
-						}
-					}
-					// 右
-					if (day2.equals("8")) {
-						if (day3.equals("7")) {
-							starMap.put("D3", "★");
-						}
-						if (day4.equals("6")) {
-							starMap.put("D4", "★");
-						}
-					} else if (day2.equals("2")) {
-						if (day3.equals("3")) {
-							starMap.put("D3", "★");
-						}
-						if (day4.equals("4")) {
-							starMap.put("D4", "★");
-						}
-					}
-					// Dd6 ⑥:3、9
-				} else if ("Dd6".equals(day)) {
-					// 左
-					if (day9.equals("9")) {
-						if (day8.equals("8")) {
-							starMap.put("D8", "★");
-						}
-						if (day7.equals("7")) {
-							starMap.put("D7", "★");
-						}
-					} else if (day9.equals("3")) {
-						if (day8.equals("4")) {
-							starMap.put("D8", "★");
-						}
-						if (day7.equals("5")) {
-							starMap.put("D7", "★");
+						if ("4".equals(day18)) {
+							starMap.put("Y18", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day3.equals("9")) {
-						if (day4.equals("8")) {
-							starMap.put("D4", "★");
+					if ("8".equals(day14)) {
+						if ("7".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (day5.equals("7")) {
-							starMap.put("D5", "★");
+						if ("6".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-					} else if (day3.equals("3")) {
-						if (day4.equals("4")) {
-							starMap.put("D4", "★");
+					} else if ("2".equals(day14)) {
+						if ("3".equals(day15)) {
+							starMap.put("Y15", TEXT.RED_STAR);
 						}
-						if (day5.equals("5")) {
-							starMap.put("D5", "★");
-						}
-					}
-					// Dd7 ⑦:4、10
-				} else if ("Dd7".equals(day)) {
-					// 左
-					if (day10.equals("10")) {
-						if (day9.equals("9")) {
-							starMap.put("D9", "★");
-						}
-						if (day8.equals("8")) {
-							starMap.put("D8", "★");
-						}
-					} else if (day10.equals("4")) {
-						if (day9.equals("5")) {
-							starMap.put("D9", "★");
-						}
-						if (day8.equals("6")) {
-							starMap.put("D8", "★");
-						}
-					}
-					// 右
-					if (day4.equals("10")) {
-						if (day5.equals("9")) {
-							starMap.put("D5", "★");
-						}
-						if (day6.equals("8")) {
-							starMap.put("D6", "★");
-						}
-					} else if (day4.equals("4")) {
-						if (day5.equals("5")) {
-							starMap.put("D5", "★");
-						}
-						if (day6.equals("6")) {
-							starMap.put("D6", "★");
-						}
-					}
-					// Dd8 ⑧:5、11
-				} else if ("Dd8".equals(day)) {
-					// 左
-					if (day11.equals("11")) {
-						if (day10.equals("10")) {
-							starMap.put("D10", "★");
-						}
-						if (day9.equals("9")) {
-							starMap.put("D9", "★");
-						}
-					} else if (day11.equals("5")) {
-						if (day10.equals("6")) {
-							starMap.put("D10", "★");
-						}
-						if (day9.equals("7")) {
-							starMap.put("D9", "★");
-						}
-					}
-					// 右
-					if (day5.equals("11")) {
-						if (day6.equals("10")) {
-							starMap.put("D6", "★");
-						}
-						if (day7.equals("9")) {
-							starMap.put("D7", "★");
-						}
-					} else if (day5.equals("5")) {
-						if (day6.equals("6")) {
-							starMap.put("D6", "★");
-						}
-						if (day7.equals("7")) {
-							starMap.put("D7", "★");
-						}
-					}
-					// Dd9 ⑨:6、12
-				} else if ("Dd9".equals(day)) {
-					// 左
-					if (day12.equals("12")) {
-						if (day11.equals("11")) {
-							starMap.put("D11", "★");
-						}
-						if (day10.equals("10")) {
-							starMap.put("D10", "★");
-						}
-					} else if (day12.equals("6")) {
-						if (day11.equals("7")) {
-							starMap.put("D11", "★");
-						}
-						if (day10.equals("8")) {
-							starMap.put("D10", "★");
-						}
-					}
-					// 右
-					if (day6.equals("12")) {
-						if (day7.equals("11")) {
-							starMap.put("D7", "★");
-						}
-						if (day8.equals("10")) {
-							starMap.put("D8", "★");
-						}
-					} else if (day6.equals("6")) {
-						if (day7.equals("7")) {
-							starMap.put("D7", "★");
-						}
-						if (day8.equals("8")) {
-							starMap.put("D8", "★");
-						}
-					}
-					// Dd10 ⑩:1、7
-				} else if ("Dd10".equals(day)) {
-					// 左
-					if (day13.equals("1")) {
-						if (day12.equals("12")) {
-							starMap.put("D12", "★");
-						}
-						if (day11.equals("11")) {
-							starMap.put("D11", "★");
-						}
-					} else if (day13.equals("7")) {
-						if (day12.equals("8")) {
-							starMap.put("D12", "★");
-						}
-						if (day11.equals("9")) {
-							starMap.put("D11", "★");
-						}
-					}
-					// 右
-					if (day7.equals("1")) {
-						if (day8.equals("12")) {
-							starMap.put("D8", "★");
-						}
-						if (day9.equals("11")) {
-							starMap.put("D9", "★");
-						}
-					} else if (day7.equals("7")) {
-						if (day8.equals("8")) {
-							starMap.put("D8", "★");
-						}
-						if (day9.equals("9")) {
-							starMap.put("D9", "★");
-						}
-					}
-					// Dd11 ⑪:2、8
-				} else if ("Dd11".equals(day)) {
-					// 左
-					if (day14.equals("2")) {
-						if (day13.equals("1")) {
-							starMap.put("D13", "★");
-						}
-						if (day12.equals("12")) {
-							starMap.put("D12", "★");
-						}
-					} else if (day14.equals("8")) {
-						if (day13.equals("9")) {
-							starMap.put("D13", "★");
-						}
-						if (day12.equals("10")) {
-							starMap.put("D12", "★");
-						}
-					}
-					// 右
-					if (day8.equals("2")) {
-						if (day9.equals("1")) {
-							starMap.put("D9", "★");
-						}
-						if (day10.equals("12")) {
-							starMap.put("D10", "★");
-						}
-					} else if (day8.equals("8")) {
-						if (day9.equals("9")) {
-							starMap.put("D9", "★");
-						}
-						if (day10.equals("10")) {
-							starMap.put("D10", "★");
+						if ("4".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
 					}
 
-					// Dd12 ⑫:3、9
-				} else if ("Dd12".equals(day)) {
+					// Yd18 ⑥:3、9
+				} else if ("Yd18".equals(day)) {
 					// 左
-					if (day15.equals("3")) {
-						if (day14.equals("2")) {
-							starMap.put("D14", "★");
+					if ("9".equals(day9)) {
+						if ("8".equals(day8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (day13.equals("1")) {
-							starMap.put("D13", "★");
+						if ("7".equals(day7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
-					} else if (day15.equals("9")) {
-						if (day14.equals("10")) {
-							starMap.put("D14", "★");
+					} else if ("3".equals(day9)) {
+						if ("4".equals(day8)) {
+							starMap.put("YL2", TEXT.RED_STAR);
 						}
-						if (day13.equals("1")) {
-							starMap.put("D13", "★");
+						if ("5".equals(day7)) {
+							starMap.put("YL1", TEXT.RED_STAR);
 						}
 					}
 					// 右
-					if (day9.equals("3")) {
-						if (day10.equals("2")) {
-							starMap.put("D10", "★");
+					if ("9".equals(day15)) {
+						if ("8".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (day11.equals("1")) {
-							starMap.put("D11", "★");
+						if ("7".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
-					} else if (day9.equals("9")) {
-						if (day10.equals("10")) {
-							starMap.put("D10", "★");
+					} else if ("3".equals(day15)) {
+						if ("4".equals(day16)) {
+							starMap.put("Y16", TEXT.RED_STAR);
 						}
-						if (day11.equals("11")) {
-							starMap.put("D11", "★");
-						}
-					}
-
-					// Dd13 ①:4、10
-				} else if ("Dd13".equals(day)) {
-					// 左
-					if (day16.equals("4")) {
-						if (day15.equals("3")) {
-							starMap.put("D15", "★");
-						}
-						if (day14.equals("2")) {
-							starMap.put("D14", "★");
-						}
-					} else if (day16.equals("10")) {
-						if (day15.equals("11")) {
-							starMap.put("D15", "★");
-						}
-						if (day14.equals("12")) {
-							starMap.put("D14", "★");
-						}
-					}
-					// 右
-					if (day10.equals("4")) {
-						if (day11.equals("3")) {
-							starMap.put("D11", "★");
-						}
-						if (day12.equals("2")) {
-							starMap.put("D12", "★");
-						}
-					} else if (day10.equals("10")) {
-						if (day11.equals("11")) {
-							starMap.put("D11", "★");
-						}
-						if (day12.equals("12")) {
-							starMap.put("D12", "★");
-						}
-					}
-
-					// Dd14 ②:5、11
-				} else if ("Dd14".equals(day)) {
-					// 左
-					if (day17.equals("5")) {
-						if (day16.equals("4")) {
-							starMap.put("D16", "★");
-						}
-						if (day15.equals("3")) {
-							starMap.put("D15", "★");
-						}
-					} else if (day17.equals("11")) {
-						if (day16.equals("12")) {
-							starMap.put("D16", "★");
-						}
-						if (day15.equals("13")) {
-							starMap.put("D15", "★");
-						}
-					}
-					// 右
-					if (day11.equals("5")) {
-						if (day12.equals("4")) {
-							starMap.put("D12", "★");
-						}
-						if (day13.equals("3")) {
-							starMap.put("D13", "★");
-						}
-					} else if (day11.equals("11")) {
-						if (day12.equals("12")) {
-							starMap.put("D12", "★");
-						}
-						if (day13.equals("13")) {
-							starMap.put("D13", "★");
-						}
-					}
-
-					// Dd15 ③:6、12
-				} else if ("Dd15".equals(day)) {
-					// 左
-					if (day18.equals("6")) {
-						if (day17.equals("5")) {
-							starMap.put("D17", "★");
-						}
-						if (day16.equals("4")) {
-							starMap.put("D16", "★");
-						}
-					} else if (day18.equals("12")) {
-						if (day17.equals("1")) {
-							starMap.put("D17", "★");
-						}
-						if (day16.equals("2")) {
-							starMap.put("D16", "★");
-						}
-					}
-					// 右
-					if (day12.equals("6")) {
-						if (day13.equals("5")) {
-							starMap.put("D13", "★");
-						}
-						if (day14.equals("4")) {
-							starMap.put("D14", "★");
-						}
-					} else if (day12.equals("12")) {
-						if (day13.equals("1")) {
-							starMap.put("D13", "★");
-						}
-						if (day14.equals("2")) {
-							starMap.put("D14", "★");
-						}
-					}
-
-					// Dd16 ④:7、1
-				} else if ("Dd16".equals(day)) {
-					// 左
-					if (day7.equals("7")) {
-						if (day18.equals("6")) {
-							starMap.put("D18", "★");
-						}
-						if (day17.equals("5")) {
-							starMap.put("D17", "★");
-						}
-					} else if (day7.equals("1")) {
-						if (day18.equals("2")) {
-							starMap.put("D18", "★");
-						}
-						if (day17.equals("3")) {
-							starMap.put("D17", "★");
-						}
-					}
-					// 右
-					if (day13.equals("7")) {
-						if (day14.equals("6")) {
-							starMap.put("D14", "★");
-						}
-						if (day15.equals("5")) {
-							starMap.put("D15", "★");
-						}
-					} else if (day13.equals("1")) {
-						if (day14.equals("2")) {
-							starMap.put("D14", "★");
-						}
-						if (day15.equals("3")) {
-							starMap.put("D15", "★");
-						}
-					}
-
-					// Dd17 ⑤:2、8
-				} else if ("Dd17".equals(day)) {
-					// 左
-					if (day8.equals("8")) {
-						if (day7.equals("7")) {
-							starMap.put("DL1", "★");
-						}
-						if (day18.equals("6")) {
-							starMap.put("D18", "★");
-						}
-					} else if (day8.equals("2")) {
-						if (day7.equals("3")) {
-							starMap.put("DL1", "★");
-						}
-						if (day18.equals("4")) {
-							starMap.put("D18", "★");
-						}
-					}
-					// 右
-					if (day14.equals("8")) {
-						if (day15.equals("7")) {
-							starMap.put("D15", "★");
-						}
-						if (day16.equals("6")) {
-							starMap.put("D16", "★");
-						}
-					} else if (day14.equals("2")) {
-						if (day15.equals("3")) {
-							starMap.put("D15", "★");
-						}
-						if (day16.equals("4")) {
-							starMap.put("D16", "★");
-						}
-					}
-
-					// Dd18 ⑥:3、9
-				} else if ("Dd18".equals(day)) {
-					// 左
-					if (day9.equals("9")) {
-						if (day8.equals("8")) {
-							starMap.put("DL2", "★");
-						}
-						if (day7.equals("7")) {
-							starMap.put("DL1", "★");
-						}
-					} else if (day9.equals("3")) {
-						if (day8.equals("4")) {
-							starMap.put("DL2", "★");
-						}
-						if (day7.equals("5")) {
-							starMap.put("DL1", "★");
-						}
-					}
-					// 右
-					if (day15.equals("9")) {
-						if (day16.equals("8")) {
-							starMap.put("D16", "★");
-						}
-						if (day17.equals("7")) {
-							starMap.put("D17", "★");
-						}
-					} else if (day15.equals("3")) {
-						if (day16.equals("4")) {
-							starMap.put("D16", "★");
-						}
-						if (day17.equals("5")) {
-							starMap.put("D17", "★");
+						if ("5".equals(day17)) {
+							starMap.put("Y17", TEXT.RED_STAR);
 						}
 					}
 				}
@@ -6601,623 +6817,623 @@ public class ProcessAction {
 		if (null != cLine) {
 			if (starMap.size() == 0) {
 				for (String day : cLine) {
-					// Dc1 ④:7、1
-					if ("Dc1".equals(day)) {
+					// Yc1 ④:7、1
+					if ("Yc1".equals(day)) {
 						// 左
-						if (day4.equals("7")) {
-							if (day3.equals("6")) {
-								starMap.put("D3", "★");
+						if ("7".equals(day4)) {
+							if ("6".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("5")) {
-								starMap.put("D2", "★");
+							if ("5".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("1")) {
-							if (day3.equals("2")) {
-								starMap.put("D3", "★");
+						} else if ("1".equals(day4)) {
+							if ("2".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("3")) {
-								starMap.put("D2", "★");
+							if ("3".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day1.equals("7")) {
-							if (day2.equals("6")) {
-								starMap.put("DR2", "★");
+						if ("7".equals(day1)) {
+							if ("6".equals(day2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day3.equals("5")) {
-								starMap.put("DR1", "★");
+							if ("5".equals(day3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (day1.equals("1")) {
-							if (day2.equals("2")) {
-								starMap.put("DR2", "★");
+						} else if ("1".equals(day1)) {
+							if ("2".equals(day2)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day3.equals("3")) {
-								starMap.put("DR1", "★");
+							if ("3".equals(day3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Dc2 ⑤:8、2
-					} else if ("Dc2".equals(day)) {
+						// Yc2 ⑤:8、2
+					} else if ("Yc2".equals(day)) {
 						// 左
-						if (day5.equals("8")) {
-							if (day4.equals("7")) {
-								starMap.put("D4", "★");
+						if ("8".equals(day5)) {
+							if ("7".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day3.equals("6")) {
-								starMap.put("D3", "★");
+							if ("6".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("2")) {
-							if (day4.equals("3")) {
-								starMap.put("D4", "★");
+						} else if ("2".equals(day5)) {
+							if ("3".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day3.equals("4")) {
-								starMap.put("D3", "★");
+							if ("4".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day2.equals("8")) {
-							if (day3.equals("7")) {
-								starMap.put("DR1", "★");
+						if ("8".equals(day2)) {
+							if ("7".equals(day3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day1.equals("6")) {
-								starMap.put("D1", "★");
+							if ("6".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (day2.equals("2")) {
-							if (day3.equals("3")) {
-								starMap.put("DR1", "★");
+						} else if ("2".equals(day2)) {
+							if ("3".equals(day3)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day1.equals("4")) {
-								starMap.put("D1", "★");
+							if ("4".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Dc3 ⑥:9、3
-					} else if ("Dc3".equals(day)) {
+						// Yc3 ⑥:9、3
+					} else if ("Yc3".equals(day)) {
 						// 左
-						if (day6.equals("9")) {
-							if (day5.equals("8")) {
-								starMap.put("D5", "★");
+						if ("9".equals(day6)) {
+							if ("8".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day4.equals("7")) {
-								starMap.put("D4", "★");
+							if ("7".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("3")) {
-							if (day5.equals("4")) {
-								starMap.put("D5", "★");
+						} else if ("3".equals(day6)) {
+							if ("4".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day4.equals("5")) {
-								starMap.put("D4", "★");
+							if ("5".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day3.equals("9")) {
-							if (day1.equals("8")) {
-								starMap.put("D1", "★");
+						if ("9".equals(day3)) {
+							if ("8".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day2.equals("7")) {
-								starMap.put("D2", "★");
+							if ("7".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day3.equals("3")) {
-							if (day1.equals("4")) {
-								starMap.put("D1", "★");
+						} else if ("3".equals(day3)) {
+							if ("4".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day2.equals("5")) {
-								starMap.put("D2", "★");
+							if ("5".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Dc4 ⑦:10、4
-					} else if ("Dc4".equals(day)) {
+						// Yc4 ⑦:10、4
+					} else if ("Yc4".equals(day)) {
 						// 左
-						if (day7.equals("10")) {
-							if (day6.equals("9")) {
-								starMap.put("D6", "★");
+						if ("10".equals(day7)) {
+							if ("9".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day5.equals("8")) {
-								starMap.put("D5", "★");
+							if ("8".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("4")) {
-							if (day6.equals("5")) {
-								starMap.put("D6", "★");
+						} else if ("4".equals(day7)) {
+							if ("5".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day5.equals("6")) {
-								starMap.put("D5", "★");
+							if ("6".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day1.equals("10")) {
-							if (day2.equals("9")) {
-								starMap.put("D2", "★");
+						if ("10".equals(day1)) {
+							if ("9".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day3.equals("8")) {
-								starMap.put("D3", "★");
+							if ("8".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (day1.equals("4")) {
-							if (day2.equals("5")) {
-								starMap.put("D2", "★");
+						} else if ("4".equals(day1)) {
+							if ("5".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day3.equals("6")) {
-								starMap.put("D3", "★");
+							if ("6".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Dc5 ⑧:11、5
-					} else if ("Dc5".equals(day)) {
+						// Yc5 ⑧:11、5
+					} else if ("Yc5".equals(day)) {
 						// 左
-						if (day8.equals("11")) {
-							if (day7.equals("10")) {
-								starMap.put("D7", "★");
+						if ("11".equals(day8)) {
+							if ("10".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day6.equals("9")) {
-								starMap.put("D6", "★");
+							if ("9".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("5")) {
-							if (day7.equals("6")) {
-								starMap.put("D7", "★");
+						} else if ("5".equals(day8)) {
+							if ("6".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day6.equals("7")) {
-								starMap.put("D6", "★");
+							if ("7".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day2.equals("11")) {
-							if (day3.equals("10")) {
-								starMap.put("D3", "★");
+						if ("11".equals(day2)) {
+							if ("10".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day4.equals("9")) {
-								starMap.put("D4", "★");
+							if ("9".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day2.equals("5")) {
-							if (day3.equals("6")) {
-								starMap.put("D3", "★");
+						} else if ("5".equals(day2)) {
+							if ("6".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day4.equals("7")) {
-								starMap.put("D4", "★");
+							if ("7".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Dc6 ⑨:12、6
-					} else if ("Dc6".equals(day)) {
+						// Yc6 ⑨:12、6
+					} else if ("Yc6".equals(day)) {
 						// 左
-						if (day9.equals("12")) {
-							if (day8.equals("11")) {
-								starMap.put("D8", "★");
+						if ("12".equals(day9)) {
+							if ("11".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day7.equals("10")) {
-								starMap.put("D7", "★");
+							if ("10".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("6")) {
-							if (day8.equals("7")) {
-								starMap.put("D8", "★");
+						} else if ("6".equals(day9)) {
+							if ("7".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day7.equals("8")) {
-								starMap.put("D7", "★");
+							if ("8".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day3.equals("12")) {
-							if (day4.equals("11")) {
-								starMap.put("D4", "★");
+						if ("12".equals(day3)) {
+							if ("11".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day5.equals("10")) {
-								starMap.put("D5", "★");
+							if ("10".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day3.equals("6")) {
-							if (day4.equals("7")) {
-								starMap.put("D4", "★");
+						} else if ("6".equals(day3)) {
+							if ("7".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day5.equals("8")) {
-								starMap.put("D5", "★");
+							if ("8".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Dc7 ⑩:1、7
-					} else if ("Dc7".equals(day)) {
+						// Yc7 ⑩:1、7
+					} else if ("Yc7".equals(day)) {
 						// 左
-						if (day10.equals("1")) {
-							if (day9.equals("12")) {
-								starMap.put("D9", "★");
+						if ("1".equals(day10)) {
+							if ("12".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day8.equals("11")) {
-								starMap.put("D8", "★");
+							if ("11".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("7")) {
-							if (day9.equals("8")) {
-								starMap.put("D9", "★");
+						} else if ("7".equals(day10)) {
+							if ("8".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day8.equals("9")) {
-								starMap.put("D8", "★");
+							if ("9".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day4.equals("1")) {
-							if (day5.equals("12")) {
-								starMap.put("D5", "★");
+						if ("1".equals(day4)) {
+							if ("12".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day6.equals("11")) {
-								starMap.put("D6", "★");
+							if ("11".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("7")) {
-							if (day5.equals("8")) {
-								starMap.put("D5", "★");
+						} else if ("7".equals(day4)) {
+							if ("8".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day6.equals("9")) {
-								starMap.put("D6", "★");
+							if ("9".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Dc8 ⑪:2、8
-					} else if ("Dc8".equals(day)) {
+						// Yc8 ⑪:2、8
+					} else if ("Yc8".equals(day)) {
 						// 左
-						if (day11.equals("2")) {
-							if (day10.equals("1")) {
-								starMap.put("D10", "★");
+						if ("2".equals(day11)) {
+							if ("1".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day9.equals("12")) {
-								starMap.put("D9", "★");
+							if ("12".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("8")) {
-							if (day10.equals("9")) {
-								starMap.put("D10", "★");
+						} else if ("8".equals(day11)) {
+							if ("9".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day9.equals("10")) {
-								starMap.put("D9", "★");
+							if ("10".equals("10")) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day5.equals("2")) {
-							if (day6.equals("1")) {
-								starMap.put("D6", "★");
+						if ("2".equals(day5)) {
+							if ("1".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day7.equals("11")) {
-								starMap.put("D7", "★");
+							if ("11".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("8")) {
-							if (day6.equals("9")) {
-								starMap.put("D6", "★");
+						} else if ("8".equals(day5)) {
+							if ("9".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day7.equals("10")) {
-								starMap.put("D7", "★");
+							if ("10".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
-						// Dc9 ⑫:3、9
-					} else if ("Dc9".equals(day)) {
+						// Yc9 ⑫:3、9
+					} else if ("Yc9".equals(day)) {
 						// 左
-						if (day12.equals("3")) {
-							if (day11.equals("2")) {
-								starMap.put("D11", "★");
+						if ("3".equals(day12)) {
+							if ("2".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day10.equals("1")) {
-								starMap.put("D10", "★");
+							if ("1".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("9")) {
-							if (day11.equals("10")) {
-								starMap.put("D11", "★");
+						} else if ("9".equals(day12)) {
+							if ("10".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day10.equals("11")) {
-								starMap.put("D10", "★");
+							if ("11".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day6.equals("3")) {
-							if (day7.equals("2")) {
-								starMap.put("D7", "★");
+						if ("3".equals(day6)) {
+							if ("2".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day8.equals("1")) {
-								starMap.put("D8", "★");
+							if ("1".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("9")) {
-							if (day7.equals("10")) {
-								starMap.put("D7", "★");
+						} else if ("9".equals(day6)) {
+							if ("10".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day8.equals("11")) {
-								starMap.put("D8", "★");
+							if ("11".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
-						// Dc10 ①:4、10
-					} else if ("Dc10".equals(day)) {
+						// Yc10 ①:4、10
+					} else if ("Yc10".equals(day)) {
 						// 左
-						if (day13.equals("4")) {
-							if (day12.equals("3")) {
-								starMap.put("D12", "★");
+						if ("4".equals(day13)) {
+							if ("3".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day11.equals("2")) {
-								starMap.put("D11", "★");
+							if ("2".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("10")) {
-							if (day12.equals("11")) {
-								starMap.put("D12", "★");
+						} else if ("10".equals(day13)) {
+							if ("11".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day11.equals("12")) {
-								starMap.put("D11", "★");
+							if ("12".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day7.equals("4")) {
-							if (day8.equals("3")) {
-								starMap.put("D8", "★");
+						if ("4".equals(day7)) {
+							if ("3".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day9.equals("2")) {
-								starMap.put("D9", "★");
+							if ("2".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("10")) {
-							if (day8.equals("11")) {
-								starMap.put("D8", "★");
+						} else if ("10".equals(day7)) {
+							if ("11".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day9.equals("12")) {
-								starMap.put("D9", "★");
+							if ("12".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
-						// Dc11 ②:5、11
-					} else if ("Dc11".equals(day)) {
+						// Yc11 ②:5、11
+					} else if ("Yc11".equals(day)) {
 						// 左
-						if (day14.equals("5")) {
-							if (day13.equals("4")) {
-								starMap.put("D13", "★");
+						if ("5".equals(day14)) {
+							if ("4".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day12.equals("3")) {
-								starMap.put("D12", "★");
+							if ("3".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("11")) {
-							if (day13.equals("12")) {
-								starMap.put("D13", "★");
+						} else if ("11".equals(day14)) {
+							if ("12".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day12.equals("1")) {
-								starMap.put("D12", "★");
+							if ("1".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day8.equals("5")) {
-							if (day9.equals("4")) {
-								starMap.put("D9", "★");
+						if ("5".equals(day8)) {
+							if ("4".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day10.equals("3")) {
-								starMap.put("D10", "★");
+							if ("3".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("11")) {
-							if (day9.equals("12")) {
-								starMap.put("D9", "★");
+						} else if ("11".equals(day8)) {
+							if ("12".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day10.equals("1")) {
-								starMap.put("D10", "★");
+							if ("1".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc12 ③:6、12
-					} else if ("Dc12".equals(day)) {
+						// Yc12 ③:6、12
+					} else if ("Yc12".equals(day)) {
 						// 左
-						if (day15.equals("6")) {
-							if (day14.equals("5")) {
-								starMap.put("D14", "★");
+						if ("6".equals(day15)) {
+							if ("5".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("4")) {
-								starMap.put("D13", "★");
+							if ("4".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("12")) {
-							if (day14.equals("1")) {
-								starMap.put("D14", "★");
+						} else if ("12".equals(day15)) {
+							if ("1".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("2")) {
-								starMap.put("D13", "★");
+							if ("2".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day9.equals("6")) {
-							if (day10.equals("5")) {
-								starMap.put("D10", "★");
+						if ("6".equals(day9)) {
+							if ("5".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("4")) {
-								starMap.put("D11", "★");
+							if ("4".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("12")) {
-							if (day10.equals("1")) {
-								starMap.put("D10", "★");
+						} else if ("12".equals(day9)) {
+							if ("1".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("2")) {
-								starMap.put("D11", "★");
+							if ("2".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc13 ④:7、1
-					} else if ("Dc13".equals(day)) {
+						// Yc13 ④:7、1
+					} else if ("Yc13".equals(day)) {
 						// 左
-						if (day16.equals("7")) {
-							if (day15.equals("6")) {
-								starMap.put("D15", "★");
+						if ("7".equals(day16)) {
+							if ("6".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("5")) {
-								starMap.put("D14", "★");
+							if ("5".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day16.equals("1")) {
-							if (day15.equals("2")) {
-								starMap.put("D15", "★");
+						} else if ("1".equals(day16)) {
+							if ("2".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("3")) {
-								starMap.put("D14", "★");
+							if ("3".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day10.equals("7")) {
-							if (day11.equals("6")) {
-								starMap.put("D11", "★");
+						if ("7".equals(day10)) {
+							if ("6".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("5")) {
-								starMap.put("D12", "★");
+							if ("5".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("1")) {
-							if (day11.equals("2")) {
-								starMap.put("D11", "★");
+						} else if ("1".equals(day10)) {
+							if ("2".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("3")) {
-								starMap.put("D12", "★");
+							if ("3".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc14 ⑤:2、8
-					} else if ("Dc14".equals(day)) {
+						// Yc14 ⑤:2、8
+					} else if ("Yc14".equals(day)) {
 						// 左
-						if (day17.equals("2")) {
-							if (day16.equals("3")) {
-								starMap.put("D16", "★");
+						if ("2".equals(day17)) {
+							if ("3".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("4")) {
-								starMap.put("D15", "★");
+							if ("4".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day17.equals("8")) {
-							if (day16.equals("7")) {
-								starMap.put("D16", "★");
+						} else if ("8".equals(day17)) {
+							if ("7".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("6")) {
-								starMap.put("D15", "★");
+							if ("6".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day11.equals("2")) {
-							if (day12.equals("3")) {
-								starMap.put("D12", "★");
+						if ("2".equals(day11)) {
+							if ("3".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("4")) {
-								starMap.put("D13", "★");
+							if ("4".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("8")) {
-							if (day12.equals("7")) {
-								starMap.put("D12", "★");
+						} else if ("8".equals(day11)) {
+							if ("7".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("6")) {
-								starMap.put("D13", "★");
+							if ("6".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc15 ⑥:3、9
-					} else if ("Dc15".equals(day)) {
+						// Yc15 ⑥:3、9
+					} else if ("Yc15".equals(day)) {
 						// 左
-						if (day18.equals("3")) {
-							if (day17.equals("4")) {
-								starMap.put("D17", "★");
+						if ("3".equals(day18)) {
+							if ("4".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("5")) {
-								starMap.put("D16", "★");
+							if ("5".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day18.equals("9")) {
-							if (day17.equals("8")) {
-								starMap.put("D17", "★");
+						} else if ("9".equals(day18)) {
+							if ("8".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("7")) {
-								starMap.put("D16", "★");
+							if ("7".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day12.equals("3")) {
-							if (day13.equals("4")) {
-								starMap.put("D13", "★");
+						if ("3".equals(day12)) {
+							if ("4".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("5")) {
-								starMap.put("D14", "★");
+							if ("5".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("9")) {
-							if (day13.equals("8")) {
-								starMap.put("D13", "★");
+						} else if ("9".equals(day12)) {
+							if ("8".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("7")) {
-								starMap.put("D14", "★");
+							if ("7".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc16 ⑦:10、4
-					} else if ("Dc16".equals(day)) {
+						// Yc16 ⑦:10、4
+					} else if ("Yc16".equals(day)) {
 						// 左
-						if (day10.equals("10")) {
-							if (day18.equals("9")) {
-								starMap.put("D18", "★");
+						if ("10".equals(day10)) {
+							if ("9".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("8")) {
-								starMap.put("D17", "★");
+							if ("8".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("4")) {
-							if (day18.equals("5")) {
-								starMap.put("D18", "★");
+						} else if ("4".equals(day10)) {
+							if ("5".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("6")) {
-								starMap.put("D17", "★");
+							if ("6".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day13.equals("10")) {
-							if (day14.equals("9")) {
-								starMap.put("D14", "★");
+						if ("10".equals(day13)) {
+							if ("9".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("8")) {
-								starMap.put("D15", "★");
+							if ("8".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("4")) {
-							if (day14.equals("5")) {
-								starMap.put("D14", "★");
+						} else if ("4".equals(day13)) {
+							if ("5".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("6")) {
-								starMap.put("D15", "★");
+							if ("6".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc17 ⑧:11、5
-					} else if ("Dc17".equals(day)) {
+						// Yc17 ⑧:11、5
+					} else if ("Yc17".equals(day)) {
 						// 左
-						if (day11.equals("11")) {
-							if (day10.equals("10")) {
-								starMap.put("DL1", "★");
+						if ("11".equals(day11)) {
+							if ("10".equals(day10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("9")) {
-								starMap.put("D18", "★");
+							if ("9".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("5")) {
-							if (day10.equals("6")) {
-								starMap.put("DL1", "★");
+						} else if ("5".equals(day11)) {
+							if ("6".equals(day10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("7")) {
-								starMap.put("D18", "★");
+							if ("7".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day14.equals("11")) {
-							if (day15.equals("10")) {
-								starMap.put("D15", "★");
+						if ("11".equals(day14)) {
+							if ("10".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("9")) {
-								starMap.put("D16", "★");
+							if ("9".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("5")) {
-							if (day15.equals("6")) {
-								starMap.put("D15", "★");
+						} else if ("5".equals(day14)) {
+							if ("6".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("7")) {
-								starMap.put("D16", "★");
+							if ("7".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Dc18 ⑨:12、6
-					} else if ("Dc18".equals(day)) {
+						// Yc18 ⑨:12、6
+					} else if ("Yc18".equals(day)) {
 						// 左
-						if (day12.equals("12")) {
-							if (day11.equals("11")) {
-								starMap.put("DL2", "★");
+						if ("12".equals(day12)) {
+							if ("11".equals(day11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day10.equals("10")) {
-								starMap.put("DL1", "★");
+							if ("10".equals(day10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("6")) {
-							if (day11.equals("7")) {
-								starMap.put("DL2", "★");
+						} else if ("6".equals("6")) {
+							if ("7".equals(day11)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day10.equals("8")) {
-								starMap.put("DL1", "★");
+							if ("8".equals(day10)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day15.equals("12")) {
-							if (day16.equals("11")) {
-								starMap.put("D16", "★");
+						if ("12".equals(day15)) {
+							if ("11".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("10")) {
-								starMap.put("D17", "★");
+							if ("10".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("6")) {
-							if (day16.equals("7")) {
-								starMap.put("D16", "★");
+						} else if ("6".equals(day15)) {
+							if ("7".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("8")) {
-								starMap.put("D17", "★");
+							if ("8".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -7229,623 +7445,623 @@ public class ProcessAction {
 		if (null != bLine) {
 			if (starMap.size() == 0) {
 				for (String day : bLine) {
-					// Db1 ⑦:10、4
-					if ("Db1".equals(day)) {
+					// Yb1 ⑦:10、4
+					if ("Yb1".equals(day)) {
 						// 左
-						if (day4.equals("10")) {
-							if (day3.equals("9")) {
-								starMap.put("D3", "★");
+						if ("10".equals(day4)) {
+							if ("9".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("8")) {
-								starMap.put("D2", "★");
+							if ("8".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("4")) {
-							if (day3.equals("5")) {
-								starMap.put("D3", "★");
+						} else if ("4".equals(day4)) {
+							if ("5".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("6")) {
-								starMap.put("D2", "★");
+							if ("6".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day4.equals("10")) {
-							if (day5.equals("9")) {
-								starMap.put("DR2", "★");
+						if ("10".equals(day4)) {
+							if ("9".equals(day5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day6.equals("8")) {
-								starMap.put("DR1", "★");
+							if ("8".equals(day6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("4")) {
-							if (day5.equals("5")) {
-								starMap.put("DR2", "★");
+						} else if ("4".equals(day4)) {
+							if ("5".equals(day5)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day6.equals("6")) {
-								starMap.put("DR1", "★");
+							if ("6".equals(day6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Db2 ⑧:11、5
-					} else if ("Db2".equals(day)) {
+						// Yb2 ⑧:11、5
+					} else if ("Yb2".equals(day)) {
 						// 左
-						if (day5.equals("11")) {
+						if ("11".equals(day5)) {
 							if (day4.equals("10")) {
-								starMap.put("D4", "★");
-							}
-							if (day3.equals("9")) {
-								starMap.put("D3", "★");
-							}
-						} else if (day5.equals("5")) {
-							if (day4.equals("6")) {
-								starMap.put("D4", "★");
-							}
-							if (day3.equals("7")) {
-								starMap.put("D3", "★");
-							}
-						}
-						// 右
-						if (day5.equals("11")) {
-							if (day6.equals("10")) {
-								starMap.put("DR1", "★");
-							}
-							if (day1.equals("9")) {
-								starMap.put("D1", "★");
-							}
-						} else if (day5.equals("5")) {
-							if (day6.equals("6")) {
-								starMap.put("DR1", "★");
-							}
-							if (day1.equals("7")) {
-								starMap.put("D1", "★");
-							}
-						}
-						// Db3 ⑨:12、6
-					} else if ("Db3".equals(day)) {
-						// 左
-						if (day6.equals("12")) {
-							if (day5.equals("11")) {
-								starMap.put("D5", "★");
-							}
-							if (day4.equals("10")) {
-								starMap.put("D4", "★");
-							}
-						} else if (day6.equals("6")) {
-							if (day5.equals("7")) {
-								starMap.put("D5", "★");
-							}
-							if (day4.equals("8")) {
-								starMap.put("D4", "★");
-							}
-						}
-						// 右
-						if (day6.equals("12")) {
-							if (day1.equals("11")) {
-								starMap.put("D1", "★");
-							}
-							if (day2.equals("10")) {
-								starMap.put("D2", "★");
-							}
-						} else if (day6.equals("6")) {
-							if (day1.equals("7")) {
-								starMap.put("D1", "★");
-							}
-							if (day2.equals("8")) {
-								starMap.put("D2", "★");
-							}
-						}
-						// Db4 ⑩:1、7
-					} else if ("Db4".equals(day)) {
-						// 左
-						if (day7.equals("1")) {
-							if (day6.equals("12")) {
-								starMap.put("D6", "★");
-							}
-							if (day5.equals("11")) {
-								starMap.put("D5", "★");
-							}
-						} else if (day7.equals("7")) {
-							if (day6.equals("8")) {
-								starMap.put("D6", "★");
-							}
-							if (day5.equals("9")) {
-								starMap.put("D5", "★");
-							}
-						}
-						// 右
-						if (day1.equals("1")) {
-							if (day2.equals("12")) {
-								starMap.put("D2", "★");
-							}
-							if (day3.equals("11")) {
-								starMap.put("D3", "★");
-							}
-						} else if (day1.equals("7")) {
-							if (day2.equals("8")) {
-								starMap.put("D2", "★");
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 							if (day3.equals("9")) {
-								starMap.put("D3", "★");
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						}
-						// Db5 ⑪:2、8
-					} else if ("Db5".equals(day)) {
-						// 左
-						if (day8.equals("2")) {
-							if (day7.equals("1")) {
-								starMap.put("D7", "★");
+						} else if ("5".equals(day5)) {
+							if ("6".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day6.equals("12")) {
-								starMap.put("D6", "★");
-							}
-						} else if (day8.equals("8")) {
-							if (day7.equals("9")) {
-								starMap.put("D7", "★");
-							}
-							if (day6.equals("10")) {
-								starMap.put("D6", "★");
+							if ("7".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day2.equals("2")) {
-							if (day3.equals("1")) {
-								starMap.put("D3", "★");
+						if ("11".equals(day5)) {
+							if ("10".equals(day6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day4.equals("12")) {
-								starMap.put("D4", "★");
+							if ("9".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (day2.equals("8")) {
-							if (day3.equals("9")) {
-								starMap.put("D3", "★");
+						} else if ("5".equals("5")) {
+							if ("6".equals(day6)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day4.equals("10")) {
-								starMap.put("D4", "★");
+							if ("7".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Db6 ⑫:3、9
-					} else if ("Db6".equals(day)) {
+						// Yb3 ⑨:12、6
+					} else if ("Yb3".equals(day)) {
 						// 左
-						if (day9.equals("3")) {
-							if (day8.equals("2")) {
-								starMap.put("D8", "★");
+						if ("12".equals(day6)) {
+							if ("11".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day7.equals("1")) {
-								starMap.put("D7", "★");
+							if ("10".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("9")) {
-							if (day8.equals("10")) {
-								starMap.put("D8", "★");
+						} else if ("6".equals(day6)) {
+							if ("7".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day7.equals("11")) {
-								starMap.put("D7", "★");
+							if ("8".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day3.equals("3")) {
-							if (day4.equals("2")) {
-								starMap.put("D4", "★");
+						if ("12".equals(day6)) {
+							if ("11".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day5.equals("1")) {
-								starMap.put("D5", "★");
+							if ("10".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day3.equals("9")) {
-							if (day4.equals("10")) {
-								starMap.put("D4", "★");
+						} else if ("6".equals(day6)) {
+							if ("7".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day5.equals("11")) {
-								starMap.put("D5", "★");
+							if ("8".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Db7 ①:4、10
-					} else if ("Db7".equals(day)) {
+						// Yb4 ⑩:1、7
+					} else if ("Yb4".equals(day)) {
 						// 左
-						if (day10.equals("4")) {
-							if (day9.equals("3")) {
-								starMap.put("D9", "★");
+						if ("1".equals(day7)) {
+							if ("12".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day8.equals("2")) {
-								starMap.put("D8", "★");
+							if ("11".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("10")) {
-							if (day9.equals("11")) {
-								starMap.put("D9", "★");
+						} else if ("7".equals(day7)) {
+							if ("8".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day8.equals("12")) {
-								starMap.put("D8", "★");
+							if ("9".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day4.equals("4")) {
-							if (day5.equals("3")) {
-								starMap.put("D5", "★");
+						if ("1".equals(day1)) {
+							if ("12".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day6.equals("2")) {
-								starMap.put("D6", "★");
+							if ("11".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("10")) {
-							if (day5.equals("11")) {
-								starMap.put("D5", "★");
+						} else if ("7".equals(day1)) {
+							if ("8".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day6.equals("12")) {
-								starMap.put("D6", "★");
+							if ("9".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Db8 ②:5、11
-					} else if ("Db8".equals(day)) {
+						// Yb5 ⑪:2、8
+					} else if ("Yb5".equals(day)) {
 						// 左
-						if (day11.equals("5")) {
-							if (day10.equals("4")) {
-								starMap.put("D10", "★");
+						if ("2".equals(day8)) {
+							if ("1".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day9.equals("3")) {
-								starMap.put("D9", "★");
+							if ("12".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("11")) {
-							if (day10.equals("12")) {
-								starMap.put("D10", "★");
+						} else if ("8".equals(day8)) {
+							if ("9".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day9.equals("1")) {
-								starMap.put("D9", "★");
+							if ("10".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day5.equals("5")) {
-							if (day6.equals("4")) {
-								starMap.put("D6", "★");
+						if ("2".equals(day2)) {
+							if ("1".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day7.equals("3")) {
-								starMap.put("D7", "★");
+							if ("12".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("11")) {
-							if (day6.equals("12")) {
-								starMap.put("D6", "★");
+						} else if ("8".equals(day2)) {
+							if ("9".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day7.equals("1")) {
-								starMap.put("D7", "★");
+							if ("10".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Db9 ③:6、12
-					} else if ("Db9".equals(day)) {
+						// Yb6 ⑫:3、9
+					} else if ("Yb6".equals(day)) {
 						// 左
-						if (day12.equals("6")) {
-							if (day11.equals("5")) {
-								starMap.put("D11", "★");
+						if ("3".equals(day9)) {
+							if ("2".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day10.equals("4")) {
-								starMap.put("D10", "★");
+							if ("1".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("12")) {
-							if (day11.equals("1")) {
-								starMap.put("D11", "★");
+						} else if ("9".equals(day9)) {
+							if ("10".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day10.equals("2")) {
-								starMap.put("D10", "★");
+							if ("11".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day6.equals("6")) {
-							if (day7.equals("5")) {
-								starMap.put("D7", "★");
+						if ("3".equals(day3)) {
+							if ("2".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day8.equals("4")) {
-								starMap.put("D8", "★");
+							if ("1".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("12")) {
-							if (day7.equals("1")) {
-								starMap.put("D7", "★");
+						} else if ("9".equals(day3)) {
+							if ("10".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day8.equals("2")) {
-								starMap.put("D8", "★");
+							if ("11".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Db10 ④:7、1
-					} else if ("Db10".equals(day)) {
+						// Yb7 ①:4、10
+					} else if ("Yb7".equals(day)) {
 						// 左
-						if (day13.equals("7")) {
-							if (day12.equals("6")) {
-								starMap.put("D12", "★");
+						if ("4".equals(day10)) {
+							if ("3".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day11.equals("5")) {
-								starMap.put("D11", "★");
+							if ("2".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("1")) {
-							if (day12.equals("2")) {
-								starMap.put("D12", "★");
+						} else if ("10".equals(day10)) {
+							if ("11".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day11.equals("3")) {
-								starMap.put("D11", "★");
+							if ("12".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day7.equals("7")) {
-							if (day8.equals("6")) {
-								starMap.put("D8", "★");
+						if ("4".equals(day4)) {
+							if ("3".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day9.equals("5")) {
-								starMap.put("D9", "★");
+							if ("2".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("1")) {
-							if (day8.equals("2")) {
-								starMap.put("D8", "★");
+						} else if ("10".equals(day4)) {
+							if ("11".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day9.equals("3")) {
-								starMap.put("D9", "★");
+							if ("12".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Db11 ⑤:8、2
-					} else if ("Db11".equals(day)) {
+						// Yb8 ②:5、11
+					} else if ("Yb8".equals(day)) {
 						// 左
-						if (day14.equals("8")) {
-							if (day13.equals("7")) {
-								starMap.put("D13", "★");
+						if ("5".equals(day11)) {
+							if ("4".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day12.equals("6")) {
-								starMap.put("D12", "★");
+							if ("3".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("2")) {
-							if (day13.equals("3")) {
-								starMap.put("D13", "★");
+						} else if ("11".equals(day11)) {
+							if ("12".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day12.equals("4")) {
-								starMap.put("D12", "★");
+							if ("1".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day8.equals("8")) {
-							if (day9.equals("7")) {
-								starMap.put("D9", "★");
+						if ("5".equals(day5)) {
+							if ("4".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day10.equals("6")) {
-								starMap.put("D10", "★");
+							if ("3".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("2")) {
-							if (day9.equals("3")) {
-								starMap.put("D9", "★");
+						} else if ("11".equals(day5)) {
+							if ("12".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day10.equals("4")) {
-								starMap.put("D10", "★");
+							if ("1".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+						}
+						// Yb9 ③:6、12
+					} else if ("Yb9".equals(day)) {
+						// 左
+						if ("6".equals(day12)) {
+							if ("5".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+							if ("4".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						} else if ("12".equals(day12)) {
+							if ("1".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+							if ("2".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("6".equals(day6)) {
+							if ("5".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+							if ("4".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+						} else if ("12".equals(day6)) {
+							if ("1".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
+							}
+							if ("2".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+						}
+						// Yb10 ④:7、1
+					} else if ("Yb10".equals(day)) {
+						// 左
+						if ("7".equals(day13)) {
+							if ("6".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+							if ("5".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+						} else if ("1".equals(day13)) {
+							if ("2".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+							if ("3".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("7".equals(day7)) {
+							if ("6".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+							if ("5".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+						} else if ("1".equals(day7)) {
+							if ("2".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
+							}
+							if ("3".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+						}
+						// Yb11 ⑤:8、2
+					} else if ("Yb11".equals(day)) {
+						// 左
+						if ("8".equals(day14)) {
+							if ("7".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
+							}
+							if ("6".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+						} else if ("2".equals(day14)) {
+							if ("3".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
+							}
+							if ("4".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
+							}
+						}
+						// 右
+						if ("8".equals(day8)) {
+							if ("7".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+							if ("6".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
+							}
+						} else if ("2".equals(day8)) {
+							if ("3".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
+							}
+							if ("4".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Db12 ⑥:9、3
-					} else if ("Db12".equals(day)) {
+						// Yb12 ⑥:9、3
+					} else if ("Yb12".equals(day)) {
 						// 左
-						if (day15.equals("9")) {
-							if (day14.equals("10")) {
-								starMap.put("D14", "★");
+						if ("9".equals(day15)) {
+							if ("10".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("11")) {
-								starMap.put("D13", "★");
+							if ("11".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("3")) {
-							if (day14.equals("4")) {
-								starMap.put("D14", "★");
+						} else if ("3".equals(day15)) {
+							if ("4".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("5")) {
-								starMap.put("D13", "★");
+							if ("5".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day9.equals("9")) {
-							if (day10.equals("8")) {
-								starMap.put("D10", "★");
+						if ("9".equals(day9)) {
+							if ("8".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("7")) {
-								starMap.put("D11", "★");
+							if ("7".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("3")) {
-							if (day10.equals("4")) {
-								starMap.put("D10", "★");
+						} else if ("3".equals(day9)) {
+							if ("4".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("5")) {
-								starMap.put("D11", "★");
+							if ("5".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Db13 ⑦:10、4
-					} else if ("Db13".equals(day)) {
+						// Yb13 ⑦:10、4
+					} else if ("Yb13".equals(day)) {
 						// 左
-						if (day16.equals("10")) {
-							if (day15.equals("9")) {
-								starMap.put("D15", "★");
+						if ("10".equals(day16)) {
+							if ("9".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("8")) {
-								starMap.put("D14", "★");
+							if ("8".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day16.equals("4")) {
-							if (day15.equals("5")) {
-								starMap.put("D15", "★");
+						} else if ("4".equals(day16)) {
+							if ("5".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("6")) {
-								starMap.put("D14", "★");
+							if ("6".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day10.equals("10")) {
-							if (day11.equals("9")) {
-								starMap.put("D11", "★");
+						if ("10".equals(day10)) {
+							if ("9".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("8")) {
-								starMap.put("D12", "★");
+							if ("8".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("4")) {
-							if (day11.equals("5")) {
-								starMap.put("D11", "★");
+						} else if ("4".equals(day10)) {
+							if ("5".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("6")) {
-								starMap.put("D12", "★");
+							if ("6".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Db14 ⑧:11、5
-					} else if ("Db14".equals(day)) {
+						// Yb14 ⑧:11、5
+					} else if ("Yb14".equals(day)) {
 						// 左
-						if (day17.equals("11")) {
-							if (day16.equals("10")) {
-								starMap.put("D16", "★");
+						if ("11".equals(day17)) {
+							if ("10".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("9")) {
-								starMap.put("D15", "★");
+							if ("9".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day17.equals("5")) {
-							if (day16.equals("6")) {
-								starMap.put("D16", "★");
+						} else if ("5".equals(day17)) {
+							if ("6".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("7")) {
-								starMap.put("D15", "★");
+							if ("7".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day11.equals("11")) {
-							if (day12.equals("10")) {
-								starMap.put("D12", "★");
+						if ("11".equals(day11)) {
+							if ("10".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("9")) {
-								starMap.put("D13", "★");
+							if ("9".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("5")) {
-							if (day12.equals("6")) {
-								starMap.put("D12", "★");
+						} else if ("5".equals(day11)) {
+							if ("6".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("7")) {
-								starMap.put("D13", "★");
+							if ("7".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Db15 ⑨:12、6
-					} else if ("Db15".equals(day)) {
+						// Yb15 ⑨:12、6
+					} else if ("Yb15".equals(day)) {
 						// 左
-						if (day18.equals("12")) {
-							if (day17.equals("11")) {
-								starMap.put("D17", "★");
+						if ("12".equals(day18)) {
+							if ("11".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("10")) {
-								starMap.put("D16", "★");
+							if ("10".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day18.equals("6")) {
-							if (day17.equals("7")) {
-								starMap.put("D17", "★");
+						} else if ("6".equals(day18)) {
+							if ("7".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("8")) {
-								starMap.put("D16", "★");
+							if ("8".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day12.equals("12")) {
-							if (day13.equals("11")) {
-								starMap.put("D13", "★");
+						if ("12".equals(day12)) {
+							if ("11".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("10")) {
-								starMap.put("D14", "★");
+							if ("10".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("6")) {
-							if (day13.equals("7")) {
-								starMap.put("D13", "★");
+						} else if ("6".equals(day12)) {
+							if ("7".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("8")) {
-								starMap.put("D14", "★");
+							if ("8".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Db16 ⑩:1、7
-					} else if ("Db16".equals(day)) {
+						// Yb16 ⑩:1、7
+					} else if ("Yb16".equals(day)) {
 						// 左
-						if (day1.equals("1")) {
-							if (day18.equals("12")) {
-								starMap.put("D18", "★");
+						if ("1".equals(day1)) {
+							if ("12".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("11")) {
-								starMap.put("D17", "★");
+							if ("11".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day1.equals("7")) {
-							if (day18.equals("8")) {
-								starMap.put("D18", "★");
+						} else if ("7".equals(day1)) {
+							if ("8".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("9")) {
-								starMap.put("D17", "★");
+							if ("9".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day13.equals("1")) {
-							if (day14.equals("12")) {
-								starMap.put("D14", "★");
+						if ("1".equals(day13)) {
+							if ("12".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("11")) {
-								starMap.put("D15", "★");
+							if ("11".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("7")) {
-							if (day14.equals("8")) {
-								starMap.put("D14", "★");
+						} else if ("7".equals(day13)) {
+							if ("8".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("9")) {
-								starMap.put("D15", "★");
+							if ("9".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Db17 ⑪:2、8
-					} else if ("Db17".equals(day)) {
+						// Yb17 ⑪:2、8
+					} else if ("Yb17".equals(day)) {
 						// 左
-						if (day2.equals("2")) {
-							if (day1.equals("1")) {
-								starMap.put("DL1", "★");
+						if ("2".equals(day2)) {
+							if ("1".equals(day1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("12")) {
-								starMap.put("D18", "★");
+							if ("12".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (day2.equals("8")) {
-							if (day1.equals("9")) {
-								starMap.put("DL1", "★");
+						} else if ("8".equals(day2)) {
+							if ("9".equals(day1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("10")) {
-								starMap.put("D18", "★");
+							if ("10".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day14.equals("2")) {
-							if (day15.equals("1")) {
-								starMap.put("D15", "★");
+						if ("2".equals(day14)) {
+							if ("1".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("12")) {
-								starMap.put("D16", "★");
+							if ("12".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("8")) {
-							if (day15.equals("9")) {
-								starMap.put("D15", "★");
+						} else if ("8".equals(day14)) {
+							if ("9".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("10")) {
-								starMap.put("D16", "★");
+							if ("10".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Db18 ⑫:3、9
-					} else if ("Db18".equals(day)) {
+						// Yb18 ⑫:3、9
+					} else if ("Yb18".equals(day)) {
 						// 左
-						if (day3.equals("3")) {
-							if (day2.equals("2")) {
-								starMap.put("DL2", "★");
+						if ("3".equals(day3)) {
+							if ("2".equals(day2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day1.equals("1")) {
-								starMap.put("DL1", "★");
+							if ("1".equals(day1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (day3.equals("9")) {
-							if (day2.equals("10")) {
-								starMap.put("DL2", "★");
+						} else if ("9".equals(day3)) {
+							if ("10".equals(day2)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day1.equals("11")) {
-								starMap.put("DL1", "★");
+							if ("11".equals(day1)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day15.equals("3")) {
-							if (day16.equals("2")) {
-								starMap.put("D16", "★");
+						if ("3".equals(day15)) {
+							if ("2".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("1")) {
-								starMap.put("D17", "★");
+							if ("1".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("9")) {
-							if (day16.equals("10")) {
-								starMap.put("D16", "★");
+						} else if ("9".equals(day15)) {
+							if ("10".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("11")) {
-								starMap.put("D17", "★");
+							if ("11".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -7858,623 +8074,623 @@ public class ProcessAction {
 		if (null != aLine) {
 			if (starMap.size() == 0) {
 				for (String day : aLine) {
-					// Da1 ⑩:1、7
-					if ("Da1".equals(day)) {
+					// Ya1 ⑩:1、7
+					if ("Ya1".equals(day)) {
 						// 左
-						if (day4.equals("1")) {
-							if (day3.equals("12")) {
-								starMap.put("D3", "★");
+						if ("1".equals(day4)) {
+							if ("12".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("11")) {
-								starMap.put("D2", "★");
+							if ("11".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("7")) {
-							if (day3.equals("8")) {
-								starMap.put("D3", "★");
+						} else if ("7".equals(day4)) {
+							if ("8".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day2.equals("9")) {
-								starMap.put("D2", "★");
+							if ("9".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day7.equals("1")) {
-							if (day8.equals("12")) {
-								starMap.put("DR2", "★");
+						if ("1".equals(day7)) {
+							if ("12".equals(day8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day9.equals("11")) {
-								starMap.put("DR1", "★");
+							if ("11".equals(day9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("7")) {
-							if (day8.equals("8")) {
-								starMap.put("DR2", "★");
+						} else if ("7".equals(day7)) {
+							if ("8".equals(day8)) {
+								starMap.put("YR2", TEXT.RED_STAR);
 							}
-							if (day9.equals("9")) {
-								starMap.put("DR1", "★");
+							if ("9".equals(day9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
 						}
-						// Da2 ⑪:2、8
-					} else if ("Da2".equals(day)) {
+						// Ya2 ⑪:2、8
+					} else if ("Ya2".equals(day)) {
 						// 左
-						if (day5.equals("2")) {
-							if (day4.equals("1")) {
-								starMap.put("D4", "★");
+						if ("2".equals(day5)) {
+							if ("1".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day3.equals("12")) {
-								starMap.put("D3", "★");
+							if ("12".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("8")) {
-							if (day4.equals("9")) {
-								starMap.put("D4", "★");
+						} else if ("8".equals(day5)) {
+							if ("9".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day3.equals("10")) {
-								starMap.put("D3", "★");
+							if ("10".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day8.equals("2")) {
-							if (day9.equals("1")) {
-								starMap.put("DR1", "★");
+						if ("2".equals(day8)) {
+							if ("1".equals(day9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day1.equals("12")) {
-								starMap.put("D1", "★");
+							if ("12".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("8")) {
-							if (day9.equals("9")) {
-								starMap.put("DR1", "★");
+						} else if ("8".equals(day8)) {
+							if ("9".equals(day9)) {
+								starMap.put("YR1", TEXT.RED_STAR);
 							}
-							if (day1.equals("10")) {
-								starMap.put("D1", "★");
+							if ("10".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
 						}
-						// Da3 ⑫:3、9
-					} else if ("Da3".equals(day)) {
+						// Ya3 ⑫:3、9
+					} else if ("Ya3".equals(day)) {
 						// 左
-						if (day6.equals("3")) {
-							if (day5.equals("2")) {
-								starMap.put("D5", "★");
+						if ("3".equals(day6)) {
+							if ("2".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day4.equals("1")) {
-								starMap.put("D4", "★");
+							if ("1".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("9")) {
-							if (day5.equals("10")) {
-								starMap.put("D5", "★");
+						} else if ("9".equals(day6)) {
+							if ("10".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day4.equals("11")) {
-								starMap.put("D4", "★");
+							if ("11".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day9.equals("3")) {
-							if (day1.equals("2")) {
-								starMap.put("D1", "★");
+						if ("3".equals(day9)) {
+							if ("2".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day2.equals("1")) {
-								starMap.put("D2", "★");
+							if ("1".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("9")) {
-							if (day1.equals("10")) {
-								starMap.put("D1", "★");
+						} else if ("9".equals(day9)) {
+							if ("10".equals(day1)) {
+								starMap.put("Y1", TEXT.RED_STAR);
 							}
-							if (day2.equals("11")) {
-								starMap.put("D2", "★");
+							if ("11".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
 						}
-						// Da4 ①:4、10
-					} else if ("Da4".equals(day)) {
+						// Ya4 ①:4、10
+					} else if ("Ya4".equals(day)) {
 						// 左
-						if (day7.equals("4")) {
-							if (day6.equals("3")) {
-								starMap.put("D6", "★");
+						if ("4".equals(day7)) {
+							if ("3".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day5.equals("2")) {
-								starMap.put("D5", "★");
+							if ("2".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("10")) {
-							if (day6.equals("11")) {
-								starMap.put("D6", "★");
+						} else if ("10".equals("10")) {
+							if ("11".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day5.equals("12")) {
-								starMap.put("D5", "★");
+							if ("12".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day1.equals("4")) {
-							if (day2.equals("3")) {
-								starMap.put("D2", "★");
+						if ("4".equals(day1)) {
+							if ("3".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day3.equals("2")) {
-								starMap.put("D3", "★");
+							if ("2".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-						} else if (day1.equals("10")) {
-							if (day2.equals("11")) {
-								starMap.put("D2", "★");
+						} else if ("10".equals(day1)) {
+							if ("11".equals(day2)) {
+								starMap.put("Y2", TEXT.RED_STAR);
 							}
-							if (day3.equals("12")) {
-								starMap.put("D3", "★");
+							if ("12".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
 						}
-						// Da5 ②:5、11
-					} else if ("Da5".equals(day)) {
+						// Ya5 ②:5、11
+					} else if ("Ya5".equals(day)) {
 						// 左
-						if (day8.equals("5")) {
-							if (day7.equals("4")) {
-								starMap.put("D7", "★");
+						if ("5".equals(day8)) {
+							if ("4".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day6.equals("3")) {
-								starMap.put("D6", "★");
+							if ("3".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("11")) {
-							if (day7.equals("12")) {
-								starMap.put("D7", "★");
+						} else if ("11".equals(day8)) {
+							if ("12".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day6.equals("1")) {
-								starMap.put("D6", "★");
+							if ("1".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day2.equals("5")) {
-							if (day3.equals("4")) {
-								starMap.put("D3", "★");
+						if ("5".equals(day2)) {
+							if ("4".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day4.equals("3")) {
-								starMap.put("D4", "★");
+							if ("3".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-						} else if (day2.equals("11")) {
-							if (day3.equals("12")) {
-								starMap.put("D3", "★");
+						} else if ("11".equals(day2)) {
+							if ("12".equals(day3)) {
+								starMap.put("Y3", TEXT.RED_STAR);
 							}
-							if (day4.equals("1")) {
-								starMap.put("D4", "★");
+							if ("1".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
 						}
-						// Da6 ③:6、12
-					} else if ("Da6".equals(day)) {
+						// Ya6 ③:6、12
+					} else if ("Ya6".equals(day)) {
 						// 左
-						if (day9.equals("6")) {
-							if (day8.equals("5")) {
-								starMap.put("D8", "★");
+						if ("6".equals(day9)) {
+							if ("5".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day7.equals("4")) {
-								starMap.put("D7", "★");
+							if ("4".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("12")) {
-							if (day8.equals("1")) {
-								starMap.put("D8", "★");
+						} else if ("12".equals(day9)) {
+							if ("1".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day7.equals("2")) {
-								starMap.put("D7", "★");
+							if ("2".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day3.equals("6")) {
-							if (day4.equals("5")) {
-								starMap.put("D4", "★");
+						if ("6".equals(day3)) {
+							if ("5".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day5.equals("4")) {
-								starMap.put("D5", "★");
+							if ("4".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-						} else if (day3.equals("12")) {
-							if (day4.equals("1")) {
-								starMap.put("D4", "★");
+						} else if ("12".equals(day3)) {
+							if ("1".equals(day4)) {
+								starMap.put("Y4", TEXT.RED_STAR);
 							}
-							if (day5.equals("2")) {
-								starMap.put("D5", "★");
+							if ("2".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
 						}
-						// Da7 ④:7、1
-					} else if ("Da7".equals(day)) {
+						// Ya7 ④:7、1
+					} else if ("Ya7".equals(day)) {
 						// 左
-						if (day10.equals("7")) {
-							if (day9.equals("6")) {
-								starMap.put("D9", "★");
+						if ("7".equals(day10)) {
+							if ("6".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day8.equals("5")) {
-								starMap.put("D8", "★");
+							if ("5".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("1")) {
-							if (day9.equals("2")) {
-								starMap.put("D9", "★");
+						} else if ("1".equals(day10)) {
+							if ("2".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day8.equals("3")) {
-								starMap.put("D8", "★");
+							if ("3".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day4.equals("7")) {
-							if (day5.equals("6")) {
-								starMap.put("D5", "★");
+						if ("7".equals(day4)) {
+							if ("6".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day6.equals("5")) {
-								starMap.put("D6", "★");
+							if ("5".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("1")) {
-							if (day5.equals("2")) {
-								starMap.put("D5", "★");
+						} else if ("1".equals(day4)) {
+							if ("2".equals(day5)) {
+								starMap.put("Y5", TEXT.RED_STAR);
 							}
-							if (day6.equals("3")) {
-								starMap.put("D6", "★");
+							if ("3".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
 						}
-						// Da8 ⑤:8、2
-					} else if ("Da8".equals(day)) {
+						// Ya8 ⑤:8、2
+					} else if ("Ya8".equals(day)) {
 						// 左
-						if (day11.equals("8")) {
-							if (day10.equals("7")) {
-								starMap.put("D10", "★");
+						if ("8".equals(day11)) {
+							if ("7".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day9.equals("6")) {
-								starMap.put("D9", "★");
+							if ("6".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("2")) {
-							if (day10.equals("3")) {
-								starMap.put("D10", "★");
+						} else if ("2".equals(day11)) {
+							if ("3".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day9.equals("4")) {
-								starMap.put("D9", "★");
+							if ("4".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day5.equals("8")) {
-							if (day6.equals("7")) {
-								starMap.put("D6", "★");
+						if ("8".equals(day5)) {
+							if ("7".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day7.equals("6")) {
-								starMap.put("D7", "★");
+							if ("6".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("2")) {
-							if (day6.equals("3")) {
-								starMap.put("D6", "★");
+						} else if ("2".equals(day5)) {
+							if ("3".equals(day6)) {
+								starMap.put("Y6", TEXT.RED_STAR);
 							}
-							if (day7.equals("4")) {
-								starMap.put("D7", "★");
+							if ("4".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
 						}
-						// Da9 ⑥:9、3
-					} else if ("Da9".equals(day)) {
+						// Ya9 ⑥:9、3
+					} else if ("Ya9".equals(day)) {
 						// 左
-						if (day12.equals("9")) {
-							if (day11.equals("8")) {
-								starMap.put("D11", "★");
+						if ("9".equals(day12)) {
+							if ("8".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day10.equals("7")) {
-								starMap.put("D10", "★");
+							if ("7".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("3")) {
-							if (day11.equals("4")) {
-								starMap.put("D11", "★");
+						} else if ("3".equals(day12)) {
+							if ("4".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day10.equals("5")) {
-								starMap.put("D10", "★");
+							if ("5".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day6.equals("9")) {
-							if (day7.equals("8")) {
-								starMap.put("D7", "★");
+						if ("9".equals(day6)) {
+							if ("8".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day8.equals("7")) {
-								starMap.put("D8", "★");
+							if ("7".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("3")) {
-							if (day7.equals("4")) {
-								starMap.put("D7", "★");
+						} else if ("3".equals(day6)) {
+							if ("4".equals(day7)) {
+								starMap.put("Y7", TEXT.RED_STAR);
 							}
-							if (day8.equals("5")) {
-								starMap.put("D8", "★");
+							if ("5".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
 						}
-						// Da10 ⑦:10、4
-					} else if ("Da10".equals(day)) {
+						// Ya10 ⑦:10、4
+					} else if ("Ya10".equals(day)) {
 						// 左
-						if (day13.equals("10")) {
-							if (day12.equals("9")) {
-								starMap.put("D12", "★");
+						if ("10".equals(day13)) {
+							if ("9".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day11.equals("8")) {
-								starMap.put("D11", "★");
+							if ("8".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("4")) {
-							if (day12.equals("5")) {
-								starMap.put("D12", "★");
+						} else if ("4".equals(day13)) {
+							if ("5".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day11.equals("6")) {
-								starMap.put("D11", "★");
+							if ("6".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day7.equals("10")) {
-							if (day8.equals("9")) {
-								starMap.put("D8", "★");
+						if ("10".equals(day7)) {
+							if ("9".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day9.equals("8")) {
-								starMap.put("D9", "★");
+							if ("8".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-						} else if (day7.equals("4")) {
-							if (day8.equals("5")) {
-								starMap.put("D8", "★");
+						} else if ("4".equals(day7)) {
+							if ("5".equals(day8)) {
+								starMap.put("Y8", TEXT.RED_STAR);
 							}
-							if (day9.equals("6")) {
-								starMap.put("D9", "★");
+							if ("6".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
 						}
-						// Da11 ⑧:11、5
-					} else if ("Da11".equals(day)) {
+						// Ya11 ⑧:11、5
+					} else if ("Ya11".equals(day)) {
 						// 左
-						if (day14.equals("11")) {
-							if (day13.equals("10")) {
-								starMap.put("D13", "★");
+						if ("11".equals(day14)) {
+							if ("10".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day12.equals("9")) {
-								starMap.put("D12", "★");
+							if ("9".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("5")) {
-							if (day13.equals("6")) {
-								starMap.put("D13", "★");
+						} else if ("5".equals(day14)) {
+							if ("6".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day12.equals("7")) {
-								starMap.put("D12", "★");
+							if ("7".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day8.equals("11")) {
-							if (day9.equals("10")) {
-								starMap.put("D9", "★");
+						if ("11".equals(day8)) {
+							if ("10".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day10.equals("9")) {
-								starMap.put("D10", "★");
+							if ("9".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-						} else if (day8.equals("5")) {
-							if (day9.equals("6")) {
-								starMap.put("D9", "★");
+						} else if ("5".equals(day8)) {
+							if ("6".equals(day9)) {
+								starMap.put("Y9", TEXT.RED_STAR);
 							}
-							if (day10.equals("7")) {
-								starMap.put("D10", "★");
+							if ("7".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
 						}
 
-						// Da12 ⑨:12、6
-					} else if ("Da12".equals(day)) {
+						// Ya12 ⑨:12、6
+					} else if ("Ya12".equals(day)) {
 						// 左
-						if (day15.equals("12")) {
-							if (day14.equals("11")) {
-								starMap.put("D14", "★");
+						if ("12".equals(day15)) {
+							if ("11".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("10")) {
-								starMap.put("D13", "★");
+							if ("10".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("6")) {
-							if (day14.equals("7")) {
-								starMap.put("D14", "★");
+						} else if ("6".equals(day15)) {
+							if ("7".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day13.equals("8")) {
-								starMap.put("D13", "★");
+							if ("8".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day9.equals("12")) {
-							if (day10.equals("11")) {
-								starMap.put("D10", "★");
+						if ("12".equals(day9)) {
+							if ("11".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("10")) {
-								starMap.put("D11", "★");
+							if ("10".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-						} else if (day9.equals("6")) {
-							if (day10.equals("7")) {
-								starMap.put("D10", "★");
+						} else if ("6".equals(day9)) {
+							if ("7".equals(day10)) {
+								starMap.put("Y10", TEXT.RED_STAR);
 							}
-							if (day11.equals("8")) {
-								starMap.put("D11", "★");
+							if ("8".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
 						}
 
-						// Da13 ⑩:1、7
-					} else if ("Da13".equals(day)) {
+						// Ya13 ⑩:1、7
+					} else if ("Ya13".equals(day)) {
 						// 左
-						if (day16.equals("1")) {
-							if (day15.equals("12")) {
-								starMap.put("D15", "★");
+						if ("1".equals(day16)) {
+							if ("12".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("11")) {
-								starMap.put("D14", "★");
+							if ("11".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day16.equals("7")) {
-							if (day15.equals("8")) {
-								starMap.put("D15", "★");
+						} else if ("7".equals(day16)) {
+							if ("8".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day14.equals("9")) {
-								starMap.put("D14", "★");
+							if ("9".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day10.equals("1")) {
-							if (day11.equals("12")) {
-								starMap.put("D11", "★");
+						if ("1".equals(day10)) {
+							if ("12".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("11")) {
-								starMap.put("D12", "★");
+							if ("11".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-						} else if (day10.equals("7")) {
-							if (day11.equals("8")) {
-								starMap.put("D11", "★");
+						} else if ("7".equals(day10)) {
+							if ("8".equals(day11)) {
+								starMap.put("Y11", TEXT.RED_STAR);
 							}
-							if (day12.equals("9")) {
-								starMap.put("D12", "★");
+							if ("9".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
 						}
 
-						// Da14 ⑪:2、8
-					} else if ("Da14".equals(day)) {
+						// Ya14 ⑪:2、8
+					} else if ("Ya14".equals(day)) {
 						// 左
-						if (day17.equals("2")) {
-							if (day16.equals("1")) {
-								starMap.put("D16", "★");
+						if ("2".equals(day17)) {
+							if ("1".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("12")) {
-								starMap.put("D15", "★");
+							if ("12".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day17.equals("8")) {
-							if (day16.equals("9")) {
-								starMap.put("D16", "★");
+						} else if ("8".equals(day17)) {
+							if ("9".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day15.equals("10")) {
-								starMap.put("D15", "★");
+							if ("10".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day11.equals("2")) {
-							if (day12.equals("1")) {
-								starMap.put("D12", "★");
+						if ("2".equals(day11)) {
+							if ("1".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("12")) {
-								starMap.put("D13", "★");
+							if ("12".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-						} else if (day11.equals("8")) {
-							if (day12.equals("9")) {
-								starMap.put("D12", "★");
+						} else if ("8".equals(day11)) {
+							if ("9".equals(day12)) {
+								starMap.put("Y12", TEXT.RED_STAR);
 							}
-							if (day13.equals("10")) {
-								starMap.put("D13", "★");
+							if ("10".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
 						}
 
-						// Da15 ⑫:3、9
-					} else if ("Da15".equals(day)) {
+						// Ya15 ⑫:3、9
+					} else if ("Ya15".equals(day)) {
 						// 左
-						if (day18.equals("3")) {
-							if (day17.equals("2")) {
-								starMap.put("D17", "★");
+						if ("3".equals(day18)) {
+							if ("2".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("1")) {
-								starMap.put("D16", "★");
+							if ("1".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day18.equals("9")) {
-							if (day17.equals("10")) {
-								starMap.put("D17", "★");
+						} else if ("9".equals(day18)) {
+							if ("10".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-							if (day16.equals("11")) {
-								starMap.put("D16", "★");
+							if ("11".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day12.equals("3")) {
-							if (day13.equals("2")) {
-								starMap.put("D13", "★");
+						if ("3".equals(day12)) {
+							if ("2".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("1")) {
-								starMap.put("D14", "★");
+							if ("1".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-						} else if (day12.equals("9")) {
-							if (day13.equals("10")) {
-								starMap.put("D13", "★");
+						} else if ("9".equals(day12)) {
+							if ("10".equals(day13)) {
+								starMap.put("Y13", TEXT.RED_STAR);
 							}
-							if (day14.equals("11")) {
-								starMap.put("D14", "★");
+							if ("11".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
 						}
 
-						// Da16 ①:4、10
-					} else if ("Da16".equals(day)) {
+						// Ya16 ①:4、10
+					} else if ("Ya16".equals(day)) {
 						// 左
-						if (day4.equals("4")) {
-							if (day18.equals("3")) {
-								starMap.put("D18", "★");
+						if ("4".equals(day4)) {
+							if ("3".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("2")) {
-								starMap.put("D17", "★");
+							if ("2".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day4.equals("10")) {
-							if (day18.equals("11")) {
-								starMap.put("D18", "★");
+						} else if ("10".equals(day4)) {
+							if ("11".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-							if (day17.equals("12")) {
-								starMap.put("D17", "★");
+							if ("12".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day13.equals("4")) {
-							if (day14.equals("3")) {
-								starMap.put("D14", "★");
+						if ("4".equals(day13)) {
+							if ("3".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("2")) {
-								starMap.put("D15", "★");
+							if ("2".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-						} else if (day13.equals("10")) {
-							if (day14.equals("11")) {
-								starMap.put("D14", "★");
+						} else if ("10".equals(day13)) {
+							if ("11".equals(day14)) {
+								starMap.put("Y14", TEXT.RED_STAR);
 							}
-							if (day15.equals("12")) {
-								starMap.put("D15", "★");
+							if ("12".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
 						}
 
-						// Da17 ②:5、11
-					} else if ("Da17".equals(day)) {
+						// Ya17 ②:5、11
+					} else if ("Ya17".equals(day)) {
 						// 左
-						if (day5.equals("5")) {
-							if (day4.equals("4")) {
-								starMap.put("DL1", "★");
+						if ("5".equals(day5)) {
+							if ("4".equals(day4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("3")) {
-								starMap.put("D18", "★");
+							if ("3".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
-						} else if (day5.equals("11")) {
-							if (day4.equals("12")) {
-								starMap.put("DL1", "★");
+						} else if ("11".equals(day5)) {
+							if ("12".equals(day4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-							if (day18.equals("1")) {
-								starMap.put("D18", "★");
+							if ("1".equals(day18)) {
+								starMap.put("Y18", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day14.equals("5")) {
-							if (day15.equals("4")) {
-								starMap.put("D15", "★");
+						if ("5".equals(day14)) {
+							if ("4".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("3")) {
-								starMap.put("D16", "★");
+							if ("3".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-						} else if (day14.equals("11")) {
-							if (day15.equals("12")) {
-								starMap.put("D15", "★");
+						} else if ("11".equals(day14)) {
+							if ("12".equals(day15)) {
+								starMap.put("Y15", TEXT.RED_STAR);
 							}
-							if (day16.equals("1")) {
-								starMap.put("D16", "★");
+							if ("1".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
 						}
 
-						// Da18 ③:6、12
-					} else if ("Da18".equals(day)) {
+						// Ya18 ③:6、12
+					} else if ("Ya18".equals(day)) {
 						// 左
-						if (day6.equals("6")) {
-							if (day5.equals("5")) {
-								starMap.put("DL2", "★");
+						if ("6".equals(day6)) {
+							if ("5".equals(day5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day4.equals("4")) {
-								starMap.put("DL1", "★");
+							if ("4".equals(day4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
-						} else if (day6.equals("12")) {
-							if (day5.equals("1")) {
-								starMap.put("DL2", "★");
+						} else if ("12".equals(day6)) {
+							if ("1".equals(day5)) {
+								starMap.put("YL2", TEXT.RED_STAR);
 							}
-							if (day4.equals("2")) {
-								starMap.put("DL1", "★");
+							if ("2".equals(day4)) {
+								starMap.put("YL1", TEXT.RED_STAR);
 							}
 						}
 						// 右
-						if (day15.equals("6")) {
-							if (day16.equals("5")) {
-								starMap.put("D16", "★");
+						if ("6".equals(day15)) {
+							if ("5".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("4")) {
-								starMap.put("D17", "★");
+							if ("4".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
-						} else if (day15.equals("12")) {
-							if (day16.equals("1")) {
-								starMap.put("D16", "★");
+						} else if ("12".equals(day15)) {
+							if ("1".equals(day16)) {
+								starMap.put("Y16", TEXT.RED_STAR);
 							}
-							if (day17.equals("2")) {
-								starMap.put("D17", "★");
+							if ("2".equals(day17)) {
+								starMap.put("Y17", TEXT.RED_STAR);
 							}
 						}
 					}
@@ -9252,6 +9468,437 @@ public class ProcessAction {
 		this.starMap = starMap;
 	}
 
+	public String getHouse1() {
+		return house1;
+	}
+
+	public void setHouse1(String house1) {
+		this.house1 = house1;
+	}
+
+	public String getHouse2() {
+		return house2;
+	}
+
+	public void setHouse2(String house2) {
+		this.house2 = house2;
+	}
+
+	public String getHouse3() {
+		return house3;
+	}
+
+	public void setHouse3(String house3) {
+		this.house3 = house3;
+	}
+
+	public String getHouse4() {
+		return house4;
+	}
+
+	public void setHouse4(String house4) {
+		this.house4 = house4;
+	}
+
+	public String getHouse5() {
+		return house5;
+	}
+
+	public void setHouse5(String house5) {
+		this.house5 = house5;
+	}
+
+	public String getHouse6() {
+		return house6;
+	}
+
+	public void setHouse6(String house6) {
+		this.house6 = house6;
+	}
+
+	public String getHouse7() {
+		return house7;
+	}
+
+	public void setHouse7(String house7) {
+		this.house7 = house7;
+	}
+
+	public String getHouse8() {
+		return house8;
+	}
+
+	public void setHouse8(String house8) {
+		this.house8 = house8;
+	}
+
+	public String getHouse9() {
+		return house9;
+	}
+
+	public void setHouse9(String house9) {
+		this.house9 = house9;
+	}
+
+	public String getHouse10() {
+		return house10;
+	}
+
+	public void setHouse10(String house10) {
+		this.house10 = house10;
+	}
+
+	public String getHouse11() {
+		return house11;
+	}
+
+	public void setHouse11(String house11) {
+		this.house11 = house11;
+	}
+
+	public String getHouse12() {
+		return house12;
+	}
+
+	public void setHouse12(String house12) {
+		this.house12 = house12;
+	}
+
+	public String getHouse13() {
+		return house13;
+	}
+
+	public void setHouse13(String house13) {
+		this.house13 = house13;
+	}
+
+	public String getHouse14() {
+		return house14;
+	}
+
+	public void setHouse14(String house14) {
+		this.house14 = house14;
+	}
+
+	public String getHouse15() {
+		return house15;
+	}
+
+	public void setHouse15(String house15) {
+		this.house15 = house15;
+	}
+
+	public String getHouse16() {
+		return house16;
+	}
+
+	public void setHouse16(String house16) {
+		this.house16 = house16;
+	}
+
+	public String getHouse17() {
+		return house17;
+	}
+
+	public void setHouse17(String house17) {
+		this.house17 = house17;
+	}
+
+	public String getHouse18() {
+		return house18;
+	}
+
+	public void setHouse18(String house18) {
+		this.house18 = house18;
+	}
+
+	public String getUser1Name1() {
+		return user1Name1;
+	}
+
+	public void setUser1Name1(String user1Name1) {
+		this.user1Name1 = user1Name1;
+	}
+
+	public String getUser2Name1() {
+		return user2Name1;
+	}
+
+	public void setUser2Name1(String user2Name1) {
+		this.user2Name1 = user2Name1;
+	}
+
+	public String getUser3Name1() {
+		return user3Name1;
+	}
+
+	public void setUser3Name1(String user3Name1) {
+		this.user3Name1 = user3Name1;
+	}
+
+	public String getUser4Name1() {
+		return user4Name1;
+	}
+
+	public void setUser4Name1(String user4Name1) {
+		this.user4Name1 = user4Name1;
+	}
+
+	public String getUser5Name1() {
+		return user5Name1;
+	}
+
+	public void setUser5Name1(String user5Name1) {
+		this.user5Name1 = user5Name1;
+	}
+
+	public String getUser6Name1() {
+		return user6Name1;
+	}
+
+	public void setUser6Name1(String user6Name1) {
+		this.user6Name1 = user6Name1;
+	}
+
+	public String getUser7Name1() {
+		return user7Name1;
+	}
+
+	public void setUser7Name1(String user7Name1) {
+		this.user7Name1 = user7Name1;
+	}
+
+	public String getUser8Name1() {
+		return user8Name1;
+	}
+
+	public void setUser8Name1(String user8Name1) {
+		this.user8Name1 = user8Name1;
+	}
+
+	public String getUser9Name1() {
+		return user9Name1;
+	}
+
+	public void setUser9Name1(String user9Name1) {
+		this.user9Name1 = user9Name1;
+	}
+
+	public String getUser10Name1() {
+		return user10Name1;
+	}
+
+	public void setUser10Name1(String user10Name1) {
+		this.user10Name1 = user10Name1;
+	}
+
+	public String getUser11Name1() {
+		return user11Name1;
+	}
+
+	public void setUser11Name1(String user11Name1) {
+		this.user11Name1 = user11Name1;
+	}
+
+	public String getUser12Name1() {
+		return user12Name1;
+	}
+
+	public void setUser12Name1(String user12Name1) {
+		this.user12Name1 = user12Name1;
+	}
+
+	public String getUser13Name1() {
+		return user13Name1;
+	}
+
+	public void setUser13Name1(String user13Name1) {
+		this.user13Name1 = user13Name1;
+	}
+
+	public String getUser14Name1() {
+		return user14Name1;
+	}
+
+	public void setUser14Name1(String user14Name1) {
+		this.user14Name1 = user14Name1;
+	}
+
+	public String getUser15Name1() {
+		return user15Name1;
+	}
+
+	public void setUser15Name1(String user15Name1) {
+		this.user15Name1 = user15Name1;
+	}
+
+	public String getUser16Name1() {
+		return user16Name1;
+	}
+
+	public void setUser16Name1(String user16Name1) {
+		this.user16Name1 = user16Name1;
+	}
+
+	public String getUser17Name1() {
+		return user17Name1;
+	}
+
+	public void setUser17Name1(String user17Name1) {
+		this.user17Name1 = user17Name1;
+	}
+
+	public String getUser18Name1() {
+		return user18Name1;
+	}
+
+	public void setUser18Name1(String user18Name1) {
+		this.user18Name1 = user18Name1;
+	}
+
+	public String getUser1Name2() {
+		return user1Name2;
+	}
+
+	public void setUser1Name2(String user1Name2) {
+		this.user1Name2 = user1Name2;
+	}
+
+	public String getUser2Name2() {
+		return user2Name2;
+	}
+
+	public void setUser2Name2(String user2Name2) {
+		this.user2Name2 = user2Name2;
+	}
+
+	public String getUser3Name2() {
+		return user3Name2;
+	}
+
+	public void setUser3Name2(String user3Name2) {
+		this.user3Name2 = user3Name2;
+	}
+
+	public String getUser4Name2() {
+		return user4Name2;
+	}
+
+	public void setUser4Name2(String user4Name2) {
+		this.user4Name2 = user4Name2;
+	}
+
+	public String getUser5Name2() {
+		return user5Name2;
+	}
+
+	public void setUser5Name2(String user5Name2) {
+		this.user5Name2 = user5Name2;
+	}
+
+	public String getUser6Name2() {
+		return user6Name2;
+	}
+
+	public void setUser6Name2(String user6Name2) {
+		this.user6Name2 = user6Name2;
+	}
+
+	public String getUser7Name2() {
+		return user7Name2;
+	}
+
+	public void setUser7Name2(String user7Name2) {
+		this.user7Name2 = user7Name2;
+	}
+
+	public String getUser8Name2() {
+		return user8Name2;
+	}
+
+	public void setUser8Name2(String user8Name2) {
+		this.user8Name2 = user8Name2;
+	}
+
+	public String getUser9Name2() {
+		return user9Name2;
+	}
+
+	public void setUser9Name2(String user9Name2) {
+		this.user9Name2 = user9Name2;
+	}
+
+	public String getUser10Name2() {
+		return user10Name2;
+	}
+
+	public void setUser10Name2(String user10Name2) {
+		this.user10Name2 = user10Name2;
+	}
+
+	public String getUser11Name2() {
+		return user11Name2;
+	}
+
+	public void setUser11Name2(String user11Name2) {
+		this.user11Name2 = user11Name2;
+	}
+
+	public String getUser12Name2() {
+		return user12Name2;
+	}
+
+	public void setUser12Name2(String user12Name2) {
+		this.user12Name2 = user12Name2;
+	}
+
+	public String getUser13Name2() {
+		return user13Name2;
+	}
+
+	public void setUser13Name2(String user13Name2) {
+		this.user13Name2 = user13Name2;
+	}
+
+	public String getUser14Name2() {
+		return user14Name2;
+	}
+
+	public void setUser14Name2(String user14Name2) {
+		this.user14Name2 = user14Name2;
+	}
+
+	public String getUser15Name2() {
+		return user15Name2;
+	}
+
+	public void setUser15Name2(String user15Name2) {
+		this.user15Name2 = user15Name2;
+	}
+
+	public String getUser16Name2() {
+		return user16Name2;
+	}
+
+	public void setUser16Name2(String user16Name2) {
+		this.user16Name2 = user16Name2;
+	}
+
+	public String getUser17Name2() {
+		return user17Name2;
+	}
+
+	public void setUser17Name2(String user17Name2) {
+		this.user17Name2 = user17Name2;
+	}
+
+	public String getUser18Name2() {
+		return user18Name2;
+	}
+
+	public void setUser18Name2(String user18Name2) {
+		this.user18Name2 = user18Name2;
+	}
 
 
 }
